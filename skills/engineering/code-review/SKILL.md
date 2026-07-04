@@ -35,7 +35,7 @@ Look for the originating spec, in this order:
 
 Anything in the repo that documents how code should be written, such as `CODING_STANDARDS.md` or `CONTRIBUTING.md`.
 
-On top of whatever the repo documents, the Standards axis always carries the **smell baseline** below — a fixed set of Fowler code smells (_Refactoring_, ch.3) that applies even when a repo documents nothing. Two rules bind it:
+On top of whatever the repo documents, the Standards axis always carries the **smell baseline** below — a fixed set of Fowler code smells (_Refactoring_, ch.3) plus test smells that apply even when a repo documents nothing. Two rules bind it:
 
 - **The repo overrides.** A documented repo standard always wins; where it endorses something the baseline would flag, suppress the smell.
 - **Always a judgement call.** Each smell is a labelled heuristic ("possible Feature Envy"), never a hard violation — and, like any standard here, skip anything tooling already enforces.
@@ -54,6 +54,11 @@ Each smell reads *what it is* → *how to fix*; match it against the diff:
 - **Message Chains** — long `a.b().c().d()` navigation the caller shouldn't depend on. → hide the walk behind one method on the first object.
 - **Middle Man** — a class or function that mostly just delegates onward. → cut it, call the real target direct.
 - **Refused Bequest** — a subclass or implementer that ignores or overrides most of what it inherits. → drop the inheritance, use composition.
+- **Implementation-Coupled Test** — a test asserts private methods, helper calls, call order, internal collaborators, or branch structure. → test observable behaviour through the public seam instead.
+- **Issue-Shaped Test** — a test mirrors issue wording instead of the module's stable contract. → rename and assert the caller-visible behaviour the issue introduced.
+- **Tautological Test** — expected values are recomputed with the same logic as production, or snapshots are derived the same way. → use a known-good literal, worked example, domain rule, or spec requirement translated into behaviour.
+- **Internal Mock** — a test mocks a module the repo owns, rather than an external system boundary. → use the real collaborator or move the seam outward.
+- **Implementation-Named Test** — the test name describes how the code works (`calls X`, `sets Y`) instead of what capability exists. → name the behaviour a caller relies on.
 
 ### 4. Spawn both sub-agents in parallel
 

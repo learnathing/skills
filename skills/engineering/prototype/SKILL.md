@@ -1,11 +1,14 @@
 ---
 name: prototype
-description: Build a throwaway prototype to answer a design question. Use when the user wants to sanity-check whether a state model or logic feels right, or explore what a UI should look like.
+description: Build a runnable throwaway prototype to answer a design question.
+disable-model-invocation: true
 ---
 
 # Prototype
 
 A prototype is **throwaway code that answers a question**. The question decides the shape.
+
+Use this only when the user explicitly wants a runnable artifact, or a discussion cannot move forward without something concrete to react to. Do not use it for ordinary verbal exploration, sketches, or implementation work.
 
 ## Pick a branch
 
