@@ -1,97 +1,74 @@
 ## What it does
 
-`implement` builds work that has already been decided. You point it at a [ticket](https://www.aihero.dev/ai-coding-dictionary/ticket), a [spec](https://www.aihero.dev/ai-coding-dictionary/spec), or the plan you just agreed in the conversation, and it writes the code, drives [tdd](https://aihero.dev/skills-tdd) at the seams, typechecks as it goes, runs [code-review](https://aihero.dev/skills-code-review) at the end, and commits to the current branch.
+`implement` builds one bounded issue or spec through an evidence-bearing state machine. It rehydrates the contract, reconciles top-down intent with bottom-up code constraints, drives [tdd](https://aihero.dev/skills-tdd), and reviews the working tree before committing. It enters repair verification only when the review finds a blocker.
 
-It never reopens the plan. There is no interview, no clarifying round, no proposal of a different approach. Whatever was settled upstream is the input, and the skill's whole job is to turn that into a commit. That is what separates it from typing "build this" at a fresh [agent](https://www.aihero.dev/ai-coding-dictionary/agent), which will happily redesign the work while it builds it.
+Passing tests are an intermediate state. Completion requires traceable evidence, authorised semantics for every fallback actually introduced, and a review gate with no unresolved blocker.
 
 ## When to reach for it
 
-You invoke this by typing `/implement` yourself: the agent won't reach for it on its own. It ships with `disable-model-invocation: true`, so no other skill can call it either. Wherever [ask-matt](https://aihero.dev/skills-ask-matt) or [to-tickets](https://aihero.dev/skills-to-tickets) says "then `/implement` per ticket", that is an instruction to you, not something the agent will do unprompted.
+You invoke this by typing `/implement`; the [agent](https://www.aihero.dev/ai-coding-dictionary/agent) will not reach for it on its own.
 
-Where the work currently lives decides whether this is the right skill:
-
-| The work is… | Reach for |
+| What you have | Reach for |
 | --- | --- |
-| A ticket on the tracker | `/implement #42`, one ticket per [session](https://www.aihero.dev/ai-coding-dictionary/session), [clearing](https://www.aihero.dev/ai-coding-dictionary/clearing) context between tickets |
-| A spec, not yet split up, and the build spans sessions | [to-tickets](https://aihero.dev/skills-to-tickets) first, then `/implement` per ticket |
-| A spec, and the build is small | `/implement` directly against the spec |
-| Only in the conversation you just had, and it's still small | `/implement` right there, in the same window |
-| Not written down anywhere yet | [grill-with-docs](https://aihero.dev/skills-grill-with-docs), or [grill-me](https://aihero.dev/skills-grill-me) if there's no codebase |
-| One concrete behaviour you want test-first, with no spec | [tdd](https://aihero.dev/skills-tdd) directly |
-| Already built, and you want it checked | [code-review](https://aihero.dev/skills-code-review) directly |
-
-The same-session case is worth naming because the skill's own first line doesn't cover it. `SKILL.md` says "the spec or tickets", which nudges the [model](https://www.aihero.dev/ai-coding-dictionary/model) to go hunting for a file that doesn't exist. If the plan lives only in the thread, say so when you invoke it.
+| One implementation issue with a contract | `implement` |
+| A small settled change in the current [session](https://www.aihero.dev/ai-coding-dictionary/session) | `implement` directly |
+| Several issues | One fresh `implement` session per unblocked issue |
+| Requirements or failure behaviour still unresolved | [grill-with-docs](https://aihero.dev/skills-grill-with-docs) or [to-spec](https://aihero.dev/skills-to-spec) first |
 
 ## Prerequisites
 
-`implement` commits to the branch you are on. It does not create one, and it does not ask. Check you are on the branch you want the work on before you start.
+Check that the current branch is the intended destination. The skill records the initial `HEAD`, status, tracked diff, and untracked files as a baseline. Overlapping user changes stop for an ownership decision; disjoint changes are passed to review as excluded baseline and left out of the task commit. Tracker-backed issues depend on the configuration written by [setup-matt-pocock-skills](https://aihero.dev/skills-setup-matt-pocock-skills).
 
-If the tickets came from [to-tickets](https://aihero.dev/skills-to-tickets), the tracker they live on was configured by [setup-matt-pocock-skills](https://aihero.dev/skills-setup-matt-pocock-skills). `code-review` reads the same configuration to find the originating spec at close-out.
+## Reconciliation as the join
 
-## What one run does
+The source contract is the top-down view: outcomes, invariants, interfaces, and failure semantics. Code exploration is the bottom-up view: current callers, dependency constraints, transactions, data, and external systems. `implement` follows changed scenarios through both views before coding.
 
-A run is five beats, in order:
+It records mismatches and newly discovered constraints, not a table whose completed rows merely assert success. A mismatch that changes behaviour returns to the source contract. A same-session route uses the conversation's decision handoff as its source and assigns IDs when needed, so skipping a durable spec does not mean skipping Spec review.
 
-1. Read the ticket or spec and work out the seams.
-2. Drive [tdd](https://aihero.dev/skills-tdd) at the pre-agreed seams, one red-green slice at a time.
-3. Typecheck often, run single test files as it goes.
-4. Run the full test suite once, at the end.
-5. Run [code-review](https://aihero.dev/skills-code-review), then commit to the current branch.
+## The fallback register
 
-One run covers one ticket. The tickets [to-tickets](https://aihero.dev/skills-to-tickets) produces are tracer-bullet vertical slices sized to fit a single fresh [context window](https://www.aihero.dev/ai-coding-dictionary/context-window), so the intended rhythm is: clear context, implement one ticket, commit, clear again. Each ticket is self-contained, which is what makes the previous ticket's context disposable.
+Every new path that substitutes for missing, invalid, or failed required behaviour records its source decision, trigger, caller-visible result, and observability. This includes fallback defaults, retries, caught exceptions, compatibility paths, and degraded results. Ordinary initial values and contract-required defaults do not count.
 
-## Pre-agreed seams
+The skill records actual fallback entries only, and absence needs no register entry. The independent Design review inspects the diff. An entry without a source decision blocks completion.
 
-The idea the skill runs on is the **seam**: the public boundary you observe behaviour at, without reaching inside. Tests live at seams. Working at a seam agreed before any code is written is what keeps the tests durable, because the implementation underneath can be rewritten without the tests moving.
+## Bounded review
 
-The word "pre-agreed" is doing real work, and it is also the skill's weakest joint. Nothing inside `implement` agrees the seams. `tdd` is the skill that asks, and it refuses to write a test at an unconfirmed seam. So in practice the agreement happens either upstream in the spec, or in the first exchange of the run. If it happens nowhere, the precondition never fires and the run quietly becomes "just write the code". Naming the seams in the spec is what stops that.
+The first [code-review](https://aihero.dev/skills-code-review) pass examines the working tree against the pinned fixed point. The original issue, spec, or decision handoff remains the authoritative Spec source; the rehydrated contract is only a coverage index, so review can detect an omission in the rehydration itself. A clean blocker gate ends review immediately. When blockers exist, the skill repairs them and runs verification over prior dispositions plus a full blocker-only scan. Repair continues only while blocker progress is real and fixes remain in scope. A repeated blocker, contract expansion, or caller-provided budget exhaustion stops without commit. New advisories are out of scope during verification.
 
 ## Common questions
 
-**It finished, but my ticket is still open and the acceptance criteria are still unchecked.**
+**Can review see uncommitted changes now?**
 
-Correct, and expected. `implement` has no completion step. It ends at the commit and never touches the work item, confirmed on GitHub Issues and on the local markdown tracker, so it is not a tracker integration problem. It also does not act on the findings `code-review` produced, and does not tick the `- [ ]` boxes on the originating issue. Close the ticket and reconcile the criteria yourself. This bites hardest on a dependency chain, because `to-tickets` defines the frontier as tickets whose blockers are all closed. If nothing gets closed, nothing ever becomes visibly unblocked.
+Yes. `implement` explicitly calls `code-review` in working-tree mode, including untracked source files, before the commit.
 
-**Can I point it at all my tickets at once, or run several in parallel?**
+**Does it act on review findings?**
 
-No. One invocation, one ticket. Batch dispatch across a ticket queue and [subagent](https://www.aihero.dev/ai-coding-dictionary/subagent) fan-out are both requested repeatedly, and neither exists. Running several `/implement` sessions side by side in one checkout is worse than unsupported: one field report describes a `git commit --amend` in one session landing on another session's commit, a stash vanishing from `refs/stash`, and commits landing on the wrong branch, all in a single afternoon across three issues. The sessions share one working directory, one index, and one HEAD. Git worktrees are the community workaround, and note that `refs/stash` is shared across worktrees too, so worktrees alone do not fix the stash case. If you want parallelism today, you are assembling it yourself.
+Yes. Every blocker is fixed or rejected with evidence. Advisories are fixed only when their concrete benefit fits the ticket; otherwise they remain visible without becoming a user approval gate.
 
-**Can it open a pull request instead of committing?**
+**Can I point it at several tickets at once?**
 
-Not built in. It commits straight to the current branch, which several people find too eager: the code lands before they have had a chance to verify it works. There is no configuration flag and no PR mode. People override it in the invocation ("commit to a branch and open a PR") or by editing their local copy of the skill.
+No. One run owns one bounded issue. Use separate worktrees for parallel sessions, and run a final branch-level review after all issue frontiers complete.
 
-**`code-review` says it cannot see my changes.**
+**Does it close the tracker issue?**
 
-`code-review` reviews `git diff <fixed-point>...HEAD`, which excludes staged and working-tree changes. `implement` runs it before committing, so unless an interim commit already exists there is nothing in that diff to review. Multiple people have reported this and it is unfixed on both sides. Commit first, then review against the point you branched from.
-
-Separately, some people deliberately do not want the review inside the run at all, because an agent reviewing the code it just wrote is biased toward its own solution. Running [code-review](https://aihero.dev/skills-code-review) in a fresh session against a fixed point is a legitimate alternative, and is the same reason that skill runs its two axes in separate sub-agents.
-
-**One ticket burned 150k tokens. Am I using it wrong?**
-
-Probably the ticket is too big rather than the skill being misused. A run does codebase exploration, a red-green loop per seam, a full suite, and a review, so a non-trivial ticket exceeding 100k [tokens](https://www.aihero.dev/ai-coding-dictionary/token) is normal rather than a sign something broke. The lever is upstream: right-size the tickets in [to-tickets](https://aihero.dev/skills-to-tickets) so each fits one fresh window. If a single ticket keeps blowing out, split it rather than raising the [effort](https://www.aihero.dev/ai-coding-dictionary/effort) level.
-
-**`/implement #2` in a fresh session worked on something completely unrelated.**
-
-`#2` is resolved against whatever numbered list the agent can see, which in a fresh session may be a todo file, a checklist, or another work list rather than the configured tracker. The resolution is confident rather than fail-closed, so the mistake is not obvious until it has started. Pass the full reference, the issue URL or `owner/repo#2`, and ask it to confirm the title back before it begins.
+No. The workflow proves and commits the implementation; tracker closure remains separate unless your repository instructions explicitly add it.
 
 ## It's working if
 
-- The session opens by reading the ticket or spec and restating what it will build, rather than asking you what to build.
-- You can see an actual `/tdd` invocation in the trace, not just tests appearing in the diff.
-- Typechecks and single test files run repeatedly during the run, and the full suite runs once near the end.
-- The run reaches a commit on your current branch without you prompting it to carry on.
-- The diff is one ticket's worth of change: a vertical slice through every layer, not several tickets swept together.
+- The run begins with a fixed point, working-tree status, and implementation contract.
+- Every acceptance criterion maps to observable evidence.
+- Change scenarios show real red and green evidence, plus post-refactor evidence when code changed after Green.
+- Every fallback actually introduced has source-backed semantics and observability.
+- The first review sees uncommitted work and every blocker receives a disposition.
+- A clean first review does not trigger a ceremonial second pass.
+- A blocker that repeats without progress or requires contract expansion stops the commit.
 
 ## Where it fits
 
-`implement` is the build step of the main chain, second from the end:
+`implement` is the build-and-converge step of the main chain:
 
 ```txt
 grill-with-docs → to-spec → to-tickets → implement → code-review
 ```
 
-Its neighbours are [to-tickets](https://aihero.dev/skills-to-tickets), which produces the tickets it consumes and declares the blocking edges that decide their order; [tdd](https://aihero.dev/skills-tdd), which it drives internally at each seam; and [code-review](https://aihero.dev/skills-code-review), which it runs before committing. It sits downstream of the planning skills and trusts them. It does not re-validate the shape of what it was handed, so a badly-structured map or a horizontally-layered ticket gets built as written.
-
-That trust is why [wayfinder](https://aihero.dev/skills-wayfinder) merges onto the chain at [to-spec](https://aihero.dev/skills-to-spec) rather than looping its map straight into `implement`. Go straight to `implement` from a map only when the effort turned out genuinely small.
-
-[ask-matt](https://aihero.dev/skills-ask-matt) is the router over the whole set when you are not sure which flow you are in.
+[to-tickets](https://aihero.dev/skills-to-tickets) produces the fresh-context contract. `implement` drives `tdd` and calls `code-review` as its quality gate. [ask-matt](https://aihero.dev/skills-ask-matt) routes across the full set.

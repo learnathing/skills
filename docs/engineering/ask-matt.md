@@ -1,6 +1,6 @@
 ## What it does
 
-`ask-matt` is the router over the skills in this repo. You describe the situation you are in (an idea you cannot start, a pile of incoming bug reports, a [session](https://www.aihero.dev/ai-coding-dictionary/session) that has run long), and it names the skill or the sequence of skills that fits, plus where the human decisions in that sequence sit.
+`ask-matt` is the router over the skills in this repo. You describe the situation you are in (an idea you cannot start, a pile of incoming bug reports, a [session](https://www.aihero.dev/ai-coding-dictionary/session) that has run long), and it names the skill or sequence that fits. Before deciding a branch, it reads the candidate skills whose boundaries control that choice.
 
 It recommends and stops. It does not grill, write a [spec](https://www.aihero.dev/ai-coding-dictionary/spec), open a file or fire the skill it just named; what you get back is the next thing to type, and you type it. It is also a hand-written map of the skills in this repo rather than a scan of what you have installed, so it will not route you over your own skills or another author's.
 
@@ -26,7 +26,7 @@ The tracker-dependent routes (triage, `to-spec`, `to-tickets`, `implement`) assu
 
 The word the skill gives you to think with is **flow**: a path *through* the skills, not a single one. Naming your situation places you on a flow at a step, which is a different answer from "here is the skill that matches your keywords". Four kinds of route exist, and the skill itself carries them in full:
 
-- **The main flow**, idea to ship. Grill, spec, tickets, implement, review, with two branches inside it: a prototype detour when a question needs runnable code to settle, and the spec-and-tickets split, which only earns its cost when the build spans more than one session.
+- **The main flow**, idea to ship: `grill-with-docs`, an optional `prototype` detour, either direct `implement` or `to-spec` then `to-tickets`, and a final branch review for multi-ticket work. The source skills own their internal protocols, so the router keeps only the branch conditions.
 - **On-ramps**, for a situation that generates work and then merges onto the main flow: incoming bug reports, something broken, or an effort too foggy and too large to hold in one session.
 - **Standalones**, off every flow, reached for on their own terms: the prototype, the questionnaire, the merge conflict you are already sitting in.
 - **A vocabulary layer underneath**, the two references the other skills pull in when the words rather than the process are the problem.
@@ -37,7 +37,7 @@ The other idea it hands you is the **phase boundary**. A phase is a chunk of wor
 
 | Option | Take it when |
 | --- | --- |
-| **Continue** | The next phase wants this one verbatim, or you have [smart zone](https://www.aihero.dev/ai-coding-dictionary/smart-zone) left. It is the only move that keeps the session as a [primary source](https://www.aihero.dev/ai-coding-dictionary/primary-source), so rule it out first |
+| **Continue** | The next phase wants this one verbatim and the harness reports enough room for its remaining source, work, and verification. When capacity is unavailable, the router makes no numeric [smart zone](https://www.aihero.dev/ai-coding-dictionary/smart-zone) claim. It is the only move that keeps the session as a [primary source](https://www.aihero.dev/ai-coding-dictionary/primary-source), so rule it out first |
 | **`/clear`** | Everything behind you is disposable. Cheapest move on the board, and one-way if you were wrong |
 | **[handoff](https://aihero.dev/skills-handoff)** | Something has to travel: a new [harness](https://www.aihero.dev/ai-coding-dictionary/harness), a new directory, a colleague, a side task forked mid-phase |
 | **Subagent** | The task is scoped tightly enough to run with you [away from the keyboard](https://www.aihero.dev/ai-coding-dictionary/afk) |
@@ -57,7 +57,7 @@ A known bug, unfixed. Most of the skills the router routes you through set `disa
 
 **It described a skill's behaviour, and the skill doesn't do that.**
 
-Also real, also unfixed. The router answers from its own one-line summary of each skill rather than from the skill. One detailed report tracked three instances in a single session, including a recommendation to skip [to-spec](https://aihero.dev/skills-to-spec) on the strength of the gloss "turn the thread into a spec": `to-spec/SKILL.md` was never opened. In every case it verified only after the user pushed back, and never on its own initiative. Skipping `to-spec` there cost a real seam check, and the tickets that came out undercounted the work. When the router asserts something load-bearing about another skill, ask it to open that `SKILL.md` first. The same applies to questions the map does not cover at all, such as whether to use [plan mode](https://www.aihero.dev/ai-coding-dictionary/agent-mode): that answer is the [model](https://www.aihero.dev/ai-coding-dictionary/model)'s inference, not something written down here.
+This was a real failure mode. One detailed report tracked three instances in a single session, including a recommendation to skip [to-spec](https://aihero.dev/skills-to-spec) on the strength of a stale summary. The router now reads candidate skills before a source boundary justifies a branch or skip, then reads the chosen next skill. If the trace does not show those reads, treat the recommendation as incomplete. Questions the map does not cover at all, such as whether to use [plan mode](https://www.aihero.dev/ai-coding-dictionary/agent-mode), remain the [model](https://www.aihero.dev/ai-coding-dictionary/model)'s inference.
 
 **Why is it prose instead of a numbered checklist?**
 
@@ -79,8 +79,10 @@ Check the changelog for a rename before assuming it is gone. `writing-great-skil
 
 - It ends by naming what to type and stops there, instead of starting the work itself.
 - The route it gives back mentions where to clear or compact context and where you are expected to review, not just a list of skill names.
+- A multi-ticket route ends with a fresh-session branch review after the per-ticket gates.
+- Its main-flow description stays at routing level instead of duplicating protocols owned by the underlying skills.
 - Where two skills are close, it says which one and why the other is wrong for you.
-- Any claim it makes about another skill's behaviour shows up in the trace as it reading that skill's `SKILL.md`.
+- Any source-skill boundary used to choose or skip a route shows up in the trace as a read before the recommendation.
 - You recognise your own situation in what it hands back, rather than the nearest generic scenario.
 
 ## Where it fits

@@ -8,6 +8,8 @@ disable-model-invocation: true
 
 You don't remember every skill, so ask.
 
+Before finalising a route, read the `SKILL.md` for each candidate whose boundary decides the branch. After choosing, read the recommended next step. Do not load unrelated skills. This file owns routing conditions; each source skill owns its internal workflow. If they disagree, the source skill wins.
+
 A **flow** is a path through the skills. Most paths run along one **main flow**, and two **on-ramps** merge onto it. Everything else is standalone, or a vocabulary layer that runs underneath.
 
 ## The main flow: idea → ship
@@ -20,16 +22,16 @@ The route most work travels. You have an idea and want it built.
    - **`/prototype`** to answer the question with throwaway code,
    - **`/handoff`** back what you learned, and reference it from the original idea thread.
 3. **Branch: is this a multi-session build?**
-   - **Yes** → **`/to-spec`** (turn the thread into a spec), then **`/to-tickets`** to split it into tracer-bullet tickets, each declaring its **blocking edges**. On a local tracker that's one file per ticket under `.scratch/<feature>/issues/`, worked blockers-first by hand; on a real tracker the edges become native blocking links, so any ticket whose blockers are done can be grabbed: kick off **`/implement`** per ticket, **`/clear`ing context between each one**. Each ticket is self-contained, so the last one's context is disposable.
+   - **Yes** → **`/to-spec`**, then **`/to-tickets`**, then a fresh **`/implement`** session for each unblocked ticket. After all tickets finish, run one branch-level `/code-review` from a fresh session.
    - **No** → **`/implement`** right here, in the same context window.
 
-   Either way, **`/implement`** builds each issue by driving **`/tdd`** internally (one red-green slice at a time), then closes out by running **`/code-review`**, a two-axis review (Standards + Spec) of the diff, before committing. Reach for **`/tdd`** on its own when you just want to build a concrete behaviour test-first without a full spec, and **`/code-review`** on its own whenever you want to review a branch or PR against a fixed point.
+   Read `/implement` before recommending the build step; it owns the current build and quality-gate protocol. Reach for **`/tdd`** on its own for a concrete behaviour built test-first, and **`/code-review`** on its own to review a branch, PR, or working tree against a fixed point.
 
 ### Context hygiene
 
 Keep steps 1–3 in **one unbroken context window** (don't compact or clear until after `/to-tickets`) so the grilling, spec, and tickets all build on the same thinking. Each `/implement` then starts fresh, working from the ticket.
 
-The limit on this is the **[smart zone](https://www.aihero.dev/ai-coding-dictionary/smart-zone)**: the window (~150k tokens on state-of-the-art models) within which the model still reasons sharply. If a session approaches it before `/to-tickets`, don't push on degraded; `/compact` at the nearest phase boundary and carry on (see Phase boundaries).
+Use the harness's reported remaining capacity and the source material still needed for the next phase as a diagnostic. When capacity is unavailable, make no numeric smart-zone claim. If the remaining source, work, and verification cannot fit, `/compact` at the nearest phase boundary and carry on (see Phase boundaries).
 
 ## On-ramps
 

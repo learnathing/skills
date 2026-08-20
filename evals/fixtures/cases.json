@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "execution_status": "manual-development-only",
+  "cases": [
+    {
+      "id": "E1",
+      "fixture": "e1-failure-policy.md",
+      "repository": "e1-repo",
+      "stages": ["grill-with-docs", "to-spec", "implement"],
+      "primary_metrics": ["source.decision_recall", "source.required_scenario_recall", "source.traceability", "code.unauthorized_fallback_count"]
+    },
+    {
+      "id": "E2",
+      "fixture": "e2-vertical-feature.md",
+      "repository": "e2-repo",
+      "stages": ["to-spec", "to-tickets"],
+      "primary_metrics": ["source.decision_recall", "source.required_scenario_recall", "ticket.source_coverage", "ticket.cold_reader_questions", "ticket.blocking_cycle_count"]
+    },
+    {
+      "id": "E3",
+      "fixture": "e3-green-difficult-code.md",
+      "repository": "e3-repo",
+      "stages": ["code-review"],
+      "primary_metrics": ["review.seeded_finding_recall_by_severity", "review.false_positive_rate", "review.citation_accuracy", "review.severity_calibration"]
+    },
+    {
+      "id": "E4",
+      "fixture": "e4-model-catch-up.md",
+      "reuses": ["E1", "E2", "E3", "E5", "E6", "E7"],
+      "primary_metrics": ["evaluation.component_outcome_noninferiority", "evaluation.component_variance_noninferiority", "cost.context_tokens", "cost.runtime_ms"]
+    },
+    {
+      "id": "E5",
+      "fixture": "e5-end-to-end-code-quality.md",
+      "repository": "e1-repo",
+      "evaluator": "e5-evaluator",
+      "stages": ["implement", "code-review"],
+      "primary_metrics": ["code.acceptance_pass_rate", "code.comprehension_accuracy", "code.rule_location_ms", "code.followup_acceptance", "code.change_amplification", "code.unauthorized_fallback_count"]
+    },
+    {
+      "id": "E6",
+      "fixture": "e6-required-fallback.md",
+      "repository": "e1-repo",
+      "evaluator": "e6-evaluator",
+      "stages": ["implement", "code-review"],
+      "primary_metrics": ["code.acceptance_pass_rate", "code.required_fallback_coverage", "code.unauthorized_fallback_count", "code.comprehension_accuracy"]
+    },
+    {
+      "id": "E7",
+      "fixture": "e7-full-chain-code-quality.md",
+      "repository": "e1-repo",
+      "evaluator": "e5-evaluator",
+      "stages": ["grill-with-docs", "to-spec", "to-tickets", "implement", "code-review"],
+      "primary_metrics": ["source.decision_recall", "source.required_scenario_recall", "ticket.source_coverage", "code.acceptance_pass_rate", "code.comprehension_accuracy", "code.followup_acceptance", "code.change_amplification"]
+    }
+  ]
+}
