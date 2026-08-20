@@ -22,7 +22,7 @@ After the final validated ticket breakdown is shown, answer:
 
 ## Arm isolation
 
-Change only the planning component under test. Freeze all downstream `implement`, `tdd`, `code-review`, rubrics, model settings, and evaluator inputs across arms. For an implementation-component ablation, freeze the upstream artifacts instead.
+Change only the planning component under test. Freeze all downstream `lain-implement`, `lain-tdd`, `lain-code-review`, rubrics, model settings, and evaluator inputs across arms. For an implementation-component ablation, freeze the upstream artifacts instead.
 
 ## Evaluator-only acceptance
 

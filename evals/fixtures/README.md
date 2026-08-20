@@ -5,7 +5,7 @@ These fixtures are versioned development inputs for [`../engineering-flow.md`](.
 For every arm:
 
 1. Copy the referenced fixture files to a fresh temporary directory.
-2. Initialize Git when the case has a repository directory, add all model-input seed files, and commit them. The model must start from clean tracked input so `implement` can distinguish fixture code from user work. A review-only case may declare a separate empty parent and committed target change.
+2. Initialize Git when the case has a repository directory, add all model-input seed files, and commit them. The model must start from clean tracked input so `lain-implement` can distinguish fixture code from user work. A review-only case may declare a separate empty parent and committed target change.
 3. Run the exact prompt with the pinned model and harness configuration.
 4. Store the transcript, final artifacts, repository diff, token count, wall time, user turns, and tool failures under a result ID that does not reveal the arm to the evaluator.
 5. Keep evaluator-only tests outside the model workspace until scoring. Score only against the case's declared inputs and do not reward vocabulary copied from a skill.

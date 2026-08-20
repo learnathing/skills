@@ -2,37 +2,32 @@
 
 One install story, one wording. `README.md`, `.changeset/*`, and every page under `docs/` must say **this** and nothing else. Change it here first, then propagate.
 
-`mattpocock-skills` is listed in **Claude Code's official marketplace** (configured name `claude-plugins-official`, source repo `anthropics/claude-plugins-official`), which every Claude Code install has out of the box. There is no marketplace to add first. Official Anthropic marketplaces have auto-update enabled by default ([discover-plugins](https://code.claude.com/docs/en/discover-plugins)), so "updates arrive automatically" is a true claim, not a hope.
+This fork is installed as the `lain-mattpocock-skills` plugin from its local marketplace. Its plugin and skill names use the `lain-` namespace so it can coexist with the upstream plugin.
 
-## Claude Code: the plugin
+## Claude Code: the local fork plugin
 
 <canonical-block name="claude-code">
 
 ```bash
-claude plugins install mattpocock-skills
+/plugin marketplace add /Users/lain/Documents/code/skills
+/plugin install lain-mattpocock-skills@lain-skills
 ```
 
-Or, from inside a session:
-
-```
-/plugin install mattpocock-skills
-```
-
-It's in Claude Code's official marketplace, so there's nothing to add first, and updates arrive automatically.
+Run those commands from inside a Claude Code session. Replace the local path when the fork lives elsewhere.
 
 </canonical-block>
 
 ## Codex, and other agents: skills.sh
 
-The plugin is Claude Code only. Everywhere else, [skills.sh](https://skills.sh/mattpocock/skills) copies editable skill files into the project. Use the whole-set form on `README.md`:
+The plugin is Claude Code only. Everywhere else, [skills.sh](https://skills.sh) copies editable skill files into the project. For a published fork, replace the source with that fork's repository. For this local checkout, run `bash scripts/link-skills.sh`.
 
 <canonical-block name="skills-sh-whole-set">
 
 ```bash
-npx skills@latest add mattpocock/skills
+npx skills@latest add <your-fork-owner>/skills
 ```
 
-Pick the skills you want, and which coding agents to install them on. **The installer lets you choose which skills to take: make sure `setup-matt-pocock-skills` is one of them.**
+Pick the skills you want, and which coding agents to install them on. **The installer lets you choose which skills to take: make sure `lain-setup-matt-pocock-skills` is one of them.**
 
 </canonical-block>
 
@@ -41,11 +36,11 @@ Pick the skills you want, and which coding agents to install them on. **The inst
 <canonical-block name="skills-sh-one-skill">
 
 ```bash
-npx skills@latest add mattpocock/skills --skill=<name>
+npx skills@latest add <your-fork-owner>/skills --skill=lain-<name>
 ```
 
 ```bash
-npx skills@latest update <name>
+npx skills@latest update lain-<name>
 ```
 
 </canonical-block>
@@ -58,4 +53,4 @@ The plugin is a managed, read-only bundle you subscribe to. skills.sh writes fil
 
 ## Not the install story
 
-`.claude-plugin/marketplace.json` makes the repo its own single-plugin marketplace (`/plugin marketplace add mattpocock/skills`, then `/plugin install mattpocock-skills@mattpocock`). The official listing supersedes it. It is kept as a fallback for installing the repo directly (an unreleased commit, or a fork), and is **not** documented to users.
+`.claude-plugin/marketplace.json` makes the repo its own single-plugin marketplace (`/plugin marketplace add <path-to-fork>`, then `/plugin install lain-mattpocock-skills@lain-skills`). The prefixed names are required when this fork is installed alongside the upstream plugin.

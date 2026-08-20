@@ -39,11 +39,11 @@ Evaluate the full workflow first. For retirement or attribution, change one skil
 
 | Stage | Observable metric |
 | --- | --- |
-| grill-with-docs | Decision-bearing unknowns left implicit; codebase-answerable questions asked of the user; handoff fields present and source-consistent |
-| to-spec | Required-decision traceability; unsupported behaviours; invariant-to-scenario coverage; scenario-to-verification coverage; implicit caller-visible failures |
-| to-tickets | Source-ID coverage; duplicate or missing ownership; cycles in blocking edges; cold-reader questions required before implementation |
+| lain-grill-with-docs | Decision-bearing unknowns left implicit; codebase-answerable questions asked of the user; handoff fields present and source-consistent |
+| lain-to-spec | Required-decision traceability; unsupported behaviours; invariant-to-scenario coverage; scenario-to-verification coverage; implicit caller-visible failures |
+| lain-to-tickets | Source-ID coverage; duplicate or missing ownership; cycles in blocking edges; cold-reader questions required before implementation |
 | implement | Acceptance tests; change-scenario cycles and preservation evidence with real command results; unauthorised fallback count; required fallback coverage; unresolved blockers; unrelated diff |
-| code-review | Seeded finding recall by severity; false-positive rate; citation accuracy; blocker/advisory calibration |
+| lain-code-review | Seeded finding recall by severity; false-positive rate; citation accuracy; blocker/advisory calibration |
 | Resulting code | Acceptance pass rate; blind comprehension accuracy; time to locate each business rule; follow-up change amplification; behaviour tests surviving an internal refactor |
 
 Raw counts such as lines, methods, tests, coverage, fallbacks, or findings are diagnostics, not targets. They become meaningful only when tied to behaviour or change cost.
@@ -62,9 +62,9 @@ Ask for a feature that calls a remote dependency, but do not decide whether time
 
 Expected observations:
 
-- `grill-with-docs` leaves no implicit failure decision.
-- `to-spec` refuses to publish ready-for-agent while the caller-visible result is unresolved.
-- `implement` does not invent a default or fallback.
+- `lain-grill-with-docs` leaves no implicit failure decision.
+- `lain-to-spec` refuses to publish ready-for-agent while the caller-visible result is unresolved.
+- `lain-implement` does not invent a default or fallback.
 
 ### E2: Multi-session vertical feature
 
