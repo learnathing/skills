@@ -2,7 +2,7 @@
 
 `lain-resolving-merge-conflicts` works through an in-progress git merge or rebase, hunk by hunk, then runs the project's own checks and finishes the operation with a commit.
 
-It refuses to treat a conflict as a text problem. Before touching a hunk it traces each side back to its **[primary source](https://www.aihero.dev/ai-coding-dictionary/primary-source)** (the commit message, the PR, the original issue), so it is choosing between two intents rather than between two blocks of text, and it preserves both wherever they are compatible. Where they genuinely are not, it picks the side matching the merge's stated goal and names the trade-off. It invents no new behaviour to paper over a clash, and `--abort` is not an option it has: the merge is always carried to a finished commit.
+It refuses to treat a conflict as a text problem. Before touching a hunk it traces each side back to its **[primary source](https://www.aihero.dev/ai-coding-dictionary/primary-source)** (the commit message, the PR, the original issue), so it is choosing between two intents rather than between two blocks of text, and it preserves both wherever they are compatible. Where they genuinely are not, it picks the side matching the merge's stated goal and names the trade-off. It invents no new behaviour to paper over a clash. If the stated goal leaves a consequential choice unresolved, it explains the conflict. It records pre-existing work and excludes unrelated edits from the operation commit.
 
 ## When to reach for it
 
@@ -34,9 +34,9 @@ Mostly no. Zoning files off between parallel tasks costs more than it saves, bec
 
 One caveat from a user report on parallel worktrees: when sibling [sessions](https://www.aihero.dev/ai-coding-dictionary/session) each build a ticket in their own tree, the merge back is best done by the session that wrote the change, because it is the one that already knows the intent. Batching everybody's conflicts onto one agent at the end throws away exactly the [context](https://www.aihero.dev/ai-coding-dictionary/context) step 2 of this skill has to go and reconstruct.
 
-**Why never `--abort`?**
+**Can I stop or abort the operation?**
 
-Aborting throws away the resolution work and returns you to the same conflict, unchanged, the next time you try. The skill is written for the case where the merge is going to happen. If you have decided it should not happen, that is a decision to make before invoking, not a branch inside the loop.
+A later instruction to stop or abort is respected. The agent accounts for existing user work and explains any risk of losing resolution work. When completion remains the goal, it continues after the relevant checks pass.
 
 ## It's working if
 
@@ -44,8 +44,8 @@ Aborting throws away the resolution work and returns you to the same conflict, u
 - Every hunk ends up with both sides' behaviour, or with an explicit note naming what was dropped and why.
 - Nothing appears in the result that was on neither branch.
 - Typecheck, tests and format were located and run green *before* the commit, not after you noticed something broken.
-- You end on a clean tree with the operation completed, including every remaining commit in a multi-commit rebase.
+- The intended operation completes, and unrelated worktree edits remain intact and outside its commit.
 
 ## Where it fits
 
-A reach-for-it-anytime standalone with no dependencies on any other skill: it starts when git stalls and ends when the tree is clean and committed. Its only real neighbour is [lain-diagnosing-bugs](https://aihero.dev/skills-diagnosing-bugs), which takes over at the point where a merge resolved cleanly but the merged code misbehaves: a diagnosis problem, not a conflict one. It sits off the main idea-to-ship flow entirely, so [lain-ask-matt](https://aihero.dev/skills-ask-matt) is the map for what runs before and after it.
+A reach-for-it-anytime standalone with no dependencies on any other skill: it starts when git stalls and finishes the authorized operation or identifies a concrete blocking choice. Its only real neighbour is [lain-diagnosing-bugs](https://aihero.dev/skills-diagnosing-bugs), which takes over at the point where a merge resolved cleanly but the merged code misbehaves: a diagnosis problem, not a conflict one. It sits off the main idea-to-ship flow entirely, so [lain-ask-matt](https://aihero.dev/skills-ask-matt) is the map for what runs before and after it.

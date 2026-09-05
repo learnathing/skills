@@ -5,7 +5,7 @@ description: Diagnosis loop for hard bugs and performance regressions. Use when 
 
 # Diagnosing Bugs
 
-A discipline for hard bugs. Skip phases only when explicitly justified.
+A discipline for hard bugs. Choose the next investigation from the available evidence. A clear cause with a relevant regression check can take a short path; uncertain or intermittent failures need the deeper loop below.
 
 When exploring the codebase, read `CONTEXT.md` (if it exists) to get a clear mental model of the relevant modules, and check ADRs in the area you're touching.
 
@@ -17,9 +17,9 @@ If the redacted output is not enough to diagnose the bug, say so and ask the use
 
 ## Phase 1: Build a feedback loop
 
-**This is the skill.** Everything else is mechanical. If you have a **tight** pass/fail signal for the bug (one that goes red on _this_ bug), you will find the cause; bisection, hypothesis-testing, and instrumentation all just consume it. If you don't have one, no amount of staring at code will save you.
+Seek a **tight** pass/fail signal for the user's symptom. Read code, logs, traces, and recent changes to form provisional hypotheses and choose a reproduction or discriminating probe. Keep observed facts separate from hypotheses; neither a plausible explanation nor a passing unrelated test verifies a fix.
 
-Spend disproportionate effort here. **Be aggressive. Be creative. Refuse to give up.**
+Invest in improving the feedback loop while it yields useful evidence. If further progress requires unavailable access or disproportionate setup, preserve the evidence and explain the specific limit.
 
 ### Ways to construct one, in roughly this order
 
@@ -34,7 +34,7 @@ Spend disproportionate effort here. **Be aggressive. Be creative. Refuse to give
 9. **Differential loop.** Run the same input through old-version vs new-version (or two configs) and diff outputs.
 10. **HITL bash script.** Last resort. If a human must click, drive _them_ with `scripts/hitl-loop.template.sh` so the loop is still structured. Captured output feeds back to you.
 
-Build the right feedback loop, and the bug is 90% fixed.
+Use the loop to distinguish causes and verify the eventual fix.
 
 ### Tighten the loop
 
@@ -48,11 +48,11 @@ A 30-second flaky loop is barely better than no loop; a 2-second deterministic o
 
 ### Non-deterministic bugs
 
-The goal is not a clean repro but a **higher reproduction rate**. Loop the trigger 100×, parallelise, add stress, narrow timing windows, inject sleeps. A 50%-flake bug is debuggable; 1% is not, so keep raising the rate until it's debuggable.
+For intermittent failures, measure reproduction frequency and use controlled repetition, stress, or timing probes where they can distinguish causes. Choose the trial count from the signal and investigation budget; rare failures remain useful evidence. State uncertainty instead of requiring a fixed reproduction rate.
 
 ### When you genuinely cannot build a loop
 
-Stop and say so explicitly. List what you tried. Ask the user for: (a) access to whatever environment reproduces it, (b) a redacted captured artifact (HAR file, log dump, core dump, screen recording with timestamps), or (c) permission to add temporary production instrumentation. Do **not** proceed to hypothesise without a loop.
+State the unavailable evidence and what you tried. Continue analysis of accessible code and captured artifacts, rank provisional causes, and propose the smallest probe that distinguishes them. Request access or additional captured evidence only when it changes the next step. Production instrumentation needs appropriate authorization. Report the diagnosis as unverified where the actual failure cannot be reproduced; do not present a local simulation as production confirmation.
 
 ### Completion criterion: a tight loop that goes red
 
@@ -63,7 +63,7 @@ Phase 1 is done when the loop is **tight** and **red-capable**: you can name **o
 - [ ] **Fast**: seconds, not minutes.
 - [ ] **Agent-runnable**: you can run it unattended; a human in the loop only via `scripts/hitl-loop.template.sh`.
 
-If you catch yourself reading code to build a theory before this command exists, **stop: jumping straight to a hypothesis is the exact failure this skill prevents.** No red-capable command, no Phase 2.
+This criterion establishes an executable reproduction, not permission to reason. When it cannot be met, use the evidence-limited path above and report which parts of the diagnosis or fix remain unverified.
 
 ## Phase 2: Reproduce + minimise
 
@@ -81,13 +81,13 @@ Once it's red, shrink the repro to the **smallest scenario that still goes red**
 
 Why bother: a minimal repro shrinks the hypothesis space in Phase 3 (fewer moving parts left to suspect) and becomes the clean regression test in Phase 5.
 
-Done when **every remaining element is load-bearing**: removing any one of them makes the loop go green.
+Minimization is sufficient when the scenario distinguishes the leading causes and supports a regression check. Keep the original captured case for verification.
 
-Do not proceed until you have reproduced **and** minimised.
+Continue when another reduction would not change the next useful probe. Revisit reproduction or minimization if later evidence requires it.
 
 ## Phase 3: Hypothesise
 
-Generate **3–5 ranked hypotheses** before testing any of them. Single-hypothesis generation anchors on the first plausible idea.
+Rank the hypotheses supported by the evidence. Consider credible alternatives when the cause is uncertain; do not invent additional causes to fill a quota. Test the most discriminating prediction next.
 
 Each hypothesis must be **falsifiable**: state the prediction it makes.
 
@@ -129,7 +129,7 @@ If a correct seam exists:
 
 ## Phase 6: Cleanup
 
-Required before declaring done:
+For a verified fix, require the checks below. For evidence-limited diagnosis, report completed probes, remaining uncertainty, and the next discriminating check instead of claiming the fix is verified:
 
 - [ ] Original repro no longer reproduces (re-run the Phase 1 loop)
 - [ ] Regression test passes (or absence of seam is documented)

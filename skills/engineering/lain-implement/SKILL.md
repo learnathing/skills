@@ -8,6 +8,10 @@ disable-model-invocation: true
 
 Implement one bounded piece of work through an evidence-bearing state machine. Green tests are an intermediate state, not completion.
 
+## Choose the validation path
+
+Use the full workflow below for behavior changes, uncertain contracts, or changes with material integration risk. For a settled change with no runtime behavior impact, such as prose, formatting, or a mechanical metadata correction, pin the worktree baseline, make the scoped edit, inspect the complete task diff, and run the relevant repository checks. Then commit only the task changes and report the evidence. Do not create tests, a contract table, or independent review solely to satisfy the full workflow. Explicit user requirements and repository release gates still apply.
+
 ## 1. Pin the change
 
 Before editing, record the current `HEAD` as the fixed point, `git status --short`, the tracked diff, and the untracked file list. These form the pre-existing worktree baseline. If existing changes overlap the task, stop and resolve ownership with the user. If they are disjoint, preserve the baseline, pass it to review, and exclude it from the task commit.
@@ -34,7 +38,7 @@ Trace the requested behaviour from the caller down through the existing code. Th
 
 Follow every changed scenario through its real callers and immediate dependencies. Record only mismatches, newly discovered constraints, and decisions that change the contract. Do not create a success table whose only evidence is its own completed rows. This state is complete when the implementation route is known and every material mismatch is resolved in the source or explicitly left out of scope.
 
-If the codebase contradicts the contract in a way that changes behaviour, an invariant, an interface, or an error mode, stop and resolve the source issue or spec. Do not hide the contradiction behind a default or fallback.
+If the codebase contradicts the contract in a way that changes behaviour, an invariant, an interface, or an error mode, check existing decisions, compatibility requirements, and the user's latest instructions first. If materially different caller outcomes remain unresolved, ask a focused question and pause the dependent work. Continue independent authorized work where possible. Do not hide the contradiction behind a default or fallback.
 
 ## 4. Build vertical slices
 
