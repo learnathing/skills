@@ -25,7 +25,7 @@ The route most work travels. You have an idea and want it built.
    - **Yes** → **`/lain-to-spec`**, then **`/lain-to-tickets`**, then a fresh **`/lain-implement`** session for each unblocked ticket. After all tickets finish, run one branch-level `/lain-code-review` from a fresh session.
    - **No** → **`/lain-implement`** right here, in the same context window.
 
-   Read `/lain-implement` before recommending the build step; it owns the current build and quality-gate protocol, including a focused path for settled changes without runtime behavior impact. Reach for **`/lain-tdd`** on its own for a concrete behaviour built test-first, and **`/lain-code-review`** on its own to review a branch, PR, or working tree against a fixed point.
+   Read `/lain-implement` before recommending the build step; it owns the current build and quality-gate protocol. Reach for **`/lain-tdd`** on its own for a concrete behaviour built test-first, and **`/lain-code-review`** on its own to review a branch, PR, or working tree against a fixed point.
 
 ### Context hygiene
 
