@@ -2,7 +2,7 @@
 
 `lain-implement` builds one bounded issue or spec through an evidence-bearing state machine. It rehydrates the contract, reconciles top-down intent with bottom-up code constraints, drives [lain-tdd](https://aihero.dev/skills-tdd), and reviews the working tree before committing. It enters repair verification only when the review finds a blocker.
 
-For behavior changes, passing tests are an intermediate state. Completion requires traceable evidence, authorised semantics for every fallback actually introduced, and a review gate with no unresolved blocker. Settled changes without runtime behavior impact use a focused path: preserve the worktree baseline, inspect the task diff, run relevant checks, and commit only task changes. Explicit user requirements and repository release gates still apply.
+Passing tests are an intermediate state. Completion requires traceable evidence, authorised semantics for every fallback actually introduced, and a review gate with no unresolved blocker.
 
 ## When to reach for it
 
@@ -37,10 +37,6 @@ The first [lain-code-review](https://aihero.dev/skills-code-review) pass examine
 
 ## Common questions
 
-**Does a README correction need TDD and independent review?**
-
-No. A settled correction with no runtime behavior impact uses focused validation. It does not need a test, contract table, or separate review solely to satisfy the full workflow.
-
 **Can review see uncommitted changes now?**
 
 Yes. `lain-implement` explicitly calls `lain-code-review` in working-tree mode, including untracked source files, before the commit.
@@ -59,11 +55,11 @@ No. The workflow proves and commits the implementation; tracker closure remains 
 
 ## It's working if
 
-- The run begins with a fixed point and working-tree status; behavior changes also carry an implementation contract.
+- The run begins with a fixed point, working-tree status, and implementation contract.
 - Every acceptance criterion maps to observable evidence.
-- Behavior-change scenarios show real red and green evidence, plus post-refactor evidence when code changed after Green.
+- Change scenarios show real red and green evidence, plus post-refactor evidence when code changed after Green.
 - Every fallback actually introduced has source-backed semantics and observability.
-- When the full workflow applies, the first review sees uncommitted work and every blocker receives a disposition.
+- The first review sees uncommitted work and every blocker receives a disposition.
 - A clean first review does not trigger a ceremonial second pass.
 - A blocker that repeats without progress or requires contract expansion stops the commit.
 
