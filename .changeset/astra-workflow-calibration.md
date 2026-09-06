@@ -2,4 +2,4 @@
 "lain-mattpocock-skills": patch
 ---
 
-Scope grilling to consequential unresolved choices, allow evidence-limited debugging, add focused validation for non-behavior implementation work, and preserve unrelated work during merge resolution. Retain existing invocation metadata and behavioral quality gates. Development evaluation evidence is recorded separately under `evals/astra-2026-09`; it does not establish release non-inferiority.
+Correct authorization and work-preservation conflicts in grilling and merge resolution. Allow explicitly unverified diagnosis from accessible evidence and replace mandatory hypothesis/trial quotas with evidence-based choices. Retain the original implementation workflow and diagnosis minimization gates. V2 evaluated an earlier, broader candidate; its results do not validate this narrower revision or establish general capability gains.
