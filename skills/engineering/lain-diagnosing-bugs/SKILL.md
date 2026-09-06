@@ -5,7 +5,7 @@ description: Diagnosis loop for hard bugs and performance regressions. Use when 
 
 # Diagnosing Bugs
 
-A discipline for hard bugs. Choose the next investigation from the available evidence. A clear cause with a relevant regression check can take a short path; uncertain or intermittent failures need the deeper loop below.
+A discipline for hard bugs. Skip phases only when explicitly justified.
 
 When exploring the codebase, read `CONTEXT.md` (if it exists) to get a clear mental model of the relevant modules, and check ADRs in the area you're touching.
 
@@ -29,7 +29,7 @@ Invest in improving the feedback loop while it yields useful evidence. If furthe
 4. **Headless browser script** (Playwright / Puppeteer) that drives the UI and asserts on DOM/console/network.
 5. **Replay a captured trace.** Save a real network request / payload / event log to disk; replay it through the code path in isolation.
 6. **Throwaway harness.** Spin up a minimal subset of the system (one service, mocked deps) that exercises the bug code path with a single function call.
-7. **Property / fuzz loop.** If the bug is "sometimes wrong output", run 1000 random inputs and look for the failure mode.
+7. **Property / fuzz loop.** If the bug is "sometimes wrong output", use a bounded batch of generated inputs, record the failures, and choose further trials from the evidence and investigation budget.
 8. **Bisection harness.** If the bug appeared between two known states (commit, dataset, version), automate "boot at state X, check, repeat" so you can `git bisect run` it.
 9. **Differential loop.** Run the same input through old-version vs new-version (or two configs) and diff outputs.
 10. **HITL bash script.** Last resort. If a human must click, drive _them_ with `scripts/hitl-loop.template.sh` so the loop is still structured. Captured output feeds back to you.
@@ -59,7 +59,7 @@ State the unavailable evidence and what you tried. Continue analysis of accessib
 Phase 1 is done when the loop is **tight** and **red-capable**: you can name **one command** (a script path, a test invocation, a curl) that you have **already run at least once** (show the invocation and its output, redacted), and that is:
 
 - [ ] **Red-capable**: it drives the actual bug code path and asserts the **user's exact symptom**, so it can go red on this bug and green once fixed. Not "runs without erroring"; it must be able to _catch this specific bug_.
-- [ ] **Deterministic**: same verdict every run (flaky bugs: a pinned, high reproduction rate, per above).
+- [ ] **Repeatability**: same verdict for deterministic bugs; for intermittent bugs, record trial conditions, failures, and uncertainty. A low reproduction rate is not a reason to discard captured evidence.
 - [ ] **Fast**: seconds, not minutes.
 - [ ] **Agent-runnable**: you can run it unattended; a human in the loop only via `scripts/hitl-loop.template.sh`.
 
@@ -72,7 +72,7 @@ Run the loop. Watch it go red as the bug appears.
 Confirm:
 
 - [ ] The loop produces the failure mode the **user** described, not a different failure that happens to be nearby. Wrong bug = wrong fix.
-- [ ] The failure is reproducible across multiple runs (or, for non-deterministic bugs, reproducible at a high enough rate to debug against).
+- [ ] The failure is reproducible across multiple runs, or intermittent observations and their trial conditions are recorded without claiming a deterministic reproduction.
 - [ ] You have captured the exact symptom (error message, wrong output, slow timing) so later phases can verify the fix actually addresses it.
 
 ### Minimise
@@ -81,9 +81,9 @@ Once it's red, shrink the repro to the **smallest scenario that still goes red**
 
 Why bother: a minimal repro shrinks the hypothesis space in Phase 3 (fewer moving parts left to suspect) and becomes the clean regression test in Phase 5.
 
-Minimization is sufficient when the scenario distinguishes the leading causes and supports a regression check. Keep the original captured case for verification.
+Done when **every remaining element is load-bearing**: removing any one of them makes the loop go green.
 
-Continue when another reduction would not change the next useful probe. Revisit reproduction or minimization if later evidence requires it.
+For the executable reproduction path, do not proceed until you have reproduced **and** minimised. When reproduction is unavailable, use the evidence-limited analysis described in Phase 1.
 
 ## Phase 3: Hypothesise
 
