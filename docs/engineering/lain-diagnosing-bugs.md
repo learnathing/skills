@@ -2,7 +2,7 @@
 
 `lain-diagnosing-bugs` investigates a specific failure using code, captured evidence, and a **tight** feedback loop. It separates a provisional diagnosis from a verified fix.
 
-A clear cause can take a short path through a relevant regression check. An uncertain or intermittent failure needs reproduction and discriminating probes. Missing access limits verification, but does not prevent analysis of accessible evidence.
+The six-phase workflow retains reproduction, minimization, falsifiable hypotheses, targeted instrumentation, regression checks, and cleanup. Missing access limits verification, but does not prevent analysis of accessible evidence.
 
 ## When to reach for it
 
@@ -10,7 +10,7 @@ Type `/lain-diagnosing-bugs`, or the agent reaches for it when diagnosing a repo
 
 | Situation | Approach |
 | --- | --- |
-| Clear defect with a local test seam | Confirm the failure, fix it, and run the regression check |
+| Defect with a local test seam | Reproduce and minimize the failure, then verify the fix with a regression check |
 | Several plausible causes or an intermittent failure | Improve reproduction and test discriminating predictions |
 | Only captured logs and source code are available | Investigate them and distinguish observations from unverified hypotheses |
 | General architecture concern without a specific failure | Use [lain-improve-codebase-architecture](https://aihero.dev/skills-improve-codebase-architecture) |
@@ -19,7 +19,7 @@ Type `/lain-diagnosing-bugs`, or the agent reaches for it when diagnosing a repo
 
 A useful loop is fast enough to guide the investigation, asserts the actual symptom, and distinguishes a failure from a fix. Tests, trace replay, a targeted script, a debugger, and differential runs are possible tools. The next check depends on the evidence, not on a fixed number of hypotheses or a required reproduction percentage.
 
-Minimize a reproduction until it helps distinguish causes and supports a regression test. Keep the original captured case too. A local simulation can test a mechanism without proving what happened in production, so the report identifies that boundary.
+Minimize the reproduction until every remaining element is load-bearing. Keep the original captured case for final verification. A local simulation can test a mechanism without proving what happened in production, so the report identifies that boundary.
 
 ## Common questions
 
@@ -39,7 +39,7 @@ No. Production instrumentation and consequential external changes require approp
 
 - The report distinguishes observed facts, provisional causes, and verified results.
 - Checks exercise the symptom you reported.
-- A straightforward fix avoids unnecessary reproduction infrastructure.
+- When reproduction is available, minimization and regression checks retain the original workflow.
 - Unavailable production access does not stop useful local investigation.
 - A verified fix has regression evidence and temporary instrumentation is removed.
 
