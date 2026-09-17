@@ -1,6 +1,8 @@
 # Ticket contract template
 
-Use one artifact per ticket.
+Use one artifact per ticket. The template below remains sufficient when no shared technical constraints apply.
+
+When the source manifest contains `technical_constraints`, add only the applicable `Applies` and `Verifies` fields after `Owns`, an exact-definition `Technical trace` section, the matching source anchors in `Context pointers`, and assigned verification commands or observations in `Evidence required`. Use the serialization supplied by `lain-technical-design`. Omit unused fields and sections; do not publish these instructions as ticket content.
 
 # <Identifier>: <Title>
 

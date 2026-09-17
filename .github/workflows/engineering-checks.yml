@@ -1,0 +1,25 @@
+name: Engineering checks
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Ticket validator regression tests
+        run: node --test skills/engineering/lain-to-tickets/*.test.mjs
+      - name: Skill registration and handoff checks
+        run: node scripts/check-engineering-flow.mjs

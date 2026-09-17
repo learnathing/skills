@@ -1,92 +1,54 @@
 ## What it does
 
-`lain-ask-matt` is the router over the skills in this repo. You describe the situation you are in (an idea you cannot start, a pile of incoming bug reports, a [session](https://www.aihero.dev/ai-coding-dictionary/session) that has run long), and it names the skill or sequence that fits. Before deciding a branch, it reads the candidate skills whose boundaries control that choice.
-
-It recommends and stops. It does not grill, write a [spec](https://www.aihero.dev/ai-coding-dictionary/spec), open a file or fire the skill it just named; what you get back is the next thing to type, and you type it. It is also a hand-written map of the skills in this repo rather than a scan of what you have installed, so it will not route you over your own skills or another author's.
+`lain-ask-matt` recommends the skill or flow appropriate to the current situation. It reads the candidate skills whose boundaries determine the route, names the next invocation, and stops. It does not perform the work or invoke a user-invoked skill for you.
 
 ## When to reach for it
 
-You invoke this by typing `/lain-ask-matt`; the agent won't reach for it on its own.
+You invoke `/lain-ask-matt`; the agent does not reach for it automatically.
 
-| Your situation | What the router gives back |
+| Situation | Direction |
 | --- | --- |
-| An idea, and no idea where to start | The head of the main flow, and whether the build is small enough to skip the spec |
-| Bugs and requests arriving from other people | The [lain-triage](https://aihero.dev/skills-triage) on-ramp, and why [tickets](https://www.aihero.dev/ai-coding-dictionary/ticket) you generated yourself don't belong on it |
-| Two skills that look interchangeable | The line between them, and it is usually one concrete test rather than a matter of taste. [lain-grill-me](https://aihero.dev/skills-grill-me) or [lain-grill-with-docs](https://aihero.dev/skills-grill-with-docs) turns on whether you are in a working directory; [lain-grill-with-docs](https://aihero.dev/skills-grill-with-docs) or [lain-wayfinder](https://aihero.dev/skills-wayfinder) turns on whether the effort fits one session |
-| A long session and a decision about the [context](https://www.aihero.dev/ai-coding-dictionary/context) | The ordered tree over the five options at a phase boundary |
-| A skill you have already picked | Nothing useful. Invoke that skill directly. |
+| A settled request fits existing design | [Implement](https://aihero.dev/skills-implement) directly |
+| Product decisions need clarification | [Grill with docs](https://aihero.dev/skills-grill-with-docs) |
+| Data, algorithm or other technical risk is unsettled | [Technical design](https://github.com/learnathing/skills/blob/main/docs/engineering/lain-technical-design.md) |
+| Planning itself requires several sessions | [Wayfinder](https://aihero.dev/skills-wayfinder) |
+| Ready work requires several implementation sessions | Spec, tickets, then implementation |
+| Incoming issues or a difficult bug | Triage or diagnosing bugs |
 
-## Prerequisites
+## Risk and coordination
 
-The router names skills; it does not install them. Everything it points at has to be installed for the recommendation to be actionable, and it only knows the promoted skills in this repo.
+A short permissions change can need design; a large mechanical change can reuse a known solution. Risk decides design depth, not line count. Session capacity decides whether the work needs a decision map, specification or multiple tickets.
 
-The tracker-dependent routes (triage, `lain-to-spec`, `lain-to-tickets`, `lain-implement`) assume [lain-setup-matt-pocock-skills](https://aihero.dev/skills-setup-matt-pocock-skills) has already configured an issue tracker in the repo. The router will happily recommend them before that has happened.
+UI/logic questions can use an interactive prototype. Feasibility, retrieval quality, capacity and migration questions use a technical experiment with actual evidence. External facts use research. A prototype is not the automatic next step when implementation is already settled.
 
-## Flows, not skills
-
-The word the skill gives you to think with is **flow**: a path *through* the skills, not a single one. Naming your situation places you on a flow at a step, which is a different answer from "here is the skill that matches your keywords". Four kinds of route exist, and the skill itself carries them in full:
-
-- **The main flow**, idea to ship: `lain-grill-with-docs`, an optional `lain-prototype` detour, either direct `lain-implement` or `lain-to-spec` then `lain-to-tickets`, and a final branch review for multi-ticket work. The source skills own their internal protocols, so the router keeps only the branch conditions.
-- **On-ramps**, for a situation that generates work and then merges onto the main flow: incoming bug reports, something broken, or an effort too foggy and too large to hold in one session.
-- **Standalones**, off every flow, reached for on their own terms: the prototype, the questionnaire, the merge conflict you are already sitting in.
-- **A vocabulary layer underneath**, the two references the other skills pull in when the words rather than the process are the problem.
-
-## The phase boundary
-
-The other idea it hands you is the **phase boundary**. A phase is a chunk of work inside a session (the [lain-grilling](https://www.aihero.dev/ai-coding-dictionary/grilling), the implementation, the QA), and the boundary between two of them is the only place the question "what do I do with this context?" belongs. Mid-phase there is nothing to decide: continue, or split what is left into [subagents](https://www.aihero.dev/ai-coding-dictionary/subagent).
-
-| Option | Take it when |
-| --- | --- |
-| **Continue** | The next phase wants this one verbatim and the harness reports enough room for its remaining source, work, and verification. When capacity is unavailable, the router makes no numeric [smart zone](https://www.aihero.dev/ai-coding-dictionary/smart-zone) claim. It is the only move that keeps the session as a [primary source](https://www.aihero.dev/ai-coding-dictionary/primary-source), so rule it out first |
-| **`/clear`** | Everything behind you is disposable. Cheapest move on the board, and one-way if you were wrong |
-| **[lain-handoff](https://aihero.dev/skills-handoff)** | Something has to travel: a new [harness](https://www.aihero.dev/ai-coding-dictionary/harness), a new directory, a colleague, a side task forked mid-phase |
-| **Subagent** | The task is scoped tightly enough to run with you [away from the keyboard](https://www.aihero.dev/ai-coding-dictionary/afk) |
-| **`/compact`** | None of the above. The default, and it lands here often |
-
-Two of those are routinely got wrong, which is why the router carries the order rather than the list. `/lain-handoff` reads like the general bridge between windows and is not: portability is the whole of what it buys. `/compact` is the bottom of the tree rather than the first reach, because the four questions above it are each cheaper or more precise.
+Prefer one context for bounded planning when it fits. For larger work, retain scoped source IDs, accepted decision revisions and evidence, and load only the relevant subset in each session. Use handoff for actual portability rather than between every pair of phases.
 
 ## Common questions
 
-**Isn't there just a list of the skills in the right order?**
+**Is there one mandatory sequence?**
 
-People keep asking for one in the README. This skill is that list: it is what it exists for. A static table would say `lain-wayfinder → lain-to-spec → lain-to-tickets → lain-implement → lain-code-review` and be wrong for most situations, because the interesting parts are the branches: is there a codebase, does the build span sessions, can this question be settled by talking. The honest cost is that the router is hand-maintained and lags the repo. `/lain-grilling` and `/lain-resolving-merge-conflicts` both shipped long before the router named them.
+No. Settled small changes skip a new interview and standalone spec. A risky task can need design despite being short. Main-flow entry points check readiness even when the router is bypassed.
 
-**It told me half the skills aren't installed.**
+**Does it automatically run its recommendation?**
 
-A known bug, unfixed. Most of the skills the router routes you through set `disable-model-invocation: true`, which means the harness leaves them out of the skill list it injects into the agent's context. The agent reads that list as exhaustive and reports them missing. One reported session had it declare the whole spec-and-tickets flow absent and reroute to bare `/lain-grilling` and `/lain-tdd`. Thirteen of the plugin's twenty-two skills carry the flag, so this is the common case rather than an edge. They are installed. Type the slash command anyway, or check `.claude-plugin/plugin.json`, which is the authority on what is present.
+No. User-invoked workflows stay under human control. Model-invoked disciplines are available to other skills within work already authorized.
 
-**It described a skill's behaviour, and the skill doesn't do that.**
+**The router and a source skill disagree. Which wins?**
 
-This was a real failure mode. One detailed report tracked three instances in a single session, including a recommendation to skip [lain-to-spec](https://aihero.dev/skills-to-spec) on the strength of a stale summary. The router now reads candidate skills before a source boundary justifies a branch or skip, then reads the chosen next skill. If the trace does not show those reads, treat the recommendation as incomplete. Questions the map does not cover at all, such as whether to use [plan mode](https://www.aihero.dev/ai-coding-dictionary/agent-mode), remain the [model](https://www.aihero.dev/ai-coding-dictionary/model)'s inference.
+The source `SKILL.md`. The router must read it before using a boundary to choose or skip work. A hidden user-invoked skill is not necessarily uninstalled; check the command or plugin registration before reporting absence.
 
-**Why is it prose instead of a numbered checklist?**
+**Where do project preferences live?**
 
-A fair complaint, filed as an open issue arguing that most of the routing is deterministic and the narrative makes it hard to scan. Nothing stops you asking for the compressed form: "just give me the sequence" gets you the sequence. What the prose is carrying is the conditional half: the branches, where a human decision is expected, and where to clear or compact between steps. A flat checklist drops exactly that.
-
-**Can it route over my own skills, or another author's?**
-
-No. Three separate proposals have asked for a router that reads your local `skills/` directory and recommends from whatever is installed. `lain-ask-matt` is not that. It is a map of one set, maintained by hand, and it knows nothing about skills you wrote or installed from elsewhere.
-
-**It told me to edit a SKILL.md.**
-
-That advice is often correct and rarely durable. Someone asked it how to make [lain-implement](https://aihero.dev/skills-implement) close tickets, got told to add a line to the skill, and immediately spotted the problem: `npx skills update` overwrites the file, and the plugin install is read-only. Put standing behaviour in your own `CLAUDE.md` or `AGENTS.md`, or say it in the invocation. Prompt-level adaptations survive updates: pointing the flow at Linear instead of GitHub, or asking it which open tickets could run in parallel, are both things people do this way.
-
-**It named a skill I don't have, or missed one I do.**
-
-Check the changelog for a rename before assuming it is gone. `writing-great-skills` became [lain-writing-for-agents](https://aihero.dev/skills-writing-for-agents) with no alias, `to-prd` became [lain-to-spec](https://aihero.dev/skills-to-spec), and `pathfinder` became [lain-wayfinder](https://aihero.dev/skills-wayfinder). Four skills were retired outright into the skills that absorbed them: `ubiquitous-language`, `design-an-interface`, `qa` and `request-refactor-plan`. The reverse case is the router's own lag, above.
+In repository instructions and, when useful, optional engineering policy. Editing managed skill files is not the durable place for project-specific authority or tracker configuration.
 
 ## It's working if
 
-- It ends by naming what to type and stops there, instead of starting the work itself.
-- The route it gives back mentions where to clear or compact context and where you are expected to review, not just a list of skill names.
-- A multi-ticket route ends with a fresh-session branch review after the per-ticket gates.
-- Its main-flow description stays at routing level instead of duplicating protocols owned by the underlying skills.
-- Where two skills are close, it says which one and why the other is wrong for you.
-- Any source-skill boundary used to choose or skip a route shows up in the trace as a read before the recommendation.
-- You recognise your own situation in what it hands back, rather than the nearest generic scenario.
+- It names a next invocation and stops rather than starting unrelated work.
+- Simple tasks avoid unnecessary documents and approvals.
+- Small but consequential changes are not mistaken for technically settled work.
+- Ready independent capabilities can leave a larger planning map.
+- Recommendations follow the actual source-skill boundaries.
 
 ## Where it fits
 
-`lain-ask-matt` is a **standalone router** that sits over the whole set. It is never a step in a chain; it points into every chain, and it is the node the other docs pages link back to so none of them has to redraw the graph. From here you most often land on [lain-grill-with-docs](https://aihero.dev/skills-grill-with-docs), the head of the main flow, or [lain-triage](https://aihero.dev/skills-triage), the on-ramp for work that arrived rather than work you started.
-
-It is a [secondary source](https://www.aihero.dev/ai-coding-dictionary/secondary-source) over the skills it describes. Where the router and a `SKILL.md` disagree, the `SKILL.md` is right.
+This is a standalone router over this repository's skills, not a mandatory stage and not a scan of arbitrary installed skills. It points into the main flow, discovery on-ramps, codebase upkeep and standalone utilities. [The source](https://github.com/learnathing/skills/blob/main/skills/engineering/lain-ask-matt/SKILL.md) carries the full route map.

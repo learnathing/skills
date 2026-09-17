@@ -1,78 +1,54 @@
 ## What it does
 
-`lain-to-tickets` breaks a plan, [spec](https://www.aihero.dev/ai-coding-dictionary/spec), or settled conversation into tracer-bullet implementation tickets on the configured issue tracker. Each ticket declares its blocking edges and delivers a narrow path through every required layer.
-
-Every ticket also carries a **fresh-context contract**: the source IDs it owns, invariants, seam, success and failure semantics, pointers, and required evidence. A new [session](https://www.aihero.dev/ai-coding-dictionary/session) should not have to rediscover product decisions.
+`lain-to-tickets` turns ready plans, specs or settled conversations into tracer-bullet vertical implementation slices. Each ticket has a source contract, blocking edges and required evidence. It publishes only the exact validated breakdown approved by the user.
 
 ## When to reach for it
 
-You invoke this by typing `/lain-to-tickets`; the [agent](https://www.aihero.dev/ai-coding-dictionary/agent) will not reach for it on its own.
+You invoke `/lain-to-tickets`; the agent does not invoke it automatically. Use it when a ready delivery needs several implementation sessions. A small settled change can use [implement](https://aihero.dev/skills-implement) directly. Unresolved shared design or prerequisite evidence belongs in design or a decision map, not a ready implementation ticket.
 
-| Where you are | What to run |
+## Ownership and shared constraints
+
+`Owns` gives each delivery scenario exactly one owner. Shared invariants and technical decisions may apply to several tickets without duplicating delivery ownership.
+
+| Optional field | Purpose |
 | --- | --- |
-| Decisions are unresolved | [lain-grill-with-docs](https://aihero.dev/skills-grill-with-docs) |
-| A multi-session spec is ready | `lain-to-tickets` |
-| The whole change fits one context window | [lain-implement](https://aihero.dev/skills-implement) directly |
-| A wide mechanical change cannot land as green vertical slices | `lain-to-tickets`, using expand-contract sequencing |
+| `Applies` | Exact constraint revisions affecting this ticket's owned scenarios |
+| `Verifies` | Constraints whose verification scenario this ticket owns |
+| `Technical trace` | Exact definitions of applicable constraints |
 
-## Prerequisites
+Relevant tickets also point to accepted design sources and describe their actual verification duties. Ordinary schema-v1 manifests and tickets stay valid without these fields. Scenario-based applicability survives changing provisional ticket names into real tracker identifiers.
 
-[lain-setup-matt-pocock-skills](https://aihero.dev/skills-setup-matt-pocock-skills) must have configured the issue tracker. A source spec works best because its invariant and scenario IDs make coverage mechanical rather than interpretive.
+## Structure, comprehension and integration
 
-## The fresh-context contract
+The deterministic validator checks mandatory fields, exact definitions, unique ownership, graph cycles and the optional constraint registry. It can reject missing or stale references relative to the supplied manifest. It does not fetch sources or prove their currency, semantic sufficiency, authority or experimental validity.
 
-Each ticket carries:
+A fresh cold reader receives representative ticket shapes and only their declared pointers, then reconstructs the behavior and shared constraints. Missing independent sampling is disclosed. A complete template is not a substitute for understanding.
 
-| Field | Purpose |
-| --- | --- |
-| Spec trace | Names and defines the scenarios or requirements this ticket owns |
-| Contract | States invariants, seam, success, and authorised failure behaviour |
-| Context pointers | Links the parent spec, relevant glossary and ADR entries, and non-normative code anchors |
-| Acceptance criteria | Describes externally verifiable behaviour |
-| Evidence required | Names observable proof and the details required for any fallback actually introduced |
-| Blocked by | Makes the dependency graph explicit |
-
-When the source exists only in conversation, relevant source definitions are inlined into every published ticket. An ID without its meaning is not traceability. Paths remain discovery anchors, not requirements, so the ticket stays meaningful when files move.
-
-## Coverage gate
-
-Before showing the final breakdown, the skill stages every ticket in a common Markdown schema and runs its deterministic validator against the authoritative source's Delivery Manifest. The command checks fields, exact manifest definitions and unique ownership, acceptance-checkbox presence, edge references, and graph cycles. Semantic sufficiency remains the cold-reader's job. A fresh cold-reader receives the highest-risk ticket and one example of each materially different ticket shape. Any blocking product or design question sends that shape back for rewriting, validation, and resampling. When the harness has no fresh sub-agent, the skill marks independent sampling unavailable and discloses it.
-
-Only the validated breakdown is presented for approval. If you request changes, the changed shape is validated again before the next approval. The published artifacts must exactly match the approved breakdown, and the validator runs once more before publication.
-
-When model capacity is exposed, ticket and required-source size is recorded as a diagnostic. There is no universal percentage gate. A ticket is split when it owns several outcomes, has an unbounded change surface, or a cold reader cannot recover the contract with room to explore and verify.
-
-Prefactoring becomes a separate ticket only when a named limitation in the current code blocks a required slice. General cleanup and imagined future reuse do not qualify.
+Prefer an early real end-to-end integration path and assign later quality, migration or lifecycle checks to the relevant slices. On a constraint revision, reconcile the source, update affected tickets, rerun structural validation and affected cold-reader samples, and preserve unrelated work and concurrent ownership.
 
 ## Common questions
 
-**Why include code anchors if paths go stale?**
+**Does every ticket need an architecture section?**
 
-They reduce rediscovery cost for the next session, but they are explicitly non-normative. Behaviour, interfaces, and acceptance criteria remain the source of truth.
+No. Only affected tickets receive optional shared-constraint fields. Local choices and advisory ideas do not need a registry.
 
-**Should every duplicated scenario appear in several tickets?**
+**Can several tickets own one scenario?**
 
-No. Each source ID has one primary owner unless the duplication is intentional and explained. Shared invariants may be referenced by several tickets, but ownership of delivered behaviour stays clear.
+No. `Owns` remains exclusive. `Applies` is deliberately shared, while the final verification scenario has one accountable owner.
 
-**Is per-ticket review enough?**
+**Is per-ticket review sufficient?**
 
-No for a multi-ticket feature. Per-ticket review catches local defects. After the frontier completes, run one [lain-code-review](https://aihero.dev/skills-code-review) against the branch point from a fresh session to catch interactions and vocabulary drift across slices.
+Not for a multi-ticket delivery. Integrate and run relevant checks as slices land, then run a final [code review](https://aihero.dev/skills-code-review) from the branch point.
 
 ## It's working if
 
-- Every source scenario or requirement ID has exactly one explained owner.
-- The blocking graph has no cycle.
-- Each ticket is a demoable vertical slice, not a database or API layer in isolation.
-- The checked-in validator exits zero on the exact approved ticket artifacts against the authoritative Delivery Manifest.
-- Sampled ticket shapes pass an independent cold-reader check or disclose that sampling was unavailable.
-- Prefactor tickets identify the concrete blocker they remove.
+- Tickets are complete, observable vertical slices, not isolated database or API layers.
+- Every source scenario has one owner and blocking edges are acyclic.
+- The validator passes on the exact approved artifacts.
+- Affected tickets share consistent constraint revisions and verification responsibility.
+- Cold-reader limitations and missing evidence are visible.
+- Unrelated work is not replanned on every design-document edit.
 
 ## Where it fits
 
-`lain-to-tickets` is the handoff from planning to fresh implementation sessions:
-
-```txt
-lain-grill-with-docs → lain-to-spec → lain-to-tickets → lain-implement → lain-code-review
-```
-
-[lain-to-spec](https://aihero.dev/skills-to-spec) provides traced source IDs; [lain-implement](https://aihero.dev/skills-implement) consumes one ticket at a time. [lain-ask-matt](https://aihero.dev/skills-ask-matt) routes across the full set.
+[To-spec](https://aihero.dev/skills-to-spec) supplies the contract; this skill prepares it for implementation sessions. [Technical design](https://github.com/learnathing/skills/blob/main/docs/engineering/lain-technical-design.md) owns readiness and shared-constraint serialization. [Ask Matt](https://aihero.dev/skills-ask-matt) routes the set.

@@ -101,7 +101,7 @@ This is just the same in the AI age. There is a communication gap between you an
 - [`/lain-grill-me`](./skills/productivity/lain-grill-me/SKILL.md) - for non-code uses
 - [`/lain-grill-with-docs`](./skills/engineering/lain-grill-with-docs/SKILL.md) - same as [`/lain-grill-me`](./skills/productivity/lain-grill-me/SKILL.md), but adds more goodies (see below)
 
-These are my most popular skills. They help you align with the agent before you get started, and think deeply about the change you're making. Use them _every_ time you want to make a change.
+These are my most popular skills. They help you align with the agent before you get started, and think deeply about the change you're making. Use them when decisions need clarifying; a settled change inside existing design can go directly to `/lain-implement`.
 
 ### #2: The Agent Is Way Too Verbose
 
@@ -182,6 +182,22 @@ And crucially, [`/lain-improve-codebase-architecture`](./skills/engineering/lain
 
 Software engineering fundamentals matter more than ever. These skills are my best effort at condensing these fundamentals into repeatable practices, to help you ship the best apps of your career. Enjoy.
 
+## Small changes and complex projects
+
+Technical risk decides how much design is needed; session count decides how to organize delivery.
+
+| Situation | Flow |
+| --- | --- |
+| Settled change, existing design suffices | `/lain-implement`, with no new design document or mandatory interview |
+| A bounded data, algorithm, shared-interface or failure decision | `/lain-technical-design`, with an experiment only when evidence is needed |
+| A large effort with unresolved shared decisions | `/lain-wayfinder`, a thin system baseline, then ready capabilities through spec, tickets and implementation |
+
+[`/lain-technical-design`](./skills/engineering/lain-technical-design/SKILL.md) is model-invoked. It preserves agent autonomy for reversible choices inside explicit authority and escalates consequential unresolved choices instead of guessing. Specs remain synthesis, not a place to invent a solution. Binding shared constraints carry exact revisions and verification ownership into tickets; legacy schema-v1 manifests and small tickets need no new fields.
+
+[`/lain-prototype`](./skills/engineering/lain-prototype/SKILL.md) separates UI/logic demonstrations from reproducible technical experiments. Unrun benchmarks are not evidence. Large projects can hand off independently ready scopes without pretending the whole project is designed. Optional `docs/agents/engineering.md` records existing policy without imposing another setup step.
+
+Run `node --test skills/engineering/lain-to-tickets/*.test.mjs` and `node scripts/check-engineering-flow.mjs` for deterministic regression checks. Development evaluation scenarios live under `evals/`; passing structural checks does not establish behavioral outcome lift.
+
 ## Reference
 
 These split on one axis: who can invoke them. **User-invoked** skills are reachable only when you type them (e.g. `/lain-grill-me`); their job is to orchestrate. **Model-invoked** skills can be invoked by you _or_ reached for automatically by the agent when the task fits; they hold the reusable discipline. A user-invoked skill may invoke model-invoked skills, but never another user-invoked one.
@@ -204,7 +220,8 @@ Skills I use daily for code work.
 
 **Model-invoked**
 
-- **[lain-prototype](./skills/engineering/lain-prototype/SKILL.md)**: Build a throwaway prototype to answer a design question, either a single shareable HTML file for state/logic questions, or several radically different UI variations toggleable from one route.
+- **[lain-technical-design](./skills/engineering/lain-technical-design/SKILL.md)**: Resolve the current scope's technical risk through reuse, bounded design and evidence, with shared contracts for cross-ticket work.
+- **[lain-prototype](./skills/engineering/lain-prototype/SKILL.md)**: Answer a design question with a UI/logic prototype or a reproducible technical experiment.
 - **[lain-diagnosing-bugs](./skills/engineering/lain-diagnosing-bugs/SKILL.md)**: Disciplined diagnosis loop for hard bugs and performance regressions: build a feedback loop that goes red on this bug → minimise → hypothesise → instrument → fix → regression-test.
 - **[lain-research](./skills/engineering/lain-research/SKILL.md)**: Investigate a question against high-trust primary sources and capture the findings as a cited Markdown file in the repo, run as a background agent.
 - **[lain-tdd](./skills/engineering/lain-tdd/SKILL.md)**: Test-driven development with observable red and green states, plus verified refactoring when the slice reveals a concrete structural change.

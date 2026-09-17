@@ -2,6 +2,7 @@
 
 import fs from "node:fs";
 import path from "node:path";
+import { validateTechnicalConstraints } from "./technical-constraints.mjs";
 
 const [sourceManifestPath, draftDirectory, ...unexpectedArguments] = process.argv.slice(2);
 
@@ -21,14 +22,14 @@ try {
   process.exit(2);
 }
 
-if (sourceManifest.schema_version !== 1 || !Array.isArray(sourceManifest.delivery_ids) || sourceManifest.delivery_ids.length === 0) {
+if (!sourceManifest || sourceManifest.schema_version !== 1 || !Array.isArray(sourceManifest.delivery_ids) || sourceManifest.delivery_ids.length === 0) {
   console.error("Source manifest must use schema_version 1 and contain delivery_ids");
   process.exit(2);
 }
 
 const sourceDefinitions = new Map();
 for (const item of sourceManifest.delivery_ids) {
-  if (typeof item.id !== "string" || !item.id.trim() || typeof item.definition !== "string" || !item.definition.trim()) {
+  if (!item || typeof item.id !== "string" || !item.id.trim() || typeof item.definition !== "string" || !item.definition.trim()) {
     console.error("Every source manifest delivery ID needs a non-empty id and definition");
     process.exit(2);
   }
@@ -120,7 +121,7 @@ const tickets = files.map((file) => {
     }
   }
 
-  return { id, blockedBy, owns, relative };
+  return { id, blockedBy, owns, relative, body };
 });
 
 const byId = new Map();
@@ -171,6 +172,8 @@ function visit(id, route = []) {
 }
 
 for (const id of byId.keys()) visit(id);
+
+errors.push(...validateTechnicalConstraints(sourceManifest, tickets));
 
 if (errors.length > 0) {
   for (const error of [...new Set(errors)]) console.error(`ERROR: ${error}`);
