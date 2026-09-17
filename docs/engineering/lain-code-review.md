@@ -1,79 +1,54 @@
 ## What it does
 
-`lain-code-review` reviews committed or working-tree changes since a fixed point along three independent axes. **Standards** checks repository rules, **Spec** checks requested behaviour, and **Design** checks readability, rule locality, interface depth, failure semantics, and test stability.
-
-Each axis runs in an independent [sub-agent](https://www.aihero.dev/ai-coding-dictionary/subagent). The coordinator then verifies every citation against the current code before reporting it. The output is a read-only evidence report and a blocker gate, not an automatic rewrite.
+`lain-code-review` reviews committed or working-tree changes along Standards, Spec and Design axes. It verifies findings against the source and actual changed code before reporting them. The review is read-only; technical risk changes the relevant evidence, not the task into a new architecture project.
 
 ## When to reach for it
 
-Type `/lain-code-review`, or the [agent](https://www.aihero.dev/ai-coding-dictionary/agent) reaches for it when you ask to review a branch, PR, working tree, or work since a fixed point.
+Type `/lain-code-review`, or the agent uses it for a branch, pull request, working tree or change from a fixed point. Per-ticket reviews cover bounded contracts; final branch review covers interactions across a multi-ticket delivery. Verification mode checks previous dispositions and current blockers without generating a new advisory backlog.
 
-| Your situation | Reach for |
+## Three axes and relevant evidence
+
+| Axis | Governing question |
 | --- | --- |
-| Review committed branch work | `lain-code-review` with a fixed point and HEAD target |
-| Review implementation before commit | `lain-code-review` with a fixed point and working-tree target |
-| Verify that reported fixes resolved the findings | `lain-code-review` in verification mode with the previous report |
-| Build the work and close the gate automatically | [lain-implement](https://aihero.dev/skills-implement) |
-| Diagnose a known failure | [lain-diagnosing-bugs](https://aihero.dev/skills-diagnosing-bugs) |
+| Standards | Does the change obey applicable documented repository rules? |
+| Spec | Does it satisfy the originating behavior and binding constraints without omissions? |
+| Design | Are responsibilities local, failures explicit, interfaces useful and shared contracts coherent? |
 
-## Prerequisites
+The fixed point must resolve and the target must contain reviewable changes. The original issue or spec is authoritative; the reconstructed implementation contract is only a coverage index. A missing source is disclosed rather than invented.
 
-The fixed point must resolve. The Spec axis needs an originating issue or [spec](https://www.aihero.dev/ai-coding-dictionary/spec); without one, that axis is skipped rather than inferred. Tracker lookup uses the configuration written by [lain-setup-matt-pocock-skills](https://aihero.dev/skills-setup-matt-pocock-skills).
+Where the change affects technical risk, inspect accepted constraint revisions, data identity and lifecycle, algorithm evaluation, and assigned integration, migration or recovery evidence. Do not require an unsolicited architecture document, quality threshold or production action for an ordinary local change.
 
-## The three axes
+An unrun measurement does not prove a required target. Evidence is a blocker only when the accepted source requires it for the current gate, not merely for a later release. Every finding still needs accurate code evidence, concrete impact and a smallest fix. Preferences and duplicated impacts are not independent blockers.
 
-| Axis | Reads | Reports |
-| --- | --- | --- |
-| Standards | Repository instructions | Violations of applicable documented rules |
-| Spec | Authoritative originating source plus any implementation contract used as a coverage index | Source decisions omitted or distorted in rehydration, missing behaviour, wrong behaviour, and unsupported scope |
-| Design | Changed modules, immediate callers and dependencies, domain docs, and agreed seams | Unreadable main paths, scattered rules, shallow interfaces, untraceable fallbacks, speculative abstractions, brittle tests |
+## Independent review and limitations
 
-Every finding carries a severity, code evidence, governing source when one exists, concrete impact, and smallest fix. Preferences and uncited heuristics are dropped by the coordinator.
+When supported, independent subagents review the applicable axes and the coordinator verifies their findings. Reviewers do not recursively invoke skills or spawn more reviewers.
 
-The gate passes when no verified blocker exists on any axis. Advisories remain visible but cannot become blockers by accumulation.
-
-## Verification mode
-
-A verification pass consumes the previous report and finding dispositions. It checks whether those findings were resolved or rejected with evidence, then runs a full blocker-only scan of the current target. It does not search for new advisories. This catches blockers missed by the first pass while giving [lain-implement](https://aihero.dev/skills-implement) a progress-bounded convergence loop.
+If independent reviewers are unavailable, report `NOT INDEPENDENTLY VERIFIED`, not a synthetic PASS. Existing explicit task or project policy may permit a direct review substitute; absence of tooling does not itself grant that exception. A second reading in the same context is not independent evidence.
 
 ## Common questions
 
-**Does it review uncommitted and untracked work?**
+**Are uncommitted and untracked files included?**
 
-Yes in working-tree mode. It resolves the merge base of the fixed point and HEAD, compares that base to the working tree, and inspects every task-scope untracked file because Git diffs omit them. It lists exclusions for generated artifacts, unreadable binary content, and pre-existing baseline files. A caller can provide that baseline so unrelated user changes are excluded from findings.
+Yes in working-tree mode, with the declared pre-existing baseline and recorded exclusions removed. HEAD mode states when the working tree is excluded.
 
-**Can sub-agents recursively invoke the review again?**
+**Does every algorithm change require a full benchmark?**
 
-The axis briefs explicitly forbid invoking `lain-code-review`, calling skills, or spawning more agents. The coordinator remains the only aggregation point.
+Only evidence required by the accepted scope and gate. Existing applicable evidence can be reused; behavior tests alone cannot establish a new empirical quality claim.
 
-**Why does verification scan the whole target again?**
+**Can a read-only review run experiments or rewrite the design?**
 
-Heuristic review is non-deterministic, so checking only the fix hunks can preserve a blocker missed on the first pass. Verification scans all task changes for blockers but excludes fresh advisories, keeping the safety check broad and the work loop bounded.
-
-**Can I trust every finding?**
-
-Treat findings as evidence-backed hypotheses. The coordinator verifies citations before reporting, but the human or implementing agent should still evaluate the stated impact and smallest fix.
-
-**Should I review each ticket or only the full branch?**
-
-Do both for multi-ticket work. Per-ticket review keeps the source contract narrow. A final fresh-session branch review catches interactions and naming drift across independently implemented slices.
+No. It inspects evidence and reports missing obligations. Design and implementation changes remain separate authorized work.
 
 ## It's working if
 
-- A bad fixed point or empty target fails before any sub-agent starts.
-- HEAD mode states whether working-tree changes are excluded; working-tree mode includes all task-scope untracked files and lists exclusions.
-- Cross-axis reports of the same underlying impact are counted once.
-- The report has separate Standards, Spec, and Design sections.
-- Every finding has accurate evidence and a concrete impact.
-- The gate distinguishes blockers from advisories without blending the axes.
-- Verification mode resolves the previous report and can find a missed blocker without generating a fresh advisory list.
+- Findings cite the authoritative requirement and actual code.
+- Shared sources are inspected only where relevant to the change.
+- Local work does not trigger a ceremonial whole-system audit.
+- Duplicate cross-axis impacts are counted once.
+- Missing measurement and missing independence are disclosed accurately.
+- Blockers, advisories and future release obligations remain distinct.
 
 ## Where it fits
 
-`lain-code-review` is the quality gate at the tail of the main chain:
-
-```txt
-lain-grill-with-docs → lain-to-spec → lain-to-tickets → lain-implement → lain-code-review
-```
-
-`lain-implement` invokes it before commit and enters verification mode only after blocker fixes. It also stands alone for branch and PR review. [lain-ask-matt](https://aihero.dev/skills-ask-matt) routes across the complete skill set.
+[Implement](https://aihero.dev/skills-implement) uses this gate before committing. It also stands alone for branches and pull requests. [To-tickets](https://aihero.dev/skills-to-tickets) requires final branch review after multi-ticket delivery. [Ask Matt](https://aihero.dev/skills-ask-matt) routes the set.

@@ -33,11 +33,13 @@ Find the originating spec in this order:
 3. Issue references in commit messages, fetched through `docs/agents/issue-tracker.md`
 4. If no spec exists, skip the Spec axis and say so. Ask only when the user explicitly requested Spec compliance and the missing source prevents that review
 
-Find repository standards such as `AGENTS.md`, `CLAUDE.md`, `CODING_STANDARDS.md`, and `CONTRIBUTING.md`. Find the relevant `CONTEXT.md`, ADRs, and the agreed seams. Read the Design rubric in [review-rubrics.md](review-rubrics.md).
+Find repository standards such as `AGENTS.md`, `CLAUDE.md`, `CODING_STANDARDS.md`, and `CONTRIBUTING.md`. Find the relevant `CONTEXT.md`, ADRs, and the agreed seams. Read the Design rubric in [review-rubrics.md](review-rubrics.md). When the change affects shared technical constraints, also read their accepted source revisions, relevant design and experiment evidence, and any configured engineering policy. Load only the affected subset. A design note is not authority to invent requirements, and a structural validator pass is not architecture or benchmark evidence.
 
 ## 3. Dispatch three independent reviews
 
-Spawn the applicable axes in parallel. Give every sub-agent the exact diff command, commit list, untracked files and exclusions, and only the sources its axis needs. Paste the Design rubric only into the Design prompt.
+If independent sub-agents are unavailable, disclose that limitation instead of simulating independent reviewers. A direct review may provide findings, but cannot satisfy an explicit independent-review requirement; label its gate `not independently verified` rather than PASS.
+
+Spawn the applicable axes in parallel when available. Give every sub-agent the exact diff command, commit list, untracked files and exclusions, and only the sources its axis needs. Paste the Design rubric only into the Design prompt.
 
 Every brief must say: "Perform this review directly. Do not invoke lain-code-review, call skills, or spawn additional agents. Use the required finding format. Report every blocker. Report an advisory only when its concrete impact and smallest fix fit the requested scope. Brevity must never suppress a blocker."
 
@@ -51,7 +53,7 @@ Report missing or partial requirements, unrequested behaviour, and requirements 
 
 ### Design brief
 
-Reconstruct the main path, then inspect immediate callers and dependencies. Apply every Design rubric item. Cite the hunk and concrete impact. Pay particular attention to failure behaviour that has no source decision and abstractions that expose more knowledge than they hide.
+Reconstruct the main path, then inspect immediate callers and dependencies. Apply every Design rubric item. Cite the hunk and concrete impact. Pay particular attention to failure behaviour that has no source decision and abstractions that expose more knowledge than they hide. Follow affected shared contracts into relevant consumers, data migrations, deployment configuration and evidence when those are part of this change. Do not expand a local change into a whole-system audit or start a new design or experiment inside read-only review.
 
 ## 4. Verify and aggregate
 
@@ -63,6 +65,7 @@ End with a gate summary:
 
 - **PASS**: no verified blocker on any axis
 - **FAIL**: one or more verified blockers, listed by axis
+- **NOT INDEPENDENTLY VERIFIED**: only a direct review was possible; report findings and unmet independent-review obligations without representing them as independent evidence
 
 Do not turn advisories into blockers by accumulation.
 

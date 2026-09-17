@@ -1,74 +1,54 @@
 ## What it does
 
-`lain-implement` builds one bounded issue or spec through an evidence-bearing state machine. It rehydrates the contract, reconciles top-down intent with bottom-up code constraints, drives [lain-tdd](https://aihero.dev/skills-tdd), and reviews the working tree before committing. It enters repair verification only when the review finds a blocker.
+`lain-implement` builds one bounded issue or settled request. It restores the source contract, reconciles it with actual code and data constraints, drives TDD, reviews the working tree and commits only task-owned changes after the required gate.
 
-Passing tests are an intermediate state. Completion requires traceable evidence, authorised semantics for every fallback actually introduced, and a review gate with no unresolved blocker.
+Green tests are an intermediate state. Code completion does not imply that unperformed deployment, migration or production validation has passed.
 
 ## When to reach for it
 
-You invoke this by typing `/lain-implement`; the [agent](https://www.aihero.dev/ai-coding-dictionary/agent) will not reach for it on its own.
+You invoke `/lain-implement`; the agent does not invoke it automatically. Use it directly for a settled small change inside existing design, or once per ready implementation ticket. Several tickets need separate bounded sessions or worktrees. A consequential unresolved prerequisite is resolved before the affected implementation proceeds.
 
-| What you have | Reach for |
-| --- | --- |
-| One implementation issue with a contract | `lain-implement` |
-| A small settled change in the current [session](https://www.aihero.dev/ai-coding-dictionary/session) | `lain-implement` directly |
-| Several issues | One fresh `lain-implement` session per unblocked issue |
-| Requirements or failure behaviour still unresolved | [lain-grill-with-docs](https://aihero.dev/skills-grill-with-docs) or [lain-to-spec](https://aihero.dev/skills-to-spec) first |
+## Contract, design and evidence
 
-## Prerequisites
+The skill pins the starting HEAD, tracked changes and untracked files. Overlapping existing work requires an ownership decision; unrelated user changes remain excluded from the task commit.
 
-Check that the current branch is the intended destination. The skill records the initial `HEAD`, status, tracked diff, and untracked files as a baseline. Overlapping user changes stop for an ownership decision; disjoint changes are passed to review as excluded baseline and left out of the task commit. Tracker-backed issues depend on the configuration written by [lain-setup-matt-pocock-skills](https://aihero.dev/skills-setup-matt-pocock-skills).
+The original issue, spec or decision handoff is authoritative. The reconstructed implementation contract indexes outcomes, invariants, failure semantics and verification; it does not replace the source. Relevant technical constraints add their accepted revisions, evidence and verification duties. Read only the affected subset, not the entire project's history.
 
-## Reconciliation as the join
+An existing technical assessment may be reused when still applicable. Otherwise [technical design](https://github.com/learnathing/skills/blob/main/docs/engineering/lain-technical-design.md) assesses the scope. Reuse means continue without a ceremonial design note, new interview or standalone spec. Reversible local choices inside authority remain implementation work; a discovered contradiction in a shared contract returns to the source and its owners.
 
-The source contract is the top-down view: outcomes, invariants, interfaces, and failure semantics. Code exploration is the bottom-up view: current callers, dependency constraints, transactions, data, and external systems. `lain-implement` follows changed scenarios through both views before coding.
+Changed behavior has actual Red and Green evidence. Preserved behavior has baseline and final results. Run assigned quality, integration, migration and recovery checks when their gate requires them. Behavior tests cannot establish an unmeasured retrieval-quality or capacity claim. Missing required evidence stays unmet, not silently passed.
 
-It records mismatches and newly discovered constraints, not a table whose completed rows merely assert success. A mismatch that changes behaviour returns to the source contract. A same-session route uses the conversation's decision handoff as its source and assigns IDs when needed, so skipping a durable spec does not mean skipping Spec review.
+Actual fallback paths need an authorizing source, trigger, caller-visible result and observability. Ordinary contract-required defaults are not fallback entries. Production actions retain their separate authorization requirements.
 
-## The fallback register
+## Review and completion
 
-Every new path that substitutes for missing, invalid, or failed required behaviour records its source decision, trigger, caller-visible result, and observability. This includes fallback defaults, retries, caught exceptions, compatibility paths, and degraded results. Ordinary initial values and contract-required defaults do not count.
+[Code review](https://aihero.dev/skills-code-review) receives the original source, relevant technical evidence and pre-existing worktree exclusions. Repair is blocker-driven and progress-bounded. A repeated blocker, contract expansion or exhausted caller budget stops the completion commit.
 
-The skill records actual fallback entries only, and absence needs no register entry. The independent Design review inspects the diff. An entry without a source decision blocks completion.
-
-## Bounded review
-
-The first [lain-code-review](https://aihero.dev/skills-code-review) pass examines the working tree against the pinned fixed point. The original issue, spec, or decision handoff remains the authoritative Spec source; the rehydrated contract is only a coverage index, so review can detect an omission in the rehydration itself. A clean blocker gate ends review immediately. When blockers exist, the skill repairs them and runs verification over prior dispositions plus a full blocker-only scan. Repair continues only while blocker progress is real and fixes remain in scope. A repeated blocker, contract expansion, or caller-provided budget exhaustion stops without commit. New advisories are out of scope during verification.
+When independent review is unavailable, it must not become a synthetic PASS. A direct review can substitute only under explicit existing task or project policy; otherwise report the unmet review requirement. Distinguish implementation, integration and release readiness in the final report.
 
 ## Common questions
 
-**Can review see uncommitted changes now?**
+**Does a small change require another interview?**
 
-Yes. `lain-implement` explicitly calls `lain-code-review` in working-tree mode, including untracked source files, before the commit.
+No. Settled behavior and compatible existing design take the direct path. The guard discovers actual technical gaps; it does not generate paperwork.
 
-**Does it act on review findings?**
+**Can the agent improve an algorithm while implementing?**
 
-Yes. Every blocker is fixed or rejected with evidence. Advisories are fixed only when their concrete benefit fits the ticket; otherwise they remain visible without becoming a user approval gate.
+Yes inside accepted tuning, quality and resource boundaries, with the required evidence. A new shared data identity or external data-handling decision is not ordinary tuning.
 
-**Can I point it at several tickets at once?**
+**Does it automatically close the issue or deploy?**
 
-No. One run owns one bounded issue. Use separate worktrees for parallel sessions, and run a final branch-level review after all issue frontiers complete.
-
-**Does it close the tracker issue?**
-
-No. The workflow proves and commits the implementation; tracker closure remains separate unless your repository instructions explicitly add it.
+No, unless separately authorized. A verified implementation commit is not an implicit permission to mutate production or the tracker lifecycle.
 
 ## It's working if
 
-- The run begins with a fixed point, working-tree status, and implementation contract.
-- Every acceptance criterion maps to observable evidence.
-- Change scenarios show real red and green evidence, plus post-refactor evidence when code changed after Green.
-- Every fallback actually introduced has source-backed semantics and observability.
-- The first review sees uncommitted work and every blocker receives a disposition.
-- A clean first review does not trigger a ceremonial second pass.
-- A blocker that repeats without progress or requires contract expansion stops the commit.
+- Task ownership and the starting worktree are explicit.
+- Existing design is reused without unnecessary artifacts.
+- Shared constraints use accepted, applicable revisions.
+- Tests and required experiments have actual evidence.
+- New shared contradictions are escalated rather than hidden by defaults.
+- Review limitations and unperformed production steps are reported honestly.
 
 ## Where it fits
 
-`lain-implement` is the build-and-converge step of the main chain:
-
-```txt
-lain-grill-with-docs → lain-to-spec → lain-to-tickets → lain-implement → lain-code-review
-```
-
-[lain-to-tickets](https://aihero.dev/skills-to-tickets) produces the fresh-context contract. `lain-implement` drives `lain-tdd` and calls `lain-code-review` as its quality gate. [lain-ask-matt](https://aihero.dev/skills-ask-matt) routes across the full set.
+[To-tickets](https://aihero.dev/skills-to-tickets) supplies a fresh-context contract, or a settled request supplies one directly. This skill uses [TDD](https://aihero.dev/skills-tdd) and code review internally. [Ask Matt](https://aihero.dev/skills-ask-matt) chooses the appropriate route.

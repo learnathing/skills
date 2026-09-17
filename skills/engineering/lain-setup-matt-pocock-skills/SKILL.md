@@ -1,6 +1,6 @@
 ---
 name: lain-setup-matt-pocock-skills
-description: "Configure this repo for the engineering skills: set up its issue tracker, triage label vocabulary, and domain doc layout. Run once before first use of the other engineering skills."
+description: "Configure this repo for the engineering skills: issue tracker, triage labels, domain docs, and optional existing engineering policy."
 disable-model-invocation: true
 ---
 
@@ -8,9 +8,10 @@ disable-model-invocation: true
 
 Scaffold the per-repo configuration that the engineering skills assume:
 
-- **Issue tracker**: where issues live (GitHub by default; local markdown is also supported out of the box)
-- **Triage labels**: the strings used for the five canonical triage roles
-- **Domain docs**: where `CONTEXT.md` and ADRs live, and the consumer rules for reading them
+- **Issue tracker**: where issues live, with GitHub, GitLab, local Markdown, and custom trackers supported.
+- **Triage labels**: the strings used for the five canonical triage roles.
+- **Domain docs**: where `CONTEXT.md` and ADRs live and how consumers find them.
+- **Engineering policy, optional**: existing technical-source locations, decision authority and verification commands, not a blanket architecture questionnaire.
 
 This is a prompt-driven skill, not a deterministic script. Explore, present what you found, confirm with the user, then write.
 
@@ -18,99 +19,69 @@ This is a prompt-driven skill, not a deterministic script. Explore, present what
 
 ### 1. Explore
 
-Look at the current repo to understand its starting state. Read whatever exists; don't assume:
+Read the existing repository before proposing configuration:
 
-- `git remote -v` and `.git/config`: is this a GitHub repo? Which one?
-- `AGENTS.md` and `CLAUDE.md` at the repo root: does either exist? Is there already an `## Agent skills` section in either?
-- `CONTEXT.md` and `CONTEXT-MAP.md` at the repo root
-- `docs/adr/` and any `src/*/docs/adr/` directories
-- `docs/agents/`: does this skill's prior output already exist?
-- `.scratch/`: a sign that a local-markdown issue tracker convention is already in use
-- Is the `lain-triage` skill installed? (a `lain-triage` skill folder alongside this one, or `lain-triage` in your available skills.) This decides whether Section B runs at all.
-- Monorepo signals: a `pnpm-workspace.yaml`, a `workspaces` field in `package.json`, or a populated `packages/*` with its own `src/`. These are present only in a genuinely large multi-package repo; their absence means single-context, which is almost every repo.
+- `git remote -v` and `.git/config` for the real repository and tracker.
+- `AGENTS.md`, `CLAUDE.md`, and any existing `## Agent skills` block.
+- `CONTEXT.md`, `CONTEXT-MAP.md`, and relevant ADR locations.
+- `docs/agents/` and `.scratch/` for existing tracker or domain conventions.
+- Whether `lain-triage` is installed, which determines whether label configuration is needed.
+- Evidence of several domain contexts, such as an existing context map or independently named domains. Workspace/package layout can be a clue, not proof that each package is a bounded context.
+- Existing design/experiment documents, actual build and verification commands, and project authority rules. Preserve a current `docs/agents/engineering.md`; its absence is not a blocker.
 
 ### 2. Present findings and ask
 
-Summarise what's present and what's missing. Then take the sections in order. One section, one answer, then the next.
+Summarize what exists and what is missing. Lead with the recommended answer, skip questions already settled by discovery, and do not repeat existing approvals.
 
-Lead each section with the recommended answer so the user can accept it in a word. Give a one-line explainer only when the choice genuinely branches; skip the section entirely when exploration already settled it (Section B when `lain-triage` isn't installed, Section C when there's no monorepo).
+**Section A: Issue tracker.** Propose the tracker matching the remote. Otherwise ask where the user actually tracks work. GitHub uses its Issues through `gh`; GitLab uses `glab`; local files live under `.scratch/<feature>/`; another tracker can be described in a short project-specific workflow.
 
-**Section A: Issue tracker.**
+Record the choice in `docs/agents/issue-tracker.md`. The GitHub and GitLab templates keep "PRs as a request surface" off by default; do not turn it on or raise it without need.
 
-> Explainer: The "issue tracker" is where issues live for this repo. Skills like `lain-to-tickets`, `lain-triage`, and `lain-to-spec` read from and write to it. They need to know whether to call `gh issue create`, write a markdown file under `.scratch/`, or follow some other workflow you describe. Pick the place you actually track work for this repo.
+**Section B: Triage label vocabulary.** Skip when `lain-triage` is not installed. Otherwise offer the existing defaults: `needs-triage`, `needs-info`, `ready-for-agent`, `ready-for-human`, `wontfix`. Collect overrides only when the tracker uses other names. This configures a mapping, not permission to create or alter remote labels.
 
-Default posture: these skills were designed for GitHub. If a `git remote` points at GitHub, propose that. If a `git remote` points at GitLab (`gitlab.com` or a self-hosted host), propose GitLab. Otherwise (or if the user prefers), offer:
+**Section C: Domain docs.** Reuse an existing layout. Default to a single `CONTEXT.md` and `docs/adr/` for a new simple project. When the repository has real multiple domain contexts, confirm the context map and per-context locations; do not infer domain boundaries solely from package count.
 
-- **GitHub**: issues live in the repo's GitHub Issues (uses the `gh` CLI)
-- **GitLab**: issues live in the repo's GitLab Issues (uses the [`glab`](https://gitlab.com/gitlab-org/cli) CLI)
-- **Local markdown**: issues live as files under `.scratch/<feature>/` in this repo (good for solo projects or repos without a remote)
-- **Other** (Jira, Linear, etc.): ask the user to describe the workflow in one paragraph; the skill will record it as freeform prose
-
-Record the choice in `docs/agents/issue-tracker.md`. The GitHub and GitLab templates carry a "PRs as a request surface" flag, defaulted **off**. Leave it off and don't raise it: a user who wants external PRs in the triage queue can flip the flag in the file later.
-
-**Section B: Triage label vocabulary.** Skip this section entirely if the `lain-triage` skill isn't installed (exploration told you), since an uninstalled skill needs no labels.
-
-If it is installed, ask exactly one question:
-
-> Do you want to keep the default triage labels? (recommended: **yes**)
-
-The defaults are the five canonical roles, each label string equal to its name: `needs-triage`, `needs-info`, `ready-for-agent`, `ready-for-human`, `wontfix`. On **yes**, write them as-is. Only if the user says no, usually because their tracker already uses other names (e.g. `bug:triage` for `needs-triage`), collect the overrides so `lain-triage` applies existing labels instead of creating duplicates.
-
-**Section C: Domain docs.** Default to **single-context** (one `CONTEXT.md` + `docs/adr/` at the repo root). This fits almost every repo; write it without asking.
-
-Offer **multi-context** (a root `CONTEXT-MAP.md` pointing to per-context `CONTEXT.md` files) only when exploration found monorepo signals. Then confirm which layout they want.
+**Section D: Engineering policy, optional.** When existing policy or the current task needs a durable pointer, propose only known technical-source locations, permitted agent choices, responsible human authority and actual verification commands using [engineering.md](engineering.md). Ask only for an unresolved authorization or constraint relevant to this scope. Never infer approval for external costs, private-data transfer, production changes or irreversible choices. Skip this section when there is nothing useful to record; technical design does not require a setup rerun.
 
 ### 3. Confirm and edit
 
-Show the user a draft of:
-
-- The `## Agent skills` block to add to whichever of `CLAUDE.md` / `AGENTS.md` is being edited (see step 4 for selection rules)
-- The contents of `docs/agents/issue-tracker.md`, `docs/agents/domain.md`, and `docs/agents/triage-labels.md` (the last only when `lain-triage` is installed)
-
-Let them edit before writing.
+Show the draft `## Agent skills` pointer block and the applicable documents before writing. Include `docs/agents/engineering.md` only when Section D produces useful sourced policy. Preserve existing user preferences and surrounding instructions; this is project configuration, not a rewrite of the skills themselves.
 
 ### 4. Write
 
-**Pick the file to edit:**
+**Pick the instruction file:** edit `CLAUDE.md` if it exists; otherwise `AGENTS.md`; if neither exists, ask which to create. Never create both or overwrite unrelated content. Update an existing `## Agent skills` block rather than appending a duplicate.
 
-- If `CLAUDE.md` exists, edit it.
-- Else if `AGENTS.md` exists, edit it.
-- If neither exists, ask the user which one to create; don't pick for them.
-
-Never create `AGENTS.md` when `CLAUDE.md` already exists (or vice versa); always edit the one that's already there.
-
-If an `## Agent skills` block already exists in the chosen file, update its contents in-place rather than appending a duplicate. Don't overwrite user edits to the surrounding sections.
-
-The block:
+Use concise pointers for the actual files:
 
 ```markdown
 ## Agent skills
 
 ### Issue tracker
 
-[one-line summary of where issues are tracked]. See `docs/agents/issue-tracker.md`.
+[Actual tracker summary]. See `docs/agents/issue-tracker.md`.
 
 ### Triage labels
 
-[one-line summary of the label vocabulary]. See `docs/agents/triage-labels.md`.
+[Existing label mapping summary]. See `docs/agents/triage-labels.md`.
 
 ### Domain docs
 
-[one-line summary of layout: "single-context" or "multi-context"]. See `docs/agents/domain.md`.
+[Single-context or context-map summary]. See `docs/agents/domain.md`.
 ```
 
-Include the `### Triage labels` sub-block, and write `docs/agents/triage-labels.md`, only when `lain-triage` is installed and Section B ran. When it isn't, both are omitted.
+Omit the triage pointer and file when Section B was skipped. Add a `### Engineering decisions and verification` pointer to `docs/agents/engineering.md` only when Section D ran; write confirmed or discovered values, not empty registers or guessed defaults.
 
-Then write the docs files using the seed templates in this skill folder as a starting point:
+Use the co-located seed templates without duplicating them into skill instructions:
 
-- [issue-tracker-github.md](./issue-tracker-github.md): GitHub issue tracker
-- [issue-tracker-gitlab.md](./issue-tracker-gitlab.md): GitLab issue tracker
-- [issue-tracker-local.md](./issue-tracker-local.md): local-markdown issue tracker
-- [triage-labels.md](./triage-labels.md): label mapping (only if `lain-triage` is installed)
-- [domain.md](./domain.md): domain doc consumer rules + layout
+- [issue-tracker-github.md](issue-tracker-github.md)
+- [issue-tracker-gitlab.md](issue-tracker-gitlab.md)
+- [issue-tracker-local.md](issue-tracker-local.md)
+- [triage-labels.md](triage-labels.md), only when installed and configured
+- [domain.md](domain.md)
+- [engineering.md](engineering.md), optional
 
-For "other" issue trackers, write `docs/agents/issue-tracker.md` from scratch using the user's description.
+For a custom tracker, write the project-specific workflow from the user's description. Do not change remote settings, provision services, or edit a `SKILL.md` as a setup side effect.
 
 ### 5. Done
 
-Tell the user the setup is complete and which engineering skills will now read from these files. Mention they can edit `docs/agents/*.md` directly later; re-running this skill is only necessary if they want to switch issue trackers or restart from scratch.
+Report the actual files written and which skills consume them. They remain editable project policy. Re-running setup is unnecessary for ordinary technical design or small implementation changes; use it when configuration has changed or the user asks to reconfigure.

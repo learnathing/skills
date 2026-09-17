@@ -14,9 +14,11 @@ The issue tracker and triage label vocabulary should have been provided to you. 
 
 Explore the repo if needed. Read the decision handoff in the conversation, the relevant glossary, ADRs, prototypes, and existing interfaces. Use the project's domain vocabulary.
 
+Name the current delivery scope, not every future capability. Reuse its still-applicable technical assessment or call the Skill tool with "lain-technical-design" in assessment-only mode. This remains synthesis: do not run a new interview, experiment, or design session. If a blocking decision or required technical evidence is missing, report the gap and retain only a clearly labelled draft when useful; do not apply `ready-for-agent`. Tell the user to resolve technical gaps with `/lain-technical-design` or product choices with `/lain-grill-with-docs`, then return. Optional `docs/agents/engineering.md` config supplies existing authority and verification conventions, not a new setup prerequisite.
+
 Build a source index before drafting. Preserve decision IDs from the handoff. When another primary source has no stable ID, assign one and record the exact decision or compatibility fact plus a durable anchor. A source category such as "conversation" or "existing behaviour" is not an anchor. Account for every decision-bearing source item by mapping it to a contract claim or explicitly sourced out-of-scope statement.
 
-Require exact source IDs for the decision-bearing contract: observable outcomes, invariants, public interface and error semantics, and hard-to-reverse architectural choices. Scenarios cite the decisions they exercise. Code can supply pinned compatibility facts, but it does not create a new requirement by itself. Implementation-discoverable choices such as likely modules or file locations are not normative requirements and need no invented source ID.
+Require exact source IDs for the decision-bearing contract: observable outcomes, invariants, public interface and error semantics, and binding shared or hard-to-reverse technical choices. Scenarios cite the decisions they exercise. Code can supply pinned compatibility facts, but it does not create a new requirement by itself. Implementation-discoverable choices such as likely modules or file locations are not normative requirements and need no invented source ID.
 
 If a missing decision changes observable behaviour, an invariant, an interface, or an error mode, stop and list it. Tell the user to continue `/lain-grill-with-docs`; do not invent an answer or publish a ready spec.
 
@@ -24,7 +26,7 @@ If a missing decision changes observable behaviour, an invariant, an interface, 
 
 Prefer an existing stable seam. Choose the highest stable seam that observes each scenario, then add a lower seam only when a complex rule needs faster feedback or a failure boundary cannot be controlled from above. There is no target number of seams.
 
-Use an established repository seam without adding a user turn. When the choice changes an externally observable or hard-to-reverse interface contract, or several choices encode materially different caller behaviour, call the Skill tool with "lain-codebase-design" before proposing it and confirm the choice with the user. Java visibility or an internal test seam alone does not make it a user decision.
+Use an established or already accepted repository seam without adding a user turn. If selecting a seam requires a new externally observable or hard-to-reverse contract decision, stop ready publication and identify the missing decision for technical design or clarification. Do not start interface design or an interview inside this synthesis step. Java visibility or an internal test seam alone does not make it a user decision.
 
 ### 3. Write and gate the spec
 
@@ -37,8 +39,10 @@ Publish only when:
 - Every invariant is exercised by at least one scenario
 - Every scenario maps to a verification seam and observable evidence
 - Every caller-visible failure or degradation has explicit semantics
-- No open decision can change behaviour, an invariant, an interface, or an error mode
+- No open decision can change behaviour, an invariant, an interface, an error mode, or a critical technical prerequisite of this delivery scope
 - The Delivery Manifest contains every scenario ID, its exact expected-behaviour definition, and the source IDs it exercises
+- Relevant quality, integration, migration and recovery obligations have source-backed acceptance criteria and identified evidence; evidence required before implementation is present
+- Binding shared technical constraints retain accepted source anchors, revisions, affected scenario IDs and verification ownership; unsupported agent recommendations are not attributed to the user
 
 Publish the gated spec to the project issue tracker and apply the `ready-for-agent` triage label.
 
@@ -74,6 +78,8 @@ Use the smallest complete set of happy-path, boundary, and failure scenarios tha
 
 Emit valid JSON in a fenced `json` block. `delivery_ids` contains every scenario that tickets must own. Its definition exactly matches the scenario's situation and expected behaviour in one durable sentence.
 
+Keep schema version 1. Omit technical fields when none apply. For accepted shared constraints, call the Skill tool with "lain-technical-design" in assessment-only mode to consult its delivery-constraint serialization, unless that reference is already loaded. Add `technical_constraints` with scoped `id`, `revision`, exact `definition`, durable `source`, affected scenario IDs in `applies_to`, and one affected scenario in `verified_by`. Do not invent a scenario or requirement to fill this registry. Preserve IDs and qualify ambiguous IDs by their originating source.
+
 ```json
 {
   "schema_version": 1,
@@ -101,7 +107,7 @@ For each seam, state the interface callers use and why that seam observes the sc
 
 ## Implementation Decisions
 
-Include this section only when source-backed, hard-to-reverse implementation decisions constrain the solution. Cite each decision's exact source-index ID. This can include:
+Include this section only when source-backed shared or hard-to-reverse technical decisions constrain the solution. Cite each decision's exact source-index ID. This can include:
 
 - Architectural decisions
 - Schema changes
@@ -110,7 +116,7 @@ Include this section only when source-backed, hard-to-reverse implementation dec
 
 Do not promote implementation-discoverable module selection, file placement, or local refactoring choices into sourced requirements.
 
-Do NOT include specific file paths or code snippets. They may end up being outdated very quickly.
+Do NOT prescribe specific implementation file paths or incidental code snippets. They may end up being outdated very quickly. Durable design, evidence and ADR paths are allowed as source anchors, not as requirements about where production code must live. Link design rationale rather than duplicating the whole technical plan.
 
 Exception: if a prototype produced a snippet that encodes a decision more precisely than prose can (state machine, reducer, schema, type shape), inline it within the relevant decision and note briefly that it came from a prototype. Trim to the decision-rich parts, not a working demo, just the important bits.
 
@@ -126,6 +132,6 @@ A description of the things that are out of scope for this spec.
 
 ## Known Unknowns
 
-Implementation-discoverable facts that do not change behaviour, invariants, interfaces, or error modes. This section must contain no blocking product or design decision when the spec is published.
+Implementation-discoverable facts that do not change behaviour, invariants, interfaces, or error modes. This section must contain no blocking product or design decision when the spec is published as ready. Questions about later, independent scopes need a revisit condition and must not be hidden prerequisites of this scope.
 
 </spec-template>
