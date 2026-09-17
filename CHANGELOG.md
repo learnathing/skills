@@ -1,5 +1,43 @@
 # mattpocock-skills
 
+## 1.3.0
+
+### Minor Changes
+
+- [`65f7d3d`](https://github.com/mattpocock/skills/commit/65f7d3d53dd83a662e8c25c1aacfc15fad45bbac) Thanks [@learnathing](https://github.com/learnathing)! - Make the main engineering flow evidence-bearing and measurable. Stable decision IDs trace the decision-bearing contract without turning implementation-discoverable facts into pseudo-requirements. Change and preservation scenarios carry distinct evidence; a deterministic validator checks ticket contracts and blocking graphs; implementation reconciles top-down and bottom-up constraints without self-certifying tables; actual fallback paths are reviewed independently; and code review uses conditional, progress-bounded blocker repair. Add versioned manual development fixtures and define the runner, scorer, held-out tasks, and resulting-code gates still required before the protocol can produce release evidence.
+
+- [`0e4f9f7`](https://github.com/mattpocock/skills/commit/0e4f9f704aada1aa161b03e4d95a2e4c1c435ddf) Thanks [@learnathing](https://github.com/learnathing)! - Add model-invoked technical design with risk-based reuse, bounded design and blocked dispositions, scoped readiness, explicit decision authority and durable shared constraints. Preserve direct implementation for settled small changes. Extend prototypes with reproducible technical experiments and wayfinding with rolling capability handoffs and source-backed execution authority. Carry accepted constraints into specs, tickets, implementation and review without treating local tuning as a product requirement.
+
+  Keep Delivery Manifest schema version 1 and legacy tickets compatible. Add optional constraint revision, applicability and verification-owner validation, regression tests, engineering policy configuration, documentation and CI checks. Add development evaluation scenarios; deterministic checks are not evidence of behavioral outcome lift or a substitute for held-out full-chain trials.
+
+### Patch Changes
+
+- [`a943bb0`](https://github.com/mattpocock/skills/commit/a943bb05b54ff96fcc12560fdd0fdc1eb645ca93) Thanks [@learnathing](https://github.com/learnathing)! - Correct authorization and work-preservation conflicts in grilling and merge resolution. Allow explicitly unverified diagnosis from accessible evidence and replace mandatory hypothesis/trial quotas with evidence-based choices. Retain the original implementation workflow and diagnosis minimization gates. V2 evaluated an earlier, broader candidate; its results do not validate this narrower revision or establish general capability gains.
+
+- [#848](https://github.com/mattpocock/skills/pull/848) [`f02e2ed`](https://github.com/mattpocock/skills/commit/f02e2ed3624d031272f8547742d23bf6bca8b072) Thanks [@mattpocock](https://github.com/mattpocock)! - domain-modeling: trigger on discussing codebase terminology and on writing or editing a CONTEXT.md or an ADR directly, replacing the narrower "pin down domain terminology or a ubiquitous language" / "record an architectural decision" phrasing. Also drops the "another skill needs to maintain the domain model" caveat, since that's the invoking skill's job to state explicitly, not this description's.
+
+- [#911](https://github.com/mattpocock/skills/pull/911) [`4f28947`](https://github.com/mattpocock/skills/commit/4f289474bad013fe2be8f8769d733f59d9103d6b) Thanks [@mattpocock](https://github.com/mattpocock)! - Quote the `description` front matter in `lain-to-spec`, `lain-code-review`, `lain-setup-matt-pocock-skills`, `lain-writing-fragments`, `lain-writing-shape`, and `lain-wait-what`. An unquoted colon-space left over from the em-dash sweep in [#905](https://github.com/mattpocock/skills/issues/905) made each block invalid YAML, so `skills.sh` skipped all six during discovery and they couldn't be listed or installed via `npx skills`.
+
+- [#879](https://github.com/mattpocock/skills/pull/879) [`d419977`](https://github.com/mattpocock/skills/commit/d419977fe07d9e1607d3523f3579310bbb076b93) Thanks [@mattpocock](https://github.com/mattpocock)! - grilling: remove em-dashes from `SKILL.md`, replacing them with colons and semicolons so the instructions read as plain text.
+
+- [#905](https://github.com/mattpocock/skills/pull/905) [`e6e9577`](https://github.com/mattpocock/skills/commit/e6e957797d8cceb5b351c0dc840369523f9fb8fb) Thanks [@mattpocock](https://github.com/mattpocock)! - Remove every em-dash from the repo's prose (docs, `SKILL.md` files, ADRs, `README.md`, scripts, JSON/YAML metadata), hand-rewriting each sentence with a comma, colon, period, parentheses, or conjunction rather than mechanically substituting the character. `CLAUDE.md`/`AGENTS.md` now says not to reintroduce them.
+
+- [#878](https://github.com/mattpocock/skills/pull/878) [`e3e547b`](https://github.com/mattpocock/skills/commit/e3e547b57d549110a0aa6ff40fd7b871c01c76c9) Thanks [@mattpocock](https://github.com/mattpocock)! - Standardize cross-skill invocation on an explicit "call the Skill tool" instruction instead of bare `/skill`-style prose, across `lain-code-review`, `lain-diagnosing-bugs`, `lain-grill-with-docs`, `lain-grill-me`, `lain-improve-codebase-architecture`, `lain-tdd`, `lain-to-spec`, `lain-to-tickets`, `lain-triage`, and `lain-wayfinder`.
+
+  - A skill that names another skill in prose ("run the `/lain-grilling` skill") does not reliably cause it to load. This is the documented rough edge behind `lain-grill-with-docs`'s most-reported problem. Naming the tool directly (`Call the Skill tool with "lain-grilling"`) is intended to raise the hit rate. Dropping the leading `/` also makes the instruction harness-neutral rather than less: it no longer assumes Claude Code's trigger syntax.
+  - A step needing more than one skill now says so as multiple calls ("Call the Skill tool twice, for `lain-grilling` and `lain-domain-modeling`"), not one call carrying two names.
+  - Documents the convention in `.agents/invocation.md` for future skills to follow.
+
+- [#880](https://github.com/mattpocock/skills/pull/880) [`1dab982`](https://github.com/mattpocock/skills/commit/1dab98299c3b81f560026c01b7ebf55ed5d91373) Thanks [@mattpocock](https://github.com/mattpocock)! - Stop skills from trying to reach user-invoked skills through the Skill tool: fix cross-skill references that violated the "no other skill can call it" invariant in `.agents/invocation.md`, in `lain-to-spec`, `lain-wayfinder`, `lain-to-tickets`, `lain-triage`, `lain-code-review`, and `lain-diagnosing-bugs`.
+
+  - `lain-to-spec`, `lain-wayfinder`, `lain-to-tickets`, `lain-triage`, and `lain-code-review` each carried a precondition ("...run `/lain-setup-matt-pocock-skills` if not") that PR [#878](https://github.com/mattpocock/skills/issues/878) rewrote into a literal `Call the Skill tool with "lain-setup-matt-pocock-skills"` instruction. `lain-setup-matt-pocock-skills` is user-invoked, so none of these skills (user-invoked or model-invoked) can call it. Reworded all five as instructions for the agent to tell the human to run it instead.
+  - `lain-diagnosing-bugs`'s Phase 6 post-mortem hand off to `lain-improve-codebase-architecture` (also user-invoked) the same way, from an autonomous, often-unattended bug-fixing flow with no human in the loop to catch the failed call. Removed the hand-off outright rather than softening it, since it rarely fired in practice. Phase 6 is now "Cleanup" only; the mechanical checklist is untouched.
+  - Added a carve-out paragraph to `.agents/invocation.md`'s "Dependencies between them" section: the `Call the Skill tool with "name"` convention only applies when the named skill is model-invoked. This is the section PR [#878](https://github.com/mattpocock/skills/issues/878) introduced without reconciling it against the user-invoked/model-invoked invariant stated eight lines above it; the gap is most of why this bug reached six call sites instead of one.
+
+  Fixes [#453](https://github.com/mattpocock/skills/issues/453).
+
+- [#904](https://github.com/mattpocock/skills/pull/904) [`594f0f8`](https://github.com/mattpocock/skills/commit/594f0f83188921a60d45d63d6cdac509de20df2c) Thanks [@mattpocock](https://github.com/mattpocock)! - wait-what: follow `CONTEXT-MAP.md` to the right `CONTEXT.md` when a repo indexes multiple contexts that way instead of keeping a single root `CONTEXT.md`.
+
 ## 1.2.3
 
 ### Patch Changes
