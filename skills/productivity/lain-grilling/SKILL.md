@@ -1,28 +1,24 @@
 ---
 name: lain-grilling
-description: Grill the user relentlessly about a plan, decision, or idea. Use when the user wants to stress-test their thinking, or uses any 'grill' trigger phrases.
+description: Clarify or stress-test a plan, decision, or idea. Use when the user wants an interview, wants to pressure-test their thinking, or uses 'grill' trigger phrases.
 ---
 
-Interview the user relentlessly until you reach a shared understanding. Map this as a **design tree**: every decision branches into the decisions that hang off it.
+Interview the user to reach a shared understanding of the requested scope. Track decisions and their dependencies as a **design tree**; revisit affected branches when answers or evidence change them.
 
-Work the tree in **rounds**. The **frontier** is every decision whose prerequisites are already settled: the questions you can ask _now_ without guessing at answers you haven't heard yet. Ask the whole frontier in one round: number each question and give your recommended answer. Then wait for the user's answers before the next round.
+Work in **rounds**. The **frontier** contains unresolved decisions whose prerequisites are settled. Group independent questions into an answerable round, with a number and a recommended answer for each, then wait for the user's answers. A question that depends on an unanswered question belongs later. Adapt the grouping and presentation to the user's needs; there is no fixed question count or round limit.
 
-Format a round like so:
+A default question format:
 
 ```
-❓ **Q1** - **<question title>**: <question body, might be multiple paragraphs, including multiple choices>
+❓ **Q1** - **<question title>**: <question and relevant alternatives>
 
-➡️ <your recommended answer>
-
----
-
-❓ **Q2** - **<question title>**: <question body, might be multiple paragraphs, including multiple choices>
-
-➡️ <your recommended answer>
+➡️ <recommended answer and the consequential trade-off>
 ```
 
-Each round the user answers reshapes the tree: settled decisions push the frontier outward and unblock questions that depended on them. Recompute the frontier and ask the next round. A question whose answer depends on another question still open in this round belongs to a _later_ round, not this one.
+Finding facts is your job, never the user's. Investigate with the available tools; delegate independent exploration when it would save time or improve evidence. If delegation is unavailable or unhelpful, investigate directly. Only questions that depend on missing evidence need to wait; continue independent authorized work.
 
-Finding _facts_ is your job, never the user's. When a frontier question needs a fact from the environment (filesystem, tools, etc.), dispatch a sub-agent to find it; don't ask the user for anything you could look up yourself. Don't block on it: a running exploration is an unsettled prerequisite, so only the questions downstream of it wait for the sub-agent to report; ask the rest of the frontier now. The _decisions_ are the user's: put each to them and wait.
+Use intent and authority already supplied by the request and conversation. Make routine, reversible choices within that authority and distinguish them from user decisions. Ask the authorized owner for unresolved consequential choices outside it, rather than asking the user to research facts or approve every implementation detail. A recommendation is not an accepted decision until supported by user acceptance or applicable delegation.
 
-Use decisions already settled by the user unless new evidence makes them inconsistent. The session is done when the frontier for the requested scope is empty. An interview-only request ends with a summary; it does not authorize implementation. If the user has already authorized subsequent work, continue once its prerequisite decisions are settled, without requesting the same approval again. Honor the user's latest instruction to stop, limit, or deepen the interview.
+Use settled decisions unless new evidence or a later instruction changes them. Honor the user's latest instruction to stop, limit, deepen or change the interview. The skill's interview defaults do not override that instruction. If the user stops with unresolved choices, summarize them and their consequences instead of claiming agreement. An empty frontier alone does not prove that the combined understanding matches the request.
+
+An interview-only request ends with a summary; it does not authorize implementation. If the user has already authorized subsequent work, continue once its prerequisite decisions are settled, without requesting the same approval again. A real unresolved choice blocks only the work that depends on it.
