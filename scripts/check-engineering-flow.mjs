@@ -23,8 +23,12 @@ try {
   for (const relative of ["README.md", "skills/engineering/README.md"]) {
     assert.match(read(relative), /\[lain-technical-design\]\([^)]*lain-technical-design\/SKILL\.md\)/);
   }
-  for (const name of changedSkills) {
-    const page = read(`docs/engineering/${name}.md`);
+  const skillPages = [
+    ...changedSkills.map((name) => ({ bucket: "engineering", name })),
+    { bucket: "productivity", name: "lain-grilling" },
+  ];
+  for (const { bucket, name } of skillPages) {
+    const page = read(`docs/${bucket}/${name}.md`);
     assert.doesNotMatch(page, /^# /m, `${name}: published docs have no H1`);
     let previous = -1;
     for (const heading of headings) {
@@ -34,7 +38,7 @@ try {
     }
     assert.doesNotMatch(page, /\]\((?!https:\/\/)[^)]+\)/, `${name}: docs require absolute links`);
     assert.ok(!page.includes("\u2014"), `${name}: no em dashes`);
-    const body = read(`skills/engineering/${name}/SKILL.md`);
+    const body = read(`skills/${bucket}/${name}/SKILL.md`);
     assert.ok(!body.includes("\u2014"), `${name}: no em dashes`);
     assert.doesNotMatch(body, /Call the Skill tool(?: twice, for| with) "lain-(?:ask-matt|grill-with-docs|to-spec|to-tickets|implement|wayfinder|setup-matt-pocock-skills)"/, `${name}: no implicit call to user-invoked skills`);
   }
@@ -56,17 +60,31 @@ try {
     };
   });
   assert.deepEqual(validateTechnicalConstraints(example, tickets), [], "Documented example must satisfy the real validator");
-  const cases = JSON.parse(read("evals/fixtures/risk-adaptive-flow/cases.json"));
   const metrics = JSON.parse(read("evals/metrics.json")).metrics;
-  assert.equal(cases.status, "development-inputs-not-release-evidence");
-  assert.equal(new Set(cases.cases.map((item) => item.id)).size, cases.cases.length, "Unique case IDs");
-  for (const item of cases.cases) {
-    for (const key of ["id", "title", "prompt", "seed"]) assert.ok(typeof item[key] === "string" && item[key].trim(), `${item.id}: missing ${key}`);
-    assert.ok(Array.isArray(item.checks) && item.checks.length > 0);
-    assert.ok(Array.isArray(item.metrics) && item.metrics.length > 0);
-    for (const metric of item.metrics) assert.ok(Object.hasOwn(metrics, metric), `${item.id}: unknown metric ${metric}`);
+  const fixtureSets = ["risk-adaptive-flow", "requirements-alignment"];
+  let scenarioCount = 0;
+  for (const fixtureSet of fixtureSets) {
+    const cases = JSON.parse(read(`evals/fixtures/${fixtureSet}/cases.json`));
+    assert.equal(cases.schema_version, 1, `${fixtureSet}: unsupported schema`);
+    assert.equal(cases.status, "development-inputs-not-release-evidence");
+    assert.ok(Array.isArray(cases.cases) && cases.cases.length > 0, `${fixtureSet}: missing cases`);
+    assert.equal(new Set(cases.cases.map((item) => item.id)).size, cases.cases.length, `${fixtureSet}: unique case IDs`);
+    for (const item of cases.cases) {
+      for (const key of ["id", "title", "prompt", "seed"]) assert.ok(typeof item[key] === "string" && item[key].trim(), `${item.id}: missing ${key}`);
+      assert.ok(Array.isArray(item.checks) && item.checks.length > 0);
+      for (const check of item.checks) assert.ok(typeof check === "string" && check.trim(), `${item.id}: empty check`);
+      assert.ok(Array.isArray(item.metrics) && item.metrics.length > 0);
+      for (const metric of item.metrics) assert.ok(Object.hasOwn(metrics, metric), `${item.id}: unknown metric ${metric}`);
+      if (Object.hasOwn(item, "user_turns")) {
+        assert.ok(Array.isArray(item.user_turns) && item.user_turns.length > 0, `${item.id}: invalid user turns`);
+        for (const turn of item.user_turns) {
+          for (const key of ["when", "say"]) assert.ok(typeof turn[key] === "string" && turn[key].trim(), `${item.id}: missing user turn ${key}`);
+        }
+      }
+    }
+    scenarioCount += cases.cases.length;
   }
-  console.log(`Engineering checks passed: registration, invocation boundary, ${changedSkills.length} docs pages, documented manifest, and ${cases.cases.length} development scenarios.`);
+  console.log(`Engineering checks passed: registration, invocation boundary, ${skillPages.length} docs pages, documented manifest, and ${scenarioCount} development scenarios.`);
   console.log("These checks do not establish behavioral outcome lift, independent review, or live link availability.");
 } catch (error) {
   console.error(`Engineering checks failed: ${error.message}`);

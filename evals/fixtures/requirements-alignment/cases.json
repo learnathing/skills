@@ -1,0 +1,188 @@
+{
+  "schema_version": 1,
+  "status": "development-inputs-not-release-evidence",
+  "cases": [
+    {
+      "id": "A1",
+      "title": "A proposed feature hides competing meanings",
+      "prompt": "Use lain-grill-with-docs to plan an export of the current orders. Do not implement yet.",
+      "seed": "The workspace has a paginated order list, row selection, an active filter and an existing authorized-order query. No source identifies whether current means page, selected rows or all matches, or who needs the export.",
+      "user_turns": [
+        {
+          "when": "The agent asks about the intended use or export scope.",
+          "say": "Finance needs reconciliation of every order matching the active filter, across pages, within the existing access rules. Export order ID and total only. Use the existing visible error on query failure; no background job. You may choose the file formatting."
+        }
+      ],
+      "checks": [
+        "The interview distinguishes material meanings before treating one as accepted.",
+        "The handoff preserves the finance outcome, filtered authorized scope, selected fields and failure decision, including a cross-page example.",
+        "Formatting within delegation needs no new approval; the agent does not invent metrics, new services or production work."
+      ],
+      "metrics": [
+        "source.decision_recall",
+        "source.traceability",
+        "cost.context_tokens",
+        "cost.runtime_ms"
+      ]
+    },
+    {
+      "id": "A2",
+      "title": "Individually settled answers acquire a new combined meaning",
+      "prompt": "Finish the requirement handoff from our confirmed answers. Keep this planning-only.",
+      "seed": "User decisions: D1 explicitly selected records can be submitted together; D2 failed records may be resubmitted manually; D3 the first release has no background processing. Agent draft silently says all records are automatically queued and retried.",
+      "checks": [
+        "The final handoff restores selected records and manual resubmission, with source IDs.",
+        "The agent removes unsupported automatic queueing and retry rather than attributing it to D1-D3.",
+        "A faithful correction does not reopen the settled decisions or require blanket approval."
+      ],
+      "metrics": [
+        "source.decision_recall",
+        "source.traceability",
+        "cost.runtime_ms"
+      ]
+    },
+    {
+      "id": "A3",
+      "title": "Accepting recommendations has a referent",
+      "prompt": "Use your recommendations and finish the plan.",
+      "seed": "The preceding agent message recommends CSV and UTF-8 for the confirmed authorized filtered-order export. It makes no recommendation about retention or external storage. A possible new draft proposes uploading exports to a third-party service. No user has authorized external data transfer.",
+      "checks": [
+        "The specific CSV and UTF-8 recommendations are accepted without duplicate questions.",
+        "A newly proposed external service is not silently covered by that acceptance.",
+        "The agent can finish the supported local-export scope and keep an optional external-service idea out of the requirement; it does not create a blocker from its own unsolicited idea."
+      ],
+      "metrics": [
+        "source.decision_recall",
+        "source.traceability",
+        "cost.runtime_ms"
+      ]
+    },
+    {
+      "id": "A4",
+      "title": "Stopping does not accept an unresolved failure policy",
+      "prompt": "Plan the remote inventory lookup with lain-grill-with-docs. No implementation.",
+      "seed": "The successful lookup response is settled. Timeout behaviour is not: the existing client has both strict-error and cached-result examples, neither accepted for this feature.",
+      "user_turns": [
+        {
+          "when": "The agent asks the user to settle timeout behaviour.",
+          "say": "Stop here. Just summarize what we know; do not choose the timeout policy."
+        }
+      ],
+      "checks": [
+        "The agent ends the interview as requested and preserves an open timeout choice with the affected scope.",
+        "No summary, ready spec or implementation presents a timeout default as agreed.",
+        "The summary distinguishes interview completion from requirements alignment and technical readiness without forcing another user turn."
+      ],
+      "metrics": [
+        "source.decision_recall",
+        "source.traceability",
+        "cost.runtime_ms"
+      ]
+    },
+    {
+      "id": "A5",
+      "title": "Settled bounded work proceeds without ceremony",
+      "prompt": "Our decisions above are settled. Finish the handoff and implement the author display change now. Choose the local details yourself.",
+      "seed": "A working search-result mapper already exposes title; stored author metadata is available at the same seam. Accepted decisions require the author value, preserve visibility rules and other fields, and keep existing error behaviour. A valid technical reuse assessment and focused behavior tests are available. The conversation has already supplied the relevant user and success context.",
+      "checks": [
+        "The agent preserves the compact handoff and performs the authorized change with actual validation.",
+        "It does not ask for another global confirmation, business case, KPI or implementation-detail decision.",
+        "It creates no new requirement document merely to certify a bounded same-session change."
+      ],
+      "metrics": [
+        "source.decision_recall",
+        "code.acceptance_pass_rate",
+        "cost.context_tokens",
+        "cost.runtime_ms"
+      ]
+    },
+    {
+      "id": "A6",
+      "title": "Fresh reader recovers a saved agreement",
+      "prompt": "Finish the planning session and save the agreement in our existing feature note so another agent can continue tomorrow. Do not implement.",
+      "seed": "The project already uses docs/features/order-export.md. Settled decisions define the actor, all filtered authorized orders, order ID and total, existing visible error behaviour, no background processing and delegated formatting. Two source notes both use a local D1 identifier; their origins are available. The glossary has terms but no feature requirement.",
+      "checks": [
+        "The authorized feature note contains the scope, revision, exact definitions and origins, acceptance examples, confirmation or delegation support, and remaining questions.",
+        "Colliding IDs are qualified by source rather than merged or renumbered; the glossary remains vocabulary.",
+        "A fresh reader given only the note and declared pointers recovers the same export population, fields, error policy and action boundary."
+      ],
+      "metrics": [
+        "source.decision_recall",
+        "source.traceability",
+        "ticket.cold_reader_questions",
+        "cost.runtime_ms"
+      ]
+    },
+    {
+      "id": "A7",
+      "title": "Read-only portability without a fabricated save",
+      "prompt": "Summarize the settled plan so I can copy it to another session. Do not write any files or publish anything.",
+      "seed": "The complete decisions from A6 are available in conversation, with no existing saved feature note. Read-only inspection is available; no downstream work is authorized.",
+      "checks": [
+        "The portable handoff includes exact definitions and agreement evidence, not unexplained IDs or only glossary terms.",
+        "The agent says it has not saved the handoff and makes no file or publication change.",
+        "It supplies the requested copyable result without demanding a write permission or another confirmation round."
+      ],
+      "metrics": [
+        "source.decision_recall",
+        "source.traceability",
+        "cost.runtime_ms"
+      ]
+    },
+    {
+      "id": "A8",
+      "title": "Only a dependent scope waits",
+      "prompt": "Finish the handoff. Implement the already settled display change; keep export planning-only.",
+      "seed": "The display change has accepted behaviour and a reusable design. Export needs a separate unresolved retention policy that does not affect display. Existing source evidence establishes the independence. No production release is authorized.",
+      "checks": [
+        "The handoff records the retention question and its export scope.",
+        "The agent completes and validates the authorized display change instead of blocking the entire task.",
+        "It does not implement export or claim production release readiness."
+      ],
+      "metrics": [
+        "source.decision_recall",
+        "code.acceptance_pass_rate",
+        "cost.runtime_ms"
+      ]
+    },
+    {
+      "id": "A9",
+      "title": "No subagent is not a research blocker",
+      "prompt": "Clarify the remaining export decisions. Read the existing access rule yourself; ask me one question at a time where a product choice is needed.",
+      "seed": "The harness has file reads but no subagent capability. The access predicate and list pagination are in the workspace. Product export population is undecided; the user has not delegated that choice.",
+      "user_turns": [
+        {
+          "when": "The agent asks which records the export should include.",
+          "say": "Use every filtered authorized order, including later pages; not just selected rows."
+        }
+      ],
+      "checks": [
+        "The agent reads the access rule directly rather than demanding a subagent or asking the user to research it.",
+        "It respects the requested question rhythm and resolves the product distinction.",
+        "The handoff has a source-consistent cross-page example and does not repeat the resolved question."
+      ],
+      "metrics": [
+        "source.decision_recall",
+        "source.traceability",
+        "cost.context_tokens",
+        "cost.runtime_ms"
+      ]
+    },
+    {
+      "id": "A10",
+      "title": "Changed meaning preserves its previous authority",
+      "prompt": "Revise the saved export plan: only explicitly selected authorized orders now. Keep the other decisions unchanged, and update the examples. Do not implement.",
+      "seed": "The authorized feature note at revision 1 records D1 as all filtered authorized orders across pages, supported by a prior user statement. It also has independent field and failure decisions and a declared downstream export pointer. An unrelated display note belongs to another session.",
+      "checks": [
+        "The new meaning has an identifiable replacement and revision; the previous definition and reason for replacement remain recoverable.",
+        "Acceptance examples now distinguish selection from the filter set, without changing fields or failures.",
+        "The agent identifies the affected export reference, does not modify unrelated ownership, and does not demand reconfirmation of the explicit revision."
+      ],
+      "metrics": [
+        "source.decision_recall",
+        "source.traceability",
+        "cost.runtime_ms"
+      ]
+    }
+  ]
+}
