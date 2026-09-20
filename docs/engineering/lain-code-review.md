@@ -1,10 +1,10 @@
 ## What it does
 
-`lain-code-review` reviews committed or working-tree changes along Standards, Spec and Design axes. It verifies findings against the source and actual changed code before reporting them. The review is read-only; technical risk changes the relevant evidence, not the task into a new architecture project.
+`lain-code-review` uses one independent reviewer for Standards, Spec and Design, with the calling agent verifying the findings against the original sources and changed code. Three review responsibilities do not require three agents. The review is read-only; technical risk changes the relevant evidence, not the task into a new architecture project.
 
 ## When to reach for it
 
-Type `/lain-code-review`, or the agent uses it for a branch, pull request, working tree or change from a fixed point. Per-ticket reviews cover bounded contracts; final branch review covers interactions across a multi-ticket delivery. Verification mode checks previous dispositions and current blockers without generating a new advisory backlog.
+Type `/lain-code-review`, or the [agent](https://www.aihero.dev/ai-coding-dictionary/agent) uses it for a branch, pull request, working tree or change from a fixed point. Per-ticket reviews cover bounded contracts; final branch review covers interactions across a multi-ticket delivery. Verification mode checks previous dispositions and current blockers without generating a new advisory backlog.
 
 ## Three axes and relevant evidence
 
@@ -22,11 +22,28 @@ An unrun measurement does not prove a required target. Evidence is a blocker onl
 
 ## Independent review and limitations
 
-When supported, independent subagents review the applicable axes and the coordinator verifies their findings. Reviewers do not recursively invoke skills or spawn more reviewers.
+One independent [subagent](https://www.aihero.dev/ai-coding-dictionary/subagent) reviews all applicable axes from a fresh review context. The calling agent is the coordinator, not another newly spawned reviewer. The review does not add a complexity score or automatic one-versus-three routing. Explicit project or user requirements for specialist or additional review still apply; this default does not restrict other subagent tasks.
 
-If independent reviewers are unavailable, report `NOT INDEPENDENTLY VERIFIED`, not a synthetic PASS. Existing explicit task or project policy may permit a direct review substitute; absence of tooling does not itself grant that exception. A second reading in the same context is not independent evidence.
+The reviewer and coordinator read relevant originals on demand. They preserve source revisions and outstanding checks across truncation or compaction, then recover the evidence still needed. A large [context window](https://www.aihero.dev/ai-coding-dictionary/context-window) and a short final report are not proof that every required check was completed.
+
+| Result | Meaning |
+| --- | --- |
+| `PASS` | Applicable coverage and required independent review are complete, with no verified blocker |
+| `FAIL` | At least one verified blocker remains |
+| `INCOMPLETE` | Required reading, checks or verification remain unfinished, with the uncovered scope identified |
+| `NOT INDEPENDENTLY VERIFIED` | Only a direct review was possible; independent review has not been established |
+
+More than one non-pass state can apply. Existing explicit task or project policy may permit a direct review substitute; it does not waive incomplete coverage. Absence of tooling does not itself grant an exception. A second reading in the same context is not independent evidence.
 
 ## Common questions
+
+**Does one reviewer mean dropping Standards or Design?**
+
+No. The reviewer covers all applicable responsibilities, including original-source comparison and the same Design rubric. Cross-axis observations of one root cause are counted once, not presented as independent confirmations.
+
+**What happens when the material does not fit?**
+
+The reviewer reads relevant sources as needed and restores missing originals after truncation or compaction. Required checks that still cannot be completed are reported as `INCOMPLETE`, not silently omitted or turned into PASS. Unknown capacity telemetry alone does not stop an otherwise complete review.
 
 **Are uncommitted and untracked files included?**
 
@@ -46,7 +63,7 @@ No. It inspects evidence and reports missing obligations. Design and implementat
 - Shared sources are inspected only where relevant to the change.
 - Local work does not trigger a ceremonial whole-system audit.
 - Duplicate cross-axis impacts are counted once.
-- Missing measurement and missing independence are disclosed accurately.
+- Missing measurement, unfinished checks and missing independence are disclosed accurately.
 - Blockers, advisories and future release obligations remain distinct.
 
 ## Where it fits

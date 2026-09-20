@@ -27,6 +27,6 @@ Model- or user-reachable, with reusable disciplines underneath the human-invoked
 - **[lain-tdd](./lain-tdd/SKILL.md)**: Observable Red and Green cycles, preserving existing behavior and refactoring when a concrete improvement emerges.
 - **[lain-domain-modeling](./lain-domain-modeling/SKILL.md)**: Sharpen terms and relationships, update the glossary, and record qualifying ADRs.
 - **[lain-codebase-design](./lain-codebase-design/SKILL.md)**: Shared vocabulary for deep modules, small interfaces, clean seams and testability.
-- **[lain-code-review](./lain-code-review/SKILL.md)**: Standards, Spec and Design review with verified findings, relevant technical evidence and explicit independence limitations.
+- **[lain-code-review](./lain-code-review/SKILL.md)**: One independent reviewer covering Standards, Spec and Design, with coordinator-verified findings and explicit coverage and independence limitations.
 - **[lain-resolving-merge-conflicts](./lain-resolving-merge-conflicts/SKILL.md)**: Resolve merge or rebase conflicts by source intent while preserving unrelated work.
 - **[lain-wizard](./lain-wizard/SKILL.md)**: Guide a human through steps only they can perform, within the authorized task.

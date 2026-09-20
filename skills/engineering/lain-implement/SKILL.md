@@ -50,7 +50,7 @@ Before review, inspect the diff for every path added by the change that substitu
 - The caller-visible result
 - How it is observed
 
-An entry without a source decision is an unresolved contract problem, not implementation freedom. Evidence consists of actual entries plus the Design review's independent diff inspection; absence needs no register entry.
+An entry without a source decision is an unresolved contract problem, not implementation freedom. Evidence consists of actual entries plus the independent reviewer's Design inspection of the diff; absence needs no register entry.
 
 ## 5. Review and converge
 
@@ -58,7 +58,9 @@ Call the Skill tool with "lain-code-review" using the pinned fixed point and the
 
 If review reports `NOT INDEPENDENTLY VERIFIED`, do not silently treat it as PASS. Proceed only when explicit task or project policy accepts direct review for this scope, recording the exception and findings; otherwise report the unmet review requirement and do not commit.
 
-If the first authorized review has no blocker, the review gate is complete and the workflow proceeds to the commit state.
+If review reports `INCOMPLETE`, recover the missing sources or finish the outstanding checks within the authorized scope. If that is not possible, report the uncovered scope and do not commit. Permission to use direct review does not waive incomplete coverage or other explicit review obligations.
+
+If the first authorized review has no blocker, all applicable coverage is complete, and required independent review or its explicitly authorized substitute is satisfied, the review gate is complete and the workflow proceeds to the commit state.
 
 If the first review has blockers, fix those that stay within the source contract and ticket scope, rerun relevant validation, then call the Skill tool with "lain-code-review" in verification mode with the previous report. Verification is limited to prior dispositions and a full blocker-only scan of the target.
 
@@ -66,6 +68,6 @@ Continue targeted repair and blocker-only verification while each pass resolves 
 
 ## 6. Commit
 
-Commit only the task's changes after validation passes, every actual fallback entry is authorised, and the review gate has no unresolved blocker.
+Commit only the task's changes after validation passes, every actual fallback entry is authorised, and the review gate is complete with no unresolved blocker.
 
 Report the commit, validation evidence, actual fallback entries if any, and finding dispositions. Distinguish code completion from integration and release readiness; report remaining release obligations without claiming they ran.

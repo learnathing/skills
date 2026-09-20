@@ -22,9 +22,9 @@ Actual fallback paths need an authorizing source, trigger, caller-visible result
 
 ## Review and completion
 
-[Code review](https://aihero.dev/skills-code-review) receives the original source, relevant technical evidence and pre-existing worktree exclusions. Repair is blocker-driven and progress-bounded. A repeated blocker, contract expansion or exhausted caller budget stops the completion commit.
+[Code review](https://aihero.dev/skills-code-review) sends one independent reviewer the original source, relevant technical evidence and pre-existing worktree exclusions. It covers Standards, Spec and Design; the calling agent verifies the findings. Repair is blocker-driven and progress-bounded. A repeated blocker, contract expansion or exhausted caller budget stops the completion commit.
 
-When independent review is unavailable, it must not become a synthetic PASS. A direct review can substitute only under explicit existing task or project policy; otherwise report the unmet review requirement. Distinguish implementation, integration and release readiness in the final report.
+When independent review is unavailable, it must not become a synthetic PASS. A direct review can substitute only under explicit existing task or project policy; otherwise report the unmet review requirement. An `INCOMPLETE` review must finish its missing reading, checks or verification before committing; permission for direct review does not waive that coverage. No blocker is not the same as a completed review. Distinguish implementation, integration and release readiness in the final report.
 
 ## Common questions
 
