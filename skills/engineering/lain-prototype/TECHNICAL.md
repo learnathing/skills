@@ -18,13 +18,14 @@ For migrations, verify representative data, compatibility during transition, and
 
 ## Capture the result
 
-Save a small reproducible runner when useful and a report containing:
+Save a small reproducible runner when useful. Use the caller's artifact-mode writing reference for the report, with the answer and its limits before the reproducibility trail:
 
-- Question, source and authorized scope
-- Baseline/candidate, data and environment versions
+- Question, evidence status, supported conclusion and its limits; distinguish a measured result from a recommendation
+- Supported decision, or the next discriminating experiment when inconclusive
+- Baseline/candidate comparison, with actual values, units and conditions when measured
+- Source, authorized scope, data and environment versions
 - Commands and actual outputs or durable raw-result references
-- Interpretation, uncertainty, failures and limits of applicability
-- Supported decision, or the next experiment if inconclusive
+- Relevant uncertainty, failures and limits of applicability, beside the claims they qualify rather than hidden in raw logs
 
 Use `measured`, `inconclusive`, or `not run` for the evidence status. A negative result is useful evidence. When tools cannot execute, provide the runner and explicitly mark the result `not run`; no measured claim or ready production contract may depend on it. Check that a source-backed decision follows from the evidence, not just that the report exists.
 

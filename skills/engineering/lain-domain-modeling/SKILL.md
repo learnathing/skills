@@ -3,6 +3,8 @@ name: lain-domain-modeling
 description: Build and sharpen a project's domain model. Use when discussing codebase terminology, writing or editing a CONTEXT.md, or recording or editing an ADR.
 ---
 
+When writing the artifacts described here, call the Skill tool with "lain-writing-for-agents" in artifact mode. Reuse the reference when already loaded. If unavailable, disclose once and draft directly without weakening existing gates. A glossary defines the concept in plain domain language, with a distinguishing example only when needed, not a chain of other undefined terms. An ADR leads with the choice, reason and consequential trade-off, keeping proposal/acceptance and supersession clear. Preserve existing document names, the glossary-only boundary and the three-part ADR eligibility test; do not require more headings or records.
+
 # Domain Modeling
 
 Actively build and sharpen the project's domain model as you design. This is the *active* discipline: challenging terms, inventing edge-case scenarios, and writing the glossary and decisions down the moment they crystallise. (Merely *reading* `CONTEXT.md` for vocabulary is not this skill: that's a one-line habit any skill can do. This skill is for when you're changing the model, not just consuming it.)

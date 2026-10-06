@@ -4,6 +4,8 @@ description: Move issues and external PRs through a state machine of triage role
 disable-model-invocation: true
 ---
 
+When writing the artifacts described here, call the Skill tool with "lain-writing-for-agents" in artifact mode. Reuse the reference when already loaded. If unavailable, disclose once and draft directly without weakening existing gates. Keep the required AI disclaimer first. Briefs show current versus desired behavior and acceptance before interface detail; explain material exceptions rather than hiding them behind labels. A needs-info question names the missing observation and why it matters. Rejection records lead with the rejected concept and durable reason, followed by linked requests. Preserve lifecycle, authority and brief requirements.
+
 # Triage
 
 Move issues on the project issue tracker through a small state machine of triage roles.

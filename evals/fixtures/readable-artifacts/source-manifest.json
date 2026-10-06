@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "delivery_ids": [
+    {
+      "id": "S1",
+      "definition": "网关首次查询成功时，接口返回状态码 200，并原样返回网关列表。",
+      "source_ids": [
+        "D0",
+        "D1",
+        "D2"
+      ]
+    },
+    {
+      "id": "S2",
+      "definition": "首次查询超时、重试成功时，接口只重试一次，返回 200 和重试所得列表。记录一次 gatewayTimeout()。",
+      "source_ids": [
+        "D1",
+        "D2",
+        "D3"
+      ]
+    },
+    {
+      "id": "S3",
+      "definition": "连续两次查询超时时，接口返回 206 和空列表。记录两次 gatewayTimeout() 和一次 degradedResponse()；不再查询。",
+      "source_ids": [
+        "D1",
+        "D3",
+        "D4",
+        "D5"
+      ]
+    }
+  ],
+  "technical_constraints": [
+    {
+      "id": "suggestions:C1",
+      "revision": "1",
+      "definition": "本次不增加缓存、额外重试或吞掉非超时异常。",
+      "source": "evals/fixtures/readable-artifacts/spec.md#source-index",
+      "applies_to": [
+        "S1",
+        "S2",
+        "S3"
+      ],
+      "verified_by": "S3"
+    }
+  ]
+}

@@ -68,6 +68,8 @@ No, it now fires them for you. In the unreleased changes since v1.1, a charting 
 - Every claim in it carries a link, and following two at random lands you on an official doc, a spec, or the actual source file, not on someone's write-up of it.
 - You can make the decision you were stuck on from the file alone, without going back to the sources yourself.
 
+- The note answers the research question with citations and uncertainty before the search trail, distinguishing facts from recommendations. See the [shared artifact writing reference](https://github.com/learnathing/skills/blob/main/docs/productivity/lain-writing-for-agents.md).
+
 ## Where it fits
 
 A reach-for-it-anytime standalone that feeds the thinking skills rather than sitting in the build chain. Its file is something to take *into* the flow: [lain-grilling](https://aihero.dev/skills-grilling) and [lain-grill-with-docs](https://aihero.dev/skills-grill-with-docs) ask sharper questions when the facts are already on the table, and [lain-to-spec](https://aihero.dev/skills-to-spec) can synthesise against it. [lain-wayfinder](https://aihero.dev/skills-wayfinder) is the one skill that invokes it directly, resolving each research ticket on its map with a `/lain-research` subagent. For the whole map, see [lain-ask-matt](https://aihero.dev/skills-ask-matt).

@@ -9,6 +9,8 @@ metadata:
     url: "https://github.com/humanlayer/skills/blob/main/plugins/show-me/skills/show-me/SKILL.md"
 ---
 
+When writing the artifacts described here, call the Skill tool with "lain-writing-for-agents" in artifact mode. Reuse the reference when already loaded. If unavailable, disclose once and draft directly without weakening existing gates. Lead with the user-visible change and reason, not a dump of changed files or scenario IDs. Keep missing evidence, rollback limits and unresolved obligations visible. A sketch explains the same source-backed change; it does not replace a readable purpose, actual evidence, or permission for publication.
+
 # PR body
 
 Organize the evidence already available for a change. This is a format reference, not authority to push, open or merge a PR, close an issue, change files, or deploy. Take those actions only when separately authorized.

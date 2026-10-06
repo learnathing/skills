@@ -4,6 +4,8 @@ description: Scan a codebase for deepening opportunities, present them as a visu
 disable-model-invocation: true
 ---
 
+When writing the artifacts described here, call the Skill tool with "lain-writing-for-agents" in artifact mode. Reuse the reference when already loaded. If unavailable, disclose once and draft directly without weakening existing gates. The HTML report explains the concrete friction and proposed difference beside each visual, with impact, uncertainty and any ADR conflict. Explain architecture terms briefly where the reader needs them instead of displaying only internal vocabulary. Keep the required report format and candidate evidence; a visual recommendation is not an accepted design or authority to refactor.
+
 # Improve Codebase Architecture
 
 Surface architectural friction and propose **deepening opportunities**: refactors that turn shallow modules into deep ones. The aim is testability and AI-navigability.

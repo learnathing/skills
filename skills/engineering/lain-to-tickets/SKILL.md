@@ -4,6 +4,8 @@ description: Break a plan, spec, or the current conversation into a set of trace
 disable-model-invocation: true
 ---
 
+When writing the artifacts described here, call the Skill tool with "lain-writing-for-agents" in artifact mode. Reuse the reference when already loaded. If unavailable, disclose once and draft directly without weakening existing gates. Present the outcome, acceptance conditions and dependency reasons before delivery IDs. Use the co-located ticket template without translating parser keys or rewriting frozen definitions. During the existing source comparison, verify that the readable contract has the same material conditions as the source, not only matching metadata. An agent cold read remains an agent handoff check, not a human-comprehension result.
+
 # To Tickets
 
 Break a plan, spec, or conversation into a set of **tickets**: tracer-bullet vertical slices, each declaring the tickets that **block** it.

@@ -198,6 +198,10 @@ Technical risk decides how much design is needed; session count decides how to o
 
 Run `node --test skills/engineering/lain-to-tickets/*.test.mjs scripts/*.test.mjs` and `node scripts/check-engineering-flow.mjs` for deterministic regression checks. Development evaluation scenarios live under `evals/`; passing structural checks does not establish behavioral outcome lift. Adopted upstream changes and intentional exclusions are recorded in [the synchronization ledger](./.agents/upstream-sync.md).
 
+## Readable project artifacts
+
+Specs, tickets, decision notes, research, handoffs and reports serve developers as well as agents. Their producers use the existing writing reference in artifact mode: explain behavior, conclusions and important exceptions before tracing machinery. This does not add a required polish stage or change source authority, machine keys, evidence, or approval gates. See the [writing modes](./docs/productivity/lain-writing-for-agents.md) and the [covered artifacts](./.agents/artifact-readability.md).
+
 ## Reference
 
 These split on one axis: who can invoke them. **User-invoked** skills are reachable only when you type them (e.g. `/lain-grill-me`); their job is to orchestrate. **Model-invoked** skills can be invoked by you _or_ reached for automatically by the agent when the task fits; they hold the reusable discipline. A user-invoked skill may invoke model-invoked skills, but never another user-invoked one.

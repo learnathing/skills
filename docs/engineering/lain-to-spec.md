@@ -40,6 +40,8 @@ No. Name the current capability scope and its shared prerequisites. Independent 
 - Shared constraints retain exact accepted revisions and evidence obligations.
 - Small ordinary work needs no optional registry or design packet.
 
+- A developer sees outcomes, failure cases and exclusions before source indexes and JSON, without losing the original decisions. See the [shared artifact writing reference](https://github.com/learnathing/skills/blob/main/docs/productivity/lain-writing-for-agents.md).
+
 ## Where it fits
 
 [Grill with docs](https://aihero.dev/skills-grill-with-docs) and technical design supply accepted decisions. This skill synthesizes them for [to-tickets](https://aihero.dev/skills-to-tickets). [Ask Matt](https://aihero.dev/skills-ask-matt) routes the full flow.

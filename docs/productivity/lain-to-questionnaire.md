@@ -71,6 +71,8 @@ Yes, and plenty of people did before it existed: `OPEN_QUESTIONS.md` files, spre
 - You could hand the file to someone who wasn't in the conversation and they would know why they got it and by when to reply.
 - The answers that come back are usable input for a new grilling round, rather than a fresh set of questions.
 
+- The recipient can answer each question using the supplied context, with no assumed decision or invented deadline. See the [shared artifact writing reference](https://github.com/learnathing/skills/blob/main/docs/productivity/lain-writing-for-agents.md).
+
 ## Where it fits
 
 `lain-to-questionnaire` is a reach-for-it-anytime standalone. It sits at the boundary of your own knowledge, where the next move is another person rather than another skill, most often mid-flow, when planning has stalled on something that isn't yours to decide.

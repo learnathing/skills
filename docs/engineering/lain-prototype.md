@@ -49,6 +49,8 @@ Not with this skill by default. Keep one bounded question and stopping condition
 - Evidence limitations, permissions and resource constraints are visible.
 - Decisions return to the authoritative source without silently shipping throwaway code.
 
+- A walkthrough says what to try and observe; an experiment report gives its supported answer and limits before raw results. See the [shared artifact writing reference](https://github.com/learnathing/skills/blob/main/docs/productivity/lain-writing-for-agents.md).
+
 ## Where it fits
 
 This model-invoked capability supplies evidence to [grill with docs](https://aihero.dev/skills-grill-with-docs), [wayfinder](https://aihero.dev/skills-wayfinder) and [technical design](https://github.com/learnathing/skills/blob/main/docs/engineering/lain-technical-design.md). [To-spec](https://aihero.dev/skills-to-spec) can cite accepted conclusions. [Ask Matt](https://aihero.dev/skills-ask-matt) routes the set.

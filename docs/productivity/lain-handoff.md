@@ -71,6 +71,8 @@ Both work; they suit different situations. As a skill it ships and updates throu
 - The suggested-skills section names the skill you'd have reached for yourself.
 - Nothing in it is a key, a token, or a password.
 
+- The next reader can identify the goal, current state and authorized next step without reconstructing the task from a list of paths. See the [shared artifact writing reference](https://github.com/learnathing/skills/blob/main/docs/productivity/lain-writing-for-agents.md).
+
 ## Where it fits
 
 `lain-handoff` is a **reach-for-it-anytime standalone** that lives at the seam between sessions rather than inside a build chain, but a narrow one, and the honest map is that you'll use it less often than the other four options at a phase boundary. Its closest neighbour is [lain-prototype](https://aihero.dev/skills-prototype), because a prototype lives in its own directory and the round trip out and back is exactly the crossing this skill is for. When you're at a boundary and unsure whether to continue, clear, hand off, delegate or compact, [lain-ask-matt](https://aihero.dev/skills-ask-matt) carries the tree that orders those five, and routes you over the rest of the set.

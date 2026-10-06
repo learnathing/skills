@@ -51,6 +51,8 @@ No. Only the current scope and its shared prerequisites must be ready. A partial
 - A decision revision identifies affected work without invalidating unrelated tickets.
 - Unavailable evidence is not presented as a completed experiment.
 
+- A design note explains the choice, reason, consequence and blockers before its revision register. See the [shared artifact writing reference](https://github.com/learnathing/skills/blob/main/docs/productivity/lain-writing-for-agents.md).
+
 ## Where it fits
 
 This model-invoked discipline sits beneath [grill-with-docs](https://aihero.dev/skills-grill-with-docs), [to-spec](https://aihero.dev/skills-to-spec), [to-tickets](https://aihero.dev/skills-to-tickets) and [implement](https://aihero.dev/skills-implement). [Codebase design](https://aihero.dev/skills-codebase-design) still owns module shape, and [prototype](https://aihero.dev/skills-prototype) provides runnable evidence. [Ask Matt](https://aihero.dev/skills-ask-matt) routes the set.

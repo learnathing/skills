@@ -4,6 +4,8 @@ description: Plan a large uncertain effort as a shared map of decision tickets, 
 disable-model-invocation: true
 ---
 
+When writing the artifacts described here, call the Skill tool with "lain-writing-for-agents" in artifact mode. Reuse the reference when already loaded. If unavailable, disclose once and draft directly without weakening existing gates. Use the map destination and existing decision index to show what is settled, what remains blocked and why a decision matters. Each decision ticket names the question and what its answer unblocks. A resolution comment leads with the answer and consequence before evidence pointers. Keep the map an index; do not duplicate all child tickets or imply global readiness from one ready scope.
+
 # Wayfinder
 
 A loose idea is too large for one planning session, and the way to the **destination** is not visible. Chart a shared **map** of **decision tickets**, then resolve them one at a time. A decision ticket answers a question; it is not a production implementation slice.

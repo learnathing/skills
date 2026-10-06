@@ -1,0 +1,146 @@
+{
+  "schema_version": 1,
+  "profile": "skills/productivity/lain-writing-for-agents/HUMAN-ARTIFACTS.md",
+  "producers": [
+    {
+      "skill": "lain-to-spec",
+      "bucket": "engineering",
+      "entry": "skills/engineering/lain-to-spec/SKILL.md",
+      "artifacts": "Specifications and delivery manifests",
+      "guidance": "A developer sees outcomes, failure cases and exclusions before source indexes and JSON, without losing the original decisions."
+    },
+    {
+      "skill": "lain-to-tickets",
+      "bucket": "engineering",
+      "artifacts": "Tickets and proposed delivery breakdown",
+      "entry": "skills/engineering/lain-to-tickets/SKILL.md",
+      "guidance": "Present the outcome, acceptance conditions and dependency reasons before delivery IDs. Use the co-located ticket template without translating parser keys or rewriting frozen definitions. During the existing source comparison, verify that the readable contract has the same material conditions as the source, not only matching metadata. An agent cold read remains an agent handoff check, not a human-comprehension result."
+    },
+    {
+      "skill": "lain-grill-with-docs",
+      "bucket": "engineering",
+      "artifacts": "Grilling decision handoff",
+      "entry": "skills/engineering/lain-grill-with-docs/SKILL.md",
+      "guidance": "The decision handoff starts with the agreed outcome, scope and material open choices. Place the source index after the understandable agreement, preserving exact decisions, acceptance examples and authority. This is the same handoff, not an additional summary or approval ceremony."
+    },
+    {
+      "skill": "lain-technical-design",
+      "bucket": "engineering",
+      "artifacts": "Technical design notes, accepted decisions and readiness reports",
+      "entry": "skills/engineering/lain-technical-design/SKILL.md",
+      "guidance": "Lead a design note with the problem, proposed or accepted choice, reason and consequences. Keep blockers and material trade-offs visible before revision registers. A readiness conclusion names the particular scope and evidence, not just reuse/design-needed/blocked. Preserve the existing lazy-document and assessment-only boundaries."
+    },
+    {
+      "skill": "lain-wayfinder",
+      "bucket": "engineering",
+      "artifacts": "Decision maps, decision tickets and resolution comments",
+      "entry": "skills/engineering/lain-wayfinder/SKILL.md",
+      "guidance": "Use the map destination and existing decision index to show what is settled, what remains blocked and why a decision matters. Each decision ticket names the question and what its answer unblocks. A resolution comment leads with the answer and consequence before evidence pointers. Keep the map an index; do not duplicate all child tickets or imply global readiness from one ready scope."
+    },
+    {
+      "skill": "lain-prototype",
+      "bucket": "engineering",
+      "artifacts": "UI/logic walkthroughs and technical experiment reports",
+      "entry": "skills/engineering/lain-prototype/SKILL.md",
+      "guidance": "A UI or logic walkthrough explains what to try, what to observe and which question the feedback answers, using the intended viewer's language. A technical report leads with measured/inconclusive/not run and the supported conclusion with its limits, then the baseline, method and raw evidence. Keep both the required HTML format for demos and the experiment's measurement obligations. Do not create an extra showcase or imply production approval."
+    },
+    {
+      "skill": "lain-research",
+      "bucket": "engineering",
+      "artifacts": "Cited research notes",
+      "entry": "skills/engineering/lain-research/SKILL.md",
+      "guidance": "Include this artifact-mode instruction in the research worker's brief. The note starts with the question, source-supported answer and uncertainty; then explains why the findings matter to the decision. Keep citations beside factual claims. Separate reported facts, inference and recommendations; put the search trail and long excerpts after the findings. An inaccessible source is a limit, not a confirmed fact."
+    },
+    {
+      "skill": "lain-domain-modeling",
+      "bucket": "engineering",
+      "artifacts": "Domain glossaries, context maps and ADRs",
+      "entry": "skills/engineering/lain-domain-modeling/SKILL.md",
+      "guidance": "A glossary defines the concept in plain domain language, with a distinguishing example only when needed, not a chain of other undefined terms. An ADR leads with the choice, reason and consequential trade-off, keeping proposal/acceptance and supersession clear. Preserve existing document names, the glossary-only boundary and the three-part ADR eligibility test; do not require more headings or records."
+    },
+    {
+      "skill": "lain-code-review",
+      "bucket": "engineering",
+      "artifacts": "Standards/Spec/Design review and repair-verification reports",
+      "entry": "skills/engineering/lain-code-review/SKILL.md",
+      "guidance": "This writing call belongs to the calling coordinator when presenting the final report, not to the independent reviewer; do not add calls to the reviewer's no-skills brief. Name the affected behavior in each finding title and explain its concrete impact before dense source details. Keep all three axes, finding fields, blocker/advisory distinctions and every applicable non-pass state; do not turn fewer words into omitted coverage."
+    },
+    {
+      "skill": "lain-implement",
+      "bucket": "engineering",
+      "artifacts": "Implementation contracts and completion reports",
+      "entry": "skills/engineering/lain-implement/SKILL.md",
+      "guidance": "Use the shared writing reference for the implementation contract and completion report, not as another implementation phase. Lead with what changed and what remains blocked or unverified, then show acceptance-linked commands, commits and finding dispositions. Actual fallback behavior and release obligations stay visible. Preserve the original six-state execution and commit gates below."
+    },
+    {
+      "skill": "lain-tdd",
+      "bucket": "engineering",
+      "artifacts": "TDD cycle and preservation evidence",
+      "entry": "skills/engineering/lain-tdd/SKILL.md",
+      "guidance": "For cycle evidence, name the behavior first, then its actual command and observed result. Keep change and preservation scenarios distinct; a preservation check need not fail first. Preserve the existing evidence requirements without adding a report file, extra test run or review stage merely for presentation."
+    },
+    {
+      "skill": "lain-diagnosing-bugs",
+      "bucket": "engineering",
+      "artifacts": "Diagnosis notes, hypotheses and fix reports",
+      "entry": "skills/engineering/lain-diagnosing-bugs/SKILL.md",
+      "guidance": "A diagnosis note or final report leads with the observed symptom, supported cause or provisional hypothesis, and verification limits. Then give the discriminating probe or verified fix with redacted evidence. Keep observed facts separate from inference, retain unsuccessful probes when relevant, and do not make an unverified production diagnosis sound certain."
+    },
+    {
+      "skill": "lain-triage",
+      "bucket": "engineering",
+      "artifacts": "Agent briefs, triage notes, information requests and rejection records",
+      "entry": "skills/engineering/lain-triage/SKILL.md",
+      "guidance": "Keep the required AI disclaimer first. Briefs show current versus desired behavior and acceptance before interface detail; explain material exceptions rather than hiding them behind labels. A needs-info question names the missing observation and why it matters. Rejection records lead with the rejected concept and durable reason, followed by linked requests. Preserve lifecycle, authority and brief requirements."
+    },
+    {
+      "skill": "lain-to-questionnaire",
+      "bucket": "productivity",
+      "artifacts": "Discovery questionnaires",
+      "entry": "skills/productivity/lain-to-questionnaire/SKILL.md",
+      "guidance": "Match the recipient's language and knowledge, not the agent's internal terminology. Make each question answerable on its own with context, one requested fact or choice, and an answer space. Separate supplied facts from proposals; do not lead the recipient into approving an assumed answer. Include a deadline or effort only when supplied or supported, not invented to fill the template."
+    },
+    {
+      "skill": "lain-teach",
+      "bucket": "productivity",
+      "artifacts": "MISSION, RESOURCES, NOTES, learning records, lessons and reference HTML",
+      "entry": "skills/productivity/lain-teach/SKILL.md",
+      "guidance": "Apply it to mission, resources, learning records, notes, lessons and quick references. Explain one useful idea before introducing its terminology. A learning record distinguishes what the learner demonstrated from what was merely discussed and names the next practice. Keep lesson and reference HTML formats, source citations and retrieval exercises; do not replace learning with an extra summary or claim mastery from an agent-written note."
+    },
+    {
+      "skill": "lain-setup-matt-pocock-skills",
+      "bucket": "engineering",
+      "artifacts": "Project configuration and instruction-file pointer blocks",
+      "entry": "skills/engineering/lain-setup-matt-pocock-skills/SKILL.md",
+      "guidance": "Generated project configuration first says what the setting controls and where its actual source lives. Use descriptive pointers, explain custom labels where needed, and keep optional policy lean. Preserve actual paths, commands, keys, permissions and the existing confirmation rules; plain language is not permission to rename configuration or grant new authority."
+    },
+    {
+      "skill": "lain-improve-codebase-architecture",
+      "bucket": "engineering",
+      "artifacts": "Architecture survey HTML reports",
+      "entry": "skills/engineering/lain-improve-codebase-architecture/SKILL.md",
+      "guidance": "The HTML report explains the concrete friction and proposed difference beside each visual, with impact, uncertainty and any ADR conflict. Explain architecture terms briefly where the reader needs them instead of displaying only internal vocabulary. Keep the required report format and candidate evidence; a visual recommendation is not an accepted design or authority to refactor."
+    },
+    {
+      "skill": "lain-pr",
+      "bucket": "engineering",
+      "artifacts": "PR descriptions",
+      "entry": "skills/engineering/lain-pr/SKILL.md",
+      "guidance": "Lead with the user-visible change and reason, not a dump of changed files or scenario IDs. Keep missing evidence, rollback limits and unresolved obligations visible. A sketch explains the same source-backed change; it does not replace a readable purpose, actual evidence, or permission for publication."
+    },
+    {
+      "skill": "lain-handoff",
+      "bucket": "productivity",
+      "artifacts": "Cross-session or cross-agent handoff",
+      "entry": "skills/productivity/lain-handoff/SKILL.md",
+      "guidance": "Goal, state and next authorized action before revision-qualified source pointers; unsaved decisions and uncertainty remain explicit."
+    },
+    {
+      "skill": "lain-retro",
+      "bucket": "engineering",
+      "entry": "skills/engineering/lain-retro/SKILL.md",
+      "artifacts": "Session retrospective and environment-improvement proposals",
+      "guidance": "Observed problem, proposal and expected benefit before its evidence; hypotheses are not measured improvements."
+    }
+  ]
+}
