@@ -12,7 +12,8 @@ You invoke `/lain-ask-matt`; the agent does not reach for it automatically.
 | Product decisions need clarification | [Grill with docs](https://aihero.dev/skills-grill-with-docs) |
 | Data, algorithm or other technical risk is unsettled | [Technical design](https://github.com/learnathing/skills/blob/main/docs/engineering/lain-technical-design.md) |
 | Planning itself requires several sessions | [Wayfinder](https://aihero.dev/skills-wayfinder) |
-| Ready work requires several implementation sessions | Spec, tickets, then implementation |
+| Ready work requires several implementation sessions | Spec, tickets, then bounded implementation |
+| Approved tickets offer useful parallel work | [Implement spec](https://github.com/learnathing/skills/blob/main/docs/engineering/lain-implement-spec.md), when the harness supports it |
 | Incoming issues or a difficult bug | Triage or diagnosing bugs |
 | A change needs a reviewable PR description | [PR body](https://github.com/learnathing/skills/blob/main/docs/engineering/lain-pr.md), without publication authority |
 | A session exposed repeated friction or mistakes | Optional [retrospective](https://github.com/learnathing/skills/blob/main/docs/engineering/lain-retro.md) |
@@ -23,7 +24,7 @@ A short permissions change can need design; a large mechanical change can reuse 
 
 UI/logic questions can use an interactive prototype. Feasibility, retrieval quality, capacity and migration questions use a technical experiment with actual evidence. External facts use research. A prototype is not the automatic next step when implementation is already settled.
 
-Prefer one context for bounded planning when it fits. For larger work, retain scoped source IDs, accepted decision revisions and evidence, and load only the relevant subset in each session. Use handoff for actual portability rather than between every pair of phases.
+Prefer one context for bounded planning when it fits. For larger work, retain scoped source IDs, accepted decision revisions and evidence, and load only the relevant subset in each session. Use handoff for actual portability rather than between every pair of phases. Single-ticket and parallel delivery share one execution discipline; parallelism does not bypass source readiness or review gates.
 
 ## Common questions
 
@@ -49,7 +50,7 @@ In repository instructions and, when useful, optional engineering policy. Editin
 - Simple tasks avoid unnecessary documents and approvals.
 - Small but consequential changes are not mistaken for technically settled work.
 - Ready independent capabilities can leave a larger planning map.
-- Recommendations follow the actual source-skill boundaries.
+- Recommendations follow the actual source-skill boundaries and available execution capabilities.
 
 ## Where it fits
 

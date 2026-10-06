@@ -1,0 +1,3 @@
+interface:
+  display_name: "lain-implementation"
+  short_description: "Execute an authorized bounded task through shared evidence and review gates"

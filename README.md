@@ -191,6 +191,7 @@ Technical risk decides how much design is needed; session count decides how to o
 | Settled change, existing design suffices | `/lain-implement`, with no new design document or mandatory interview |
 | A bounded data, algorithm, shared-interface or failure decision | `/lain-technical-design`, with an experiment only when evidence is needed |
 | A large effort with unresolved shared decisions | `/lain-wayfinder`, a thin system baseline, then ready capabilities through spec, tickets and implementation |
+| Approved, technically ready tickets with useful parallel work | `/lain-implement-spec`, with owned worktrees and verified integration |
 
 [`/lain-technical-design`](./skills/engineering/lain-technical-design/SKILL.md) is model-invoked. It preserves agent autonomy for reversible choices inside explicit authority and escalates consequential unresolved choices instead of guessing. Specs remain synthesis, not a place to invent a solution. Binding shared constraints carry exact revisions and verification ownership into tickets; legacy schema-v1 manifests and small tickets need no new fields.
 
@@ -215,12 +216,14 @@ Skills I use daily for code work.
 - **[lain-setup-matt-pocock-skills](./skills/engineering/lain-setup-matt-pocock-skills/SKILL.md)**: Configure this repo for the engineering skills (issue tracker, triage labels, domain doc layout). Run once per repo before using the other engineering skills.
 - **[lain-to-spec](./skills/engineering/lain-to-spec/SKILL.md)**: Turn the current conversation into a spec and publish it to the issue tracker. No interview, just synthesizes what you've already discussed.
 - **[lain-to-tickets](./skills/engineering/lain-to-tickets/SKILL.md)**: Break any plan, spec, or conversation into a set of tracer-bullet tickets, each declaring its blocking edges, written as text in a local file, or as native blocking links on a real tracker.
-- **[lain-implement](./skills/engineering/lain-implement/SKILL.md)**: Build one bounded issue through contract rehydration, evidence-bearing vertical slices, and conditional blocker repair before committing.
+- **[lain-implement](./skills/engineering/lain-implement/SKILL.md)**: Build one bounded issue through the shared implementation discipline, with evidence and complete review gates before committing.
+- **[lain-implement-spec](./skills/engineering/lain-implement-spec/SKILL.md)**: Coordinate approved tickets into one verified integration branch, preserving the shared per-ticket gates and owned worktrees.
 - **[lain-wayfinder](./skills/engineering/lain-wayfinder/SKILL.md)**: Plan a huge chunk of work, more than one agent session can hold, as a shared map of decision tickets on the issue tracker, and resolve them one at a time until the way to the destination is clear.
 - **[lain-retro](./skills/engineering/lain-retro/SKILL.md)**: Inspect a coding session and propose source-backed environment improvements, preferring deterministic checks for mechanical mistakes.
 
 **Model-invoked**
 
+- **[lain-implementation](./skills/engineering/lain-implementation/SKILL.md)**: Execute an already-authorized bounded task through the same six-state source, evidence, review and commit protocol in either delivery workflow.
 - **[lain-technical-design](./skills/engineering/lain-technical-design/SKILL.md)**: Resolve the current scope's technical risk through reuse, bounded design and evidence, with shared contracts for cross-ticket work.
 - **[lain-prototype](./skills/engineering/lain-prototype/SKILL.md)**: Answer a design question with a UI/logic prototype or a reproducible technical experiment.
 - **[lain-diagnosing-bugs](./skills/engineering/lain-diagnosing-bugs/SKILL.md)**: Disciplined diagnosis loop for hard bugs and performance regressions: build a feedback loop that goes red on this bug → minimise → hypothesise → instrument → fix → regression-test.

@@ -30,6 +30,8 @@
     "./skills/engineering/lain-to-tickets",
     "./skills/engineering/lain-wayfinder",
     "./skills/engineering/lain-implement",
+    "./skills/engineering/lain-implementation",
+    "./skills/engineering/lain-implement-spec",
     "./skills/engineering/lain-prototype",
     "./skills/engineering/lain-research",
     "./skills/engineering/lain-domain-modeling",

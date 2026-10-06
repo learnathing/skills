@@ -1,16 +1,16 @@
 ## What it does
 
-`lain-implement` builds one bounded issue or settled request. It restores the source contract, reconciles it with actual code and data constraints, drives TDD, reviews the working tree and commits only task-owned changes after the required gate.
+`lain-implement` builds one bounded issue or settled request. It delegates to the shared implementation discipline to restore the source contract, reconcile actual code and data constraints, drive TDD, review the working tree and commit only task-owned changes after the required gate.
 
 Green tests are an intermediate state. Code completion does not imply that unperformed deployment, migration or production validation has passed.
 
 ## When to reach for it
 
-You invoke `/lain-implement`; the agent does not invoke it automatically. Use it directly for a settled small change inside existing design, or once per ready implementation ticket. Several tickets need separate bounded sessions or worktrees. A consequential unresolved prerequisite is resolved before the affected implementation proceeds.
+You invoke `/lain-implement`; the agent does not invoke it automatically. Use it directly for a settled small change inside existing design, or once per ready implementation ticket. For coordinated multi-ticket delivery, use [lain-implement-spec](https://github.com/learnathing/skills/blob/main/docs/engineering/lain-implement-spec.md). A consequential unresolved prerequisite is resolved before the affected implementation proceeds.
 
 ## Contract, design and evidence
 
-The skill pins the starting HEAD, tracked changes and untracked files. Overlapping existing work requires an ownership decision; unrelated user changes remain excluded from the task commit.
+The shared discipline pins the starting HEAD, tracked changes and untracked files. Overlapping existing work requires an ownership decision; unrelated user changes remain excluded from the task commit.
 
 The original issue, spec or decision handoff is authoritative. The reconstructed implementation contract indexes outcomes, invariants, failure semantics and verification; it does not replace the source. Relevant technical constraints add their accepted revisions, evidence and verification duties. Read only the affected subset, not the entire project's history.
 
@@ -51,4 +51,4 @@ No, unless separately authorized. A verified implementation commit is not an imp
 
 ## Where it fits
 
-[To-tickets](https://aihero.dev/skills-to-tickets) supplies a fresh-context contract, or a settled request supplies one directly. This skill uses [TDD](https://aihero.dev/skills-tdd) and code review internally. [Ask Matt](https://aihero.dev/skills-ask-matt) chooses the appropriate route.
+[To-tickets](https://aihero.dev/skills-to-tickets) supplies a fresh-context contract, or a settled request supplies one directly. [lain-implementation](https://github.com/learnathing/skills/blob/main/docs/engineering/lain-implementation.md) owns the execution and review protocol shared with parallel delivery. [Ask Matt](https://aihero.dev/skills-ask-matt) chooses the appropriate route.

@@ -13,7 +13,8 @@ Reachable only when you type them (Claude Code: `disable-model-invocation: true`
 - **[lain-setup-matt-pocock-skills](./lain-setup-matt-pocock-skills/SKILL.md)**: Configure tracker, labels and domain docs; optionally preserve useful existing engineering policy.
 - **[lain-to-spec](./lain-to-spec/SKILL.md)**: Synthesize accepted decisions into a traceable spec, without inventing a missing solution.
 - **[lain-to-tickets](./lain-to-tickets/SKILL.md)**: Produce validated vertical tickets with blocking edges and optional shared-constraint verification duties.
-- **[lain-implement](./lain-implement/SKILL.md)**: Build one bounded contract with relevant technical sources, TDD evidence and review.
+- **[lain-implement](./lain-implement/SKILL.md)**: Build one bounded contract through the shared implementation discipline.
+- **[lain-implement-spec](./lain-implement-spec/SKILL.md)**: Coordinate approved tickets and owned worktrees into a verified integration branch without bypassing per-ticket gates.
 - **[lain-wayfinder](./lain-wayfinder/SKILL.md)**: Resolve a large decision map and hand off independently ready capabilities while other scopes remain in exploration.
 - **[lain-retro](./lain-retro/SKILL.md)**: Propose evidence-backed environment improvements, with deterministic checks for mechanical mistakes and no automatic edits.
 
@@ -21,6 +22,7 @@ Reachable only when you type them (Claude Code: `disable-model-invocation: true`
 
 Model- or user-reachable, with reusable disciplines underneath the human-invoked workflows.
 
+- **[lain-implementation](./lain-implementation/SKILL.md)**: Execute an authorized bounded contract through shared source, evidence, review and commit gates.
 - **[lain-technical-design](./lain-technical-design/SKILL.md)**: Reuse existing design or resolve the smallest technical gap, with source-backed shared constraints and risk-proportionate evidence.
 - **[lain-prototype](./lain-prototype/SKILL.md)**: Answer one question through a UI/logic demonstration or a reproducible technical experiment.
 - **[lain-diagnosing-bugs](./lain-diagnosing-bugs/SKILL.md)**: Diagnose hard bugs and performance regressions through a disciplined feedback loop.

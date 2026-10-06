@@ -1,0 +1,5 @@
+interface:
+  display_name: "lain-implement-spec"
+  short_description: "Integrate approved tickets with shared execution and review gates"
+policy:
+  allow_implicit_invocation: false
