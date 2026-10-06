@@ -9,7 +9,7 @@ This records content decisions, not a claim that all upstream commits were merge
 | 1 | `pr`, including before/after evidence and merge risk | Adapted as `lain-pr`; no implied publication authority or invented evidence |
 | 1 | `retro`, including deterministic checks for mechanical rules | Adapted as optional `lain-retro`; no automatic environment mutation |
 | 1 | `.claude` ignore rule | Added alongside existing `.idea` rule |
-| 2 | `implement-spec` task graph and integration branch | Planned: adapt to shared implementation and review gates |
+| 2 | `implement-spec` task graph and integration branch | Adapted as `lain-implement-spec`, with shared `lain-implementation`, current source revisions, verified dependency release and safe worktree ownership |
 | 3 | `GLOSSARY.md` and map naming | Planned: compatibility before optional migration |
 | 3 | Local linking scope | Planned: explicit selection and non-destructive conflict handling |
 | Retain | Upstream removal of `resolving-merge-conflicts` | Not adopted; retain the fork's ownership and stop/abort safeguards |
@@ -17,4 +17,6 @@ This records content decisions, not a claim that all upstream commits were merge
 | Defer | Experimental `chief-of-staff` | Not installed or promoted |
 | Ignore | Bulk prose rewrites and upstream version metadata | No wholesale import; update only documents affected by adopted behavior |
 
-Validation distinguishes structural regression checks, actual agent outcomes and independent review. A passing structural suite is not evidence of behavioral improvement or completed independent review.
+Batch 1 is PR #5, initially committed as `942a31e2721a348bf796d3cf73e13eb2288af0df`. Batch 2 is stacked on that branch. Merge in batch order; after a predecessor lands, retarget the next PR to `main` and reconcile ancestry if the predecessor was squash-merged. Do not enable automatic merging of the stack.
+
+Validation distinguishes structural regression checks, actual agent outcomes and independent review. A passing structural suite is not evidence of behavioral improvement or completed independent review. The batch-2 extraction regression compares the shared six-state protocol with the exact pre-extraction Git blob retained outside runtime skill context.

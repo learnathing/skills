@@ -6,7 +6,7 @@ import test from "node:test";
 
 const read = (relative) => readFileSync(new URL(`../${relative}`, import.meta.url), "utf8");
 const review = read("skills/engineering/lain-code-review/SKILL.md");
-const implement = read("skills/engineering/lain-implement/SKILL.md");
+const implement = read("skills/engineering/lain-implementation/SKILL.md");
 const sha256 = (text) => createHash("sha256").update(text).digest("hex");
 
 // These bodies are deliberately unchanged from f3a1dbfe. Review any intentional

@@ -2,6 +2,8 @@
   "upstream_revision": "4588b32ecab9ecc9fc8cc6b6c5e7d675b6004b0d",
   "skills": [
     {"name": "lain-pr", "bucket": "engineering", "user_invoked": false},
-    {"name": "lain-retro", "bucket": "engineering", "user_invoked": true}
+    {"name": "lain-retro", "bucket": "engineering", "user_invoked": true},
+    {"name": "lain-implementation", "bucket": "engineering", "user_invoked": false},
+    {"name": "lain-implement-spec", "bucket": "engineering", "user_invoked": true}
   ]
 }

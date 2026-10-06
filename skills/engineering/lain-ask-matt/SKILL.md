@@ -32,15 +32,15 @@ Technical risk decides design depth; session count decides coordination. Routing
 
    Use `/lain-handoff` only when actually moving to a new directory, harness, colleague or side session. An experiment in the same workspace does not require a ceremonial context switch. Return validated decisions to the authoritative source before treating the scope as buildable.
 3. **Is this a multi-session build, and is the current scope ready?**
-   - **Yes** → **`/lain-to-spec`**, then **`/lain-to-tickets`**, then a fresh **`/lain-implement`** session for each unblocked ticket. Run relevant integration checks as slices land, then one branch-level `/lain-code-review` from a fresh session after all tickets finish.
+   - **Yes** → **`/lain-to-spec`**, then **`/lain-to-tickets`**, then a fresh **`/lain-implement`** session for each unblocked ticket. For approved tickets with useful parallel work and actual harness support, offer **`/lain-implement-spec`** instead of manual per-ticket coordination. Both use the same execution gates. Run relevant integration checks as slices land, then one branch-level `/lain-code-review` from a fresh session after all tickets finish.
    - **No, it is ready and bounded** → **`/lain-implement`** in the current session.
    - **Not ready** → resolve only the blocking source decision or evidence gap; session capacity is not evidence of technical readiness.
 
-Read `/lain-implement` before recommending the build step; it owns the build and quality-gate protocol. Reach for **`/lain-tdd`** on its own for concrete behavior built test-first, and **`/lain-code-review`** to review a branch, PR, or working tree against a fixed point.
+Read `/lain-implement` and its shared `/lain-implementation` discipline before recommending the build step; the shared discipline owns the build and quality-gate protocol. Read `/lain-implement-spec` when its coordination boundary matters. Reach for **`/lain-tdd`** on its own for concrete behavior built test-first, and **`/lain-code-review`** to review a branch, PR, or working tree against a fixed point.
 
 ### Context hygiene
 
-Prefer a continuous context for bounded planning when it fits. Large efforts must not rely on one ever-growing conversation: retain scoped source IDs, accepted decision revisions, evidence and open dependencies in durable sources, and load only what the current capability needs. Each `/lain-implement` starts from its ticket and relevant pointers. Reuse a still-applicable assessment rather than repeating it at every phase.
+Prefer a continuous context for bounded planning when it fits. Large efforts must not rely on one ever-growing conversation: retain scoped source IDs, accepted decision revisions, evidence and open dependencies in durable sources, and load only what the current capability needs. Each implementation starts from its ticket and relevant pointers. Reuse a still-applicable assessment rather than repeating it at every phase. A coordinator checkpoint does not replace unreadable authoritative sources or permit invented independent review.
 
 Use the harness's reported remaining capacity and material still needed as a diagnostic. When capacity is unavailable, make no numeric smart-zone claim. If remaining sources, work, and verification cannot fit, compact at a phase boundary or split a bounded task as appropriate below.
 
@@ -48,7 +48,7 @@ Use the harness's reported remaining capacity and material still needed as a dia
 
 - **Bugs and requests piling up** → **`/lain-triage`**. It moves incoming issues through triage roles and produces agent-ready issues, which `/lain-implement` later picks up. Do not triage tickets already produced by `/lain-to-tickets`.
 - **Something's broken** → **`/lain-diagnosing-bugs`**. Use it for hard bugs, intermittent flakes, and regressions. It establishes a real feedback loop and distinguishes provisional diagnosis from a verified fix. A poor verification seam can lead to `/lain-improve-codebase-architecture`.
-- **A huge, foggy effort** → **`/lain-wayfinder`**. Use a shared map when planning itself cannot fit one session, not merely because delivery has many tickets. It produces decisions, not deliverables. When a capability becomes ready, hand that scope to `/lain-to-spec`, then `/lain-to-tickets` and `/lain-implement`. Independent future scopes can remain open; a shared prerequisite still blocks every dependent scope. Go straight to implementation only when the effort turned out genuinely small and its relevant decisions are recoverable.
+- **A huge, foggy effort** → **`/lain-wayfinder`**. Use a shared map when planning itself cannot fit one session, not merely because delivery has many tickets. It produces decisions, not deliverables. When a capability becomes ready, hand that scope to `/lain-to-spec`, then `/lain-to-tickets` and implementation. Independent future scopes can remain open; a shared prerequisite still blocks every dependent scope. Go straight to implementation only when the effort turned out genuinely small and its relevant decisions are recoverable.
 
 ## Codebase health
 
@@ -58,6 +58,7 @@ After a difficult session or repeated failure, offer **`/lain-retro`** to inspec
 
 ## Reusable disciplines underneath
 
+- **`/lain-implementation`** owns the bounded six-state execution protocol used by single-ticket and parallel delivery. It requires existing implementation authority and preserves the same worktree, evidence and independent-review gates.
 - **`/lain-technical-design`** supplies risk-adaptive solution design and scope readiness. It delegates module shape to `/lain-codebase-design` and measurement to `/lain-prototype`. Binding shared constraints flow into the spec and relevant tickets; reversible local choices remain with the implementer. Optional `docs/agents/engineering.md` records existing authority and verification conventions without requiring a setup rerun.
 - **`/lain-domain-modeling`** sharpens domain language and records qualifying ADRs. Reading an existing glossary alone does not invoke active domain-modeling work. `CONTEXT.md` remains a glossary, not a specification or architecture notebook.
 - **`/lain-codebase-design`** supplies deep-module vocabulary for a small interface at a clean seam. It is used by TDD, architecture improvement, and technical design when module shape matters.
