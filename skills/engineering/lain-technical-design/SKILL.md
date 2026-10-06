@@ -11,6 +11,8 @@ Choose the **minimum sufficient design** for the current delivery scope. Risk de
 
 Read the request, relevant code and tests, existing design and ADRs, and `docs/agents/engineering.md` when present. Its absence is not a setup blocker. Inspect only the affected surface and immediate dependencies. Identify evidence for existing constraints before asking questions.
 
+For domain vocabulary, use authoritative glossary/map paths from `docs/agents/domain.md` when configured. Otherwise accept `GLOSSARY.md` / `GLOSSARY-MAP.md` or legacy `CONTEXT.md` / `CONTEXT-MAP.md`, following the selected map. Resolve ambiguous naming families before treating either as canonical. An unreadable configured source is a coverage gap, not absence. Reading terminology does not authorize glossary creation, migration or active modeling.
+
 Check whether the change introduces or changes shared interfaces, authoritative data or persistent identity, consistency or failure semantics, algorithms with unverified quality or capacity, permissions or data handling, external cost or infrastructure, migration or recovery. These are triggers to investigate, not mandatory document sections.
 
 Return one disposition, with concrete source or code anchors and any unresolved risk:
@@ -35,7 +37,7 @@ Facts are the agent's work. Make reversible technical choices within explicit pr
 
 Use the existing issue or a short design note for a bounded change. A cross-session or shared decision needs a durable source; use [ARTIFACTS.md](ARTIFACTS.md). When a spec or ticket needs binding shared constraints, read [DELIVERY-CONSTRAINTS.md](DELIVERY-CONSTRAINTS.md) for the optional manifest and ticket serialization. Do not load it for ordinary reuse work. Preserve original IDs and qualify them by source scope when combining documents.
 
-Record accepted constraints separately from tunable implementation choices, blocking questions, and deferred questions. A deferred question needs a revisit trigger or latest responsible point and the scopes it can affect. Do not put implementation details in `CONTEXT.md`; call the Skill tool with "lain-domain-modeling" only when terminology or a worthwhile ADR actually changes.
+Record accepted constraints separately from tunable implementation choices, blocking questions, and deferred questions. A deferred question needs a revisit trigger or latest responsible point and the scopes it can affect. Do not put implementation details in the selected domain glossary; call the Skill tool with "lain-domain-modeling" only when terminology or a worthwhile ADR actually changes.
 
 Specs own required behavior and binding constraints. Design notes explain the current solution and evidence. ADRs explain enduring trade-offs. Link them instead of keeping conflicting copies. Never promote local file placement or experimental parameters into product requirements. New constraints must return to the authoritative source before implementation tickets rely on them.
 

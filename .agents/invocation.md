@@ -23,4 +23,4 @@ This whole convention only holds when the named skill is **model-invoked**. A us
 
 ## Passive vs active domain work
 
-Merely _reading_ `CONTEXT.md` for vocabulary is a one-line prose pointer, not the `lain-domain-modeling` skill. Only the active build/sharpen discipline (challenge terms, edge-case scenarios, write ADRs, update `CONTEXT.md` inline) is `lain-domain-modeling`.
+Merely reading the configured domain glossary for vocabulary is a prose pointer, not the `lain-domain-modeling` skill. Readers honor `docs/agents/domain.md` first; otherwise they accept `GLOSSARY.md` / `GLOSSARY-MAP.md` or legacy `CONTEXT.md` / `CONTEXT-MAP.md`, following the selected map. Ambiguous naming families need a source decision, and unreadable configured sources remain evidence gaps. Only the active build/sharpen discipline (challenge terms, edge-case scenarios, write ADRs, update the authoritative glossary inline) is `lain-domain-modeling`. Passive reading never requires an automatic rename, setup rerun or modeling session.

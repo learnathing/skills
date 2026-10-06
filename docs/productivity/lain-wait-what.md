@@ -1,36 +1,41 @@
 ## What it does
 
-`lain-wait-what` is what you type when a message didn't land. The [agent](https://www.aihero.dev/ai-coding-dictionary/agent) then re-pitches what it just said. It adds the context you were missing, writes in plain English, and uses the vocabulary from your project's `CONTEXT.md`.
+`lain-wait-what` is what you type when a message did not land. The agent re-pitches it with the missing context, accessible technical language and the project's existing domain vocabulary.
 
-The skill is three lines long. That is the design, not an unfinished draft. Skills that fight verbosity fail by growing: a four-hundred-line concision skill still leaves the [model](https://www.aihero.dev/ai-coding-dictionary/model) verbose, because the model reads the volume, not the plea. This one carries a single precise leading word and nothing else.
+It repairs understanding rather than merely shortening sentences. It does not create a glossary, rename files or start another workflow.
 
 ## When to reach for it
 
-You invoke it by typing `/lain-wait-what`. The agent will not reach for it on its own, and it shouldn't. Only you know when you stopped following.
+You invoke `/lain-wait-what`; the agent does not decide on its own that you stopped following. Use it when an explanation assumes a premise you never saw, stacks unexplained terms or loses the point in implementation details.
 
-Use it the second you notice you're skimming. The agent has drifted into jargon it invented, stacked five acronyms, or explained a decision whose premise you never saw. It fixes the conversation you're already in. To stop the jargon arriving at all, use [lain-grill-with-docs](https://aihero.dev/skills-grill-with-docs), which builds the shared language upfront.
+## Language and existing sources
 
-## The name is the mechanism
+The skill reads authoritative glossary/map paths from `docs/agents/domain.md` when configured. Otherwise it accepts `GLOSSARY.md` / `GLOSSARY-MAP.md` or legacy `CONTEXT.md` / `CONTEXT-MAP.md`, following the selected map to the relevant context.
 
-The leading word is **wait**. "Be concise" is an instruction about the agent's output, and the model obeys it by clipping words and losing you further. **Wait** is about *your* state. It says comprehension failed here. An agent that hears "be brief" writes telegrams. An agent that hears "wait, you lost me" backs up and explains.
+Both naming families without explicit authority are ambiguous; the agent must not confidently present one as canonical. A configured source that cannot be read is a limitation to disclose, not evidence that no glossary exists. If the project genuinely has none, the explanation still works in ordinary language without setup or invented domain terms.
 
-That difference is the whole skill. Every popular fix for verbosity names the *output*: `/tldr`, `/no-fluff`, `/talk-normal`. The model over-corrects into a caveman register that is shorter and no clearer. Naming the *listener* asks for both halves at once: fewer words **and** the context you were missing.
+## Common questions
 
-The skill says re-pitch **that**, not "that last message". What lost you is usually bigger than one paragraph, so the agent decides how far back to go.
+**Do I need to rename an old CONTEXT.md?**
 
-## It plugs into the language you already have
+No. The skill uses the existing configured or discovered source. New naming support does not authorize a migration.
 
-The body reuses the leading words already in your global `CLAUDE.md` and your project's `CONTEXT.md`. ASD-STE100 Simplified Technical English sets the register. The ubiquitous language supplies the nouns. The skill, `CLAUDE.md` and `CONTEXT.md` reach for the same [tokens](https://www.aihero.dev/ai-coding-dictionary/token), so invoking it is not a new instruction. It is a reminder of one the agent already agreed to.
+**Is the goal always fewer words?**
 
-If you have no `CONTEXT.md` (and no `CONTEXT-MAP.md` pointing to one for the context at hand), the skill still works. You lose only the domain-vocabulary half.
+No. The re-pitch should restore the premise and relationships needed to understand the point. Removing essential context would defeat it.
+
+**Does it change project documents?**
+
+No. It explains the conversation using available vocabulary. Active glossary changes belong to separately authorized domain-modeling work.
 
 ## It's working if
 
-- The re-pitch is **shorter and clearer**, not shorter and blunter.
-- It adds the premise you were missing, instead of only deleting words.
-- Project nouns replace invented ones. The terms in your `CONTEXT.md` come back.
-- You can use it twice in a row, and it does not degrade into terseness.
+- The re-pitch supplies the context that was missing.
+- Existing domain terms replace invented jargon.
+- Old, new and configured custom glossary paths remain usable.
+- Missing sources and ambiguous authority are not concealed.
+- No files or external resources change just to explain a message.
 
 ## Where it fits
 
-You can use `lain-wait-what` at any point, in any conversation, inside any other skill. It repairs one message after the fact. The real cure is a shared language agreed upfront, and that is [lain-grill-with-docs](https://aihero.dev/skills-grill-with-docs): a [lain-grilling](https://www.aihero.dev/ai-coding-dictionary/grilling) session that runs [lain-domain-modeling](https://aihero.dev/skills-domain-modeling) as it goes, so the words you both use land in your `CONTEXT.md`. If you're unsure which skill fits the moment, [lain-ask-matt](https://aihero.dev/skills-ask-matt) routes you.
+Use it at any point in a conversation. [lain-domain-modeling](https://github.com/learnathing/skills/blob/main/docs/engineering/lain-domain-modeling.md) maintains the underlying vocabulary, and [lain-grill-with-docs](https://github.com/learnathing/skills/blob/main/docs/engineering/lain-grill-with-docs.md) clarifies decisions. [lain-ask-matt](https://github.com/learnathing/skills/blob/main/docs/engineering/lain-ask-matt.md) routes the skill set.
