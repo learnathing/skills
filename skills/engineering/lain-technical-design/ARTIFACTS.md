@@ -4,8 +4,10 @@ Use this only when new design is needed. Reuse cases stay in the existing contra
 
 ## Minimum design note
 
-- **Scope and source**: the capability or delivery wave, required outcomes, relevant source IDs, existing implementation and constraints.
-- **Solution delta**: what changes and why the old solution is insufficient. Include only relevant data, algorithm, runtime, security, deployment or recovery details. A logical model is not a mandate to create one table per concept.
+Use the caller's artifact-mode writing reference. The choice, consequence and any critical blocker must be understandable before the decision register. The register retains exact definitions and provenance; it is not the only place where a material requirement may appear. Keep a small note small rather than requiring a separate summary.
+
+- **Question and scope**: the technical question, affected capability, required outcome and existing constraint, explained before its source IDs.
+- **Choice and consequence**: the proposed or accepted solution, what changes, why the old solution is insufficient, and the material trade-off. Include only relevant data, algorithm, runtime, security, deployment or recovery details. A logical model is not a mandate to create one table per concept.
 - **Accepted decisions**: stable scoped ID such as `kb:C1`, revision such as `1`, exact meaning, authority, source anchor, evidence, and affected scopes. Separate required constraints from tunable choices. Increment a decision's revision when its meaning changes, not when unrelated prose changes.
 - **Evidence**: commands and results, fixed data or environment versions, experiment records, compatibility facts, and limitations. Reference evidence rather than copying large logs into every ticket.
 - **Open and deferred**: question ID, affected scope, blocker or defer status, and unblock/revisit condition. Never present a deferred critical prerequisite as ready.

@@ -8,7 +8,7 @@ disable-model-invocation: true
 
 Review the requested session, or the current session when none is named. Suggest changes to the environment, not another implementation of the feature. This invocation authorizes inspection and recommendations, not editing steering files, installing tools, adding service access, or changing CI. Implement selected changes only under separate applicable authority.
 
-Call the Skill tool with "lain-writing-for-agents" for concise instructions and references.
+Call the Skill tool with "lain-writing-for-agents" in artifact mode for the retrospective report. If unavailable, disclose once and draft directly while preserving the existing evidence boundaries. Lead each candidate with the observed problem, proposed intervention and expected benefit, then its evidence and verification plan. Keep an untested improvement hypothesis distinct from a measured result; recommendations do not authorize changing the environment.
 
 ## Inspect the evidence
 

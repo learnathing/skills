@@ -5,6 +5,8 @@ disable-model-invocation: true
 argument-hint: "What would you like to learn about?"
 ---
 
+When writing the artifacts described here, call the Skill tool with "lain-writing-for-agents" in artifact mode. Reuse the reference when already loaded. If unavailable, disclose once and draft directly without weakening existing gates. Apply it to mission, resources, learning records, notes, lessons and quick references. Explain one useful idea before introducing its terminology. A learning record distinguishes what the learner demonstrated from what was merely discussed and names the next practice. Keep lesson and reference HTML formats, source citations and retrieval exercises; do not replace learning with an extra summary or claim mastery from an agent-written note.
+
 The user has asked you to teach them something. This is a stateful request - they intend to learn the topic over multiple sessions.
 
 ## Teaching Workspace
@@ -107,7 +109,7 @@ For skill acquisition, difficulty is the tool. Effortful retrieval is what build
 
 Each of these should be based on a **feedback loop**, where the user receives feedback on their performance. This feedback loop should be as tight as possible, giving feedback immediately - and ideally automatically.
 
-For quizzes, each answer should be exactly the same number of words (and characters, if possible). Don't give the user any clues about the answer through formatting.
+For quizzes, keep answer options comparable in specificity and visual prominence without forcing identical word or character counts. Use natural language and preserve each option's meaning. Do not reveal the correct answer through formatting.
 
 ## Acquiring Wisdom
 

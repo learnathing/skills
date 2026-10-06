@@ -47,6 +47,8 @@ Not implicitly. A label mapping is configuration, not authorization to mutate th
 - Small work does not need an empty policy document or repeated setup.
 - Downstream skills can recover their configuration without asking again.
 
+- A configuration note says what a setting controls and where its source lives, while preserving exact keys, paths and authority. See the [shared artifact writing reference](https://github.com/learnathing/skills/blob/main/docs/productivity/lain-writing-for-agents.md).
+
 ## Where it fits
 
 This is configuration for tracker-dependent flows, not a design stage. [To-spec](https://aihero.dev/skills-to-spec), [to-tickets](https://aihero.dev/skills-to-tickets) and [wayfinder](https://aihero.dev/skills-wayfinder) consume the settings. [Technical design](https://github.com/learnathing/skills/blob/main/docs/engineering/lain-technical-design.md) can read optional engineering policy. [Ask Matt](https://aihero.dev/skills-ask-matt) routes daily work.

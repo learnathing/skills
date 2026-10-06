@@ -56,6 +56,8 @@ Preserve and supersede it, identify its dependents, then re-establish their read
 - Decision revisions retain history and update affected dependencies.
 - Production work is handed to its authorized delivery flow.
 
+- The map shows what decisions matter and what each unresolved question blocks, without duplicating every child ticket. See the [shared artifact writing reference](https://github.com/learnathing/skills/blob/main/docs/productivity/lain-writing-for-agents.md).
+
 ## Where it fits
 
 This is a situational on-ramp, not the default first step. [Technical design](https://github.com/learnathing/skills/blob/main/docs/engineering/lain-technical-design.md) resolves technical questions and [prototype](https://aihero.dev/skills-prototype) supplies evidence. Ready scopes move through [to-spec](https://aihero.dev/skills-to-spec) and [to-tickets](https://aihero.dev/skills-to-tickets). [Ask Matt](https://aihero.dev/skills-ask-matt) routes the set.

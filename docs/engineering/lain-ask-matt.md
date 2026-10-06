@@ -51,6 +51,8 @@ In repository instructions and, when useful, optional engineering policy. Editin
 - Ready independent capabilities can leave a larger planning map.
 - Recommendations follow the actual source-skill boundaries.
 
+- Readability is handled inside artifact-producing skills through the existing writing reference; routing does not add another mandatory interview, approval or human-only document.
+
 ## Where it fits
 
 This is a standalone router over this repository's skills, not a mandatory stage and not a scan of arbitrary installed skills. It points into the main flow, discovery on-ramps, codebase upkeep and standalone utilities. [The source](https://github.com/learnathing/skills/blob/main/skills/engineering/lain-ask-matt/SKILL.md) carries the full route map.

@@ -74,6 +74,8 @@ A phase is a chunk of work inside a session. At a boundary between phases, choos
 
 Read [PHASE-BOUNDARIES.md](PHASE-BOUNDARIES.md) for the ordered decision tree. Prefer staying in context when possible, not an automatic handoff for every step. Mid-phase, continue or split the remaining bounded work instead of interrupting it for context ceremony.
 
+Generated artifacts use `lain-writing-for-agents` in artifact mode inside their existing producer. Route the substantive task normally; do not add a mandatory readability interview, polish stage or new human-only copy. For an explicit request to improve an existing document, that model-invoked writing reference is also available directly.
+
 ## Standalone
 
 - **`/lain-grill-me`**: stateless interviewing when there is no working directory. With a repository, `/lain-grill-with-docs` leaves the relevant domain paper trail.

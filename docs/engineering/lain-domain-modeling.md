@@ -81,6 +81,8 @@ No, and there is no plan for a skill that does. A domain language you do not und
 - It quotes your code back at you when your code and your sentence disagree.
 - `CONTEXT.md` gets shorter as often as it gets longer.
 
+- A term is understandable without a chain of undefined terms; an ADR explains the choice and consequence while keeping acceptance status explicit. See the [shared artifact writing reference](https://github.com/learnathing/skills/blob/main/docs/productivity/lain-writing-for-agents.md).
+
 ## Where it fits
 
 `lain-domain-modeling` is a **model-invoked reference** that runs *underneath* other skills more often than it runs on its own. [lain-grill-with-docs](https://aihero.dev/skills-grill-with-docs) drives it through a grilling session, [lain-wayfinder](https://aihero.dev/skills-wayfinder) loads it while charting a map, [lain-triage](https://aihero.dev/skills-triage) uses it to keep [tickets](https://www.aihero.dev/ai-coding-dictionary/ticket) in the project's own words, and [lain-improve-codebase-architecture](https://aihero.dev/skills-improve-codebase-architecture) calls it as decisions crystallise. Its closest sibling is [lain-codebase-design](https://aihero.dev/skills-codebase-design): the two are the vocabulary layer under everything else, this one for the *domain*, that one for the module's *shape*. It is also reachable directly, when you want the discipline without committing to the steps of whatever skill would normally pull it in. When you are unsure which skill fits, [lain-ask-matt](https://aihero.dev/skills-ask-matt) routes you.

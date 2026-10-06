@@ -96,6 +96,8 @@ There is no good answer shipped with the skill. The recurring request is for a `
 - Each card explains the payoff as locality or leverage, and says which tests get simpler, not just "this is cleaner."
 - Rejecting a candidate for a durable reason gets you an offer to record an ADR, so the next run does not re-suggest it.
 
+- Each visual has a readable explanation of the concrete friction, proposed difference, impact and uncertainty. See the [shared artifact writing reference](https://github.com/learnathing/skills/blob/main/docs/productivity/lain-writing-for-agents.md).
+
 ## Where it fits
 
 `lain-improve-codebase-architecture` is **periodic maintenance**: run it every few days, outside any chain, to queue up work rather than to do it. Its neighbours are [lain-codebase-design](https://aihero.dev/skills-codebase-design), which owns the depth-and-seam vocabulary every candidate is written in, [lain-grilling](https://aihero.dev/skills-grilling), which walks the decision tree once you have chosen a candidate, and [lain-domain-modeling](https://aihero.dev/skills-domain-modeling), which keeps `CONTEXT.md` and the ADRs current as the decision settles. What it produces is an idea, which re-enters the main build flow at [lain-grill-with-docs](https://aihero.dev/skills-grill-with-docs) or [lain-to-spec](https://aihero.dev/skills-to-spec). For which skill fits a situation, [lain-ask-matt](https://aihero.dev/skills-ask-matt) is the router over the whole set.

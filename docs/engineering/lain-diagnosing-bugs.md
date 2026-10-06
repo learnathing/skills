@@ -43,6 +43,8 @@ No. Production instrumentation and consequential external changes require approp
 - Unavailable production access does not stop useful local investigation.
 - A verified fix has regression evidence and temporary instrumentation is removed.
 
+- The diagnosis starts from the symptom and supported cause or hypothesis, with uncertainty visible rather than buried in logs. See the [shared artifact writing reference](https://github.com/learnathing/skills/blob/main/docs/productivity/lain-writing-for-agents.md).
+
 ## Where it fits
 
 A standalone diagnosis workflow. [lain-triage](https://aihero.dev/skills-triage) can supply captured evidence, and [lain-tdd](https://aihero.dev/skills-tdd) supplies the test-first workflow for a concrete behavior. [lain-ask-matt](https://aihero.dev/skills-ask-matt) routes across the skill set.

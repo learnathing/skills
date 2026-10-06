@@ -3,6 +3,8 @@ name: lain-prototype
 description: Build a throwaway prototype to answer a design question. Use when the user wants to sanity-check a state model or logic, explore UI alternatives, or measure technical feasibility, algorithm quality, capacity, or migration safety.
 ---
 
+When writing the artifacts described here, call the Skill tool with "lain-writing-for-agents" in artifact mode. Reuse the reference when already loaded. If unavailable, disclose once and draft directly without weakening existing gates. A UI or logic walkthrough explains what to try, what to observe and which question the feedback answers, using the intended viewer's language. A technical report leads with measured/inconclusive/not run and the supported conclusion with its limits, then the baseline, method and raw evidence. Keep both the required HTML format for demos and the experiment's measurement obligations. Do not create an extra showcase or imply production approval.
+
 # Prototype
 
 A prototype is **throwaway code that answers a question**. The question decides the shape.

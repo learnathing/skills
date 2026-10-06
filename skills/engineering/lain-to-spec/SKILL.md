@@ -8,6 +8,8 @@ This skill takes the current conversation context and codebase understanding and
 
 The issue tracker and triage label vocabulary should have been provided to you. If not, tell the user to run `/lain-setup-matt-pocock-skills`.
 
+Call the Skill tool with "lain-writing-for-agents" in artifact mode while drafting. If unavailable, disclose once and use the template directly; source and publication gates still apply. Write for a developer who knows the project but did not attend this discussion, as well as the implementing agent. Use the reader's working language for explanatory prose; keep machine keys and stable IDs unchanged. Reading order is not decision authority: retain every source and publication requirement below.
+
 ## Process
 
 ### 1. Gather primary sources
@@ -44,6 +46,8 @@ Publish only when:
 - Relevant quality, integration, migration and recovery obligations have source-backed acceptance criteria and identified evidence; evidence required before implementation is present
 - Binding shared technical constraints retain accepted source anchors, revisions, affected scenario IDs and verification ownership; unsupported agent recommendations are not attributed to the user
 
+During the existing source comparison, check that the readable contract preserves the original conditions, limits, exceptions, exclusions and uncertainty. Material requirements must not appear only in the manifest. On revision, identify material changes and unresolved choices without asking for repeated approval of settled decisions. Do not add a separate readability gate or human-only version.
+
 Publish the gated spec to the project issue tracker and apply the `ready-for-agent` triage label.
 
 <spec-template>
@@ -52,19 +56,9 @@ Publish the gated spec to the project issue tracker and apply the `ready-for-age
 
 The problem that the user is facing, from the user's perspective.
 
-## Source Index
-
-| ID | Exact decision or compatibility fact | Origin or durable anchor |
-| --- | --- | --- |
-| D1 | The confirmed decision in precise language | Decision handoff, ADR, prototype, or pinned compatibility evidence |
-
 ## Outcome
 
-The observable result the user or caller needs.
-
-## Invariants
-
-- **I1**: A business truth that must remain true before, during, and after the change. Cite its source ID.
+The observable result the user or caller needs and why it matters. Do not require a new business case for a settled change.
 
 ## Scenarios
 
@@ -74,30 +68,19 @@ Use the smallest complete set of happy-path, boundary, and failure scenarios tha
 | --- | --- | --- | --- | --- |
 | S1 | change or preservation | D1 | Concrete setup and action | Caller-visible result |
 
-## Delivery Manifest
+## Out of Scope
 
-Emit valid JSON in a fenced `json` block. `delivery_ids` contains every scenario that tickets must own. Its definition exactly matches the scenario's situation and expected behaviour in one durable sentence.
+A description of the things that are out of scope for this spec.
 
-Keep schema version 1. Omit technical fields when none apply. For accepted shared constraints, call the Skill tool with "lain-technical-design" in assessment-only mode to consult its delivery-constraint serialization, unless that reference is already loaded. Add `technical_constraints` with scoped `id`, `revision`, exact `definition`, durable `source`, affected scenario IDs in `applies_to`, and one affected scenario in `verified_by`. Do not invent a scenario or requirement to fill this registry. Preserve IDs and qualify ambiguous IDs by their originating source.
+## Invariants
 
-```json
-{
-  "schema_version": 1,
-  "delivery_ids": [
-    {
-      "id": "S1",
-      "definition": "Concrete setup and action produces the caller-visible result.",
-      "source_ids": ["D1"]
-    }
-  ]
-}
-```
+- **I1**: A business truth that must remain true before, during, and after the change. Cite its source ID.
 
 ## Interface and Failure Contract
 
 ### Verification seams
 
-For each seam, state the interface callers use and why that seam observes the scenarios assigned to it.
+For each seam, explain the interface callers use and why it observes the assigned scenarios. Put the interface before the workflow term "seam". Reuse a scenario reference where it already gives the full behavior instead of creating a competing paraphrase.
 
 ### Errors and degradation
 
@@ -126,12 +109,33 @@ Exception: if a prototype produced a snippet that encodes a decision more precis
 | --- | --- | --- |
 | S1 | The agreed public seam | The test, command, or observable result that proves the scenario |
 
-## Out of Scope
-
-A description of the things that are out of scope for this spec.
-
 ## Known Unknowns
 
-Implementation-discoverable facts that do not change behaviour, invariants, interfaces, or error modes. This section must contain no blocking product or design decision when the spec is published as ready. Questions about later, independent scopes need a revisit condition and must not be hidden prerequisites of this scope.
+Omit this optional section when it is empty. In a blocked draft, also state the blocker near the beginning. Implementation-discoverable facts that do not change behaviour, invariants, interfaces, or error modes. This section must contain no blocking product or design decision when the spec is published as ready. Questions about later, independent scopes need a revisit condition and must not be hidden prerequisites of this scope.
+
+## Source Index
+
+| ID | Exact decision or compatibility fact | Origin or durable anchor |
+| --- | --- | --- |
+| D1 | The confirmed decision in precise, readable language | Decision handoff, ADR, prototype, or pinned compatibility evidence |
+
+## Delivery Manifest
+
+Emit valid JSON in a fenced `json` block. `delivery_ids` contains every scenario that tickets must own. Its definition exactly matches the scenario's situation and expected behaviour as a durable paragraph, which may contain multiple sentences. Make a new definition readable before freezing it; preserve existing definitions or reconcile their source and dependent copies within current authority.
+
+Keep schema version 1. Omit technical fields when none apply. For accepted shared constraints, call the Skill tool with "lain-technical-design" in assessment-only mode to consult its delivery-constraint serialization, unless that reference is already loaded. Add `technical_constraints` with scoped `id`, `revision`, exact `definition`, durable `source`, affected scenario IDs in `applies_to`, and one affected scenario in `verified_by`. Do not invent a scenario or requirement to fill this registry. Preserve IDs and qualify ambiguous IDs by their originating source.
+
+```json
+{
+  "schema_version": 1,
+  "delivery_ids": [
+    {
+      "id": "S1",
+      "definition": "Concrete setup and action produces the caller-visible result.",
+      "source_ids": ["D1"]
+    }
+  ]
+}
+```
 
 </spec-template>

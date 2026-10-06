@@ -49,6 +49,8 @@ Not for a multi-ticket delivery. Integrate and run relevant checks as slices lan
 - Cold-reader limitations and missing evidence are visible.
 - Unrelated work is not replanned on every design-document edit.
 
+- A developer sees the outcome, acceptance conditions and dependency reasons before the machine fields; exact source definitions remain available. See the [shared artifact writing reference](https://github.com/learnathing/skills/blob/main/docs/productivity/lain-writing-for-agents.md).
+
 ## Where it fits
 
 [To-spec](https://aihero.dev/skills-to-spec) supplies the contract; this skill prepares it for implementation sessions. [Technical design](https://github.com/learnathing/skills/blob/main/docs/engineering/lain-technical-design.md) owns readiness and shared-constraint serialization. [Ask Matt](https://aihero.dev/skills-ask-matt) routes the set.
