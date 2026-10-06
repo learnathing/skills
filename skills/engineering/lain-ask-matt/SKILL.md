@@ -54,6 +54,8 @@ Use the harness's reported remaining capacity and material still needed as a dia
 
 **`/lain-improve-codebase-architecture`** surveys an existing codebase for deepening opportunities. Picking a candidate creates an idea for the main flow; **`/lain-codebase-design`** is the discipline for designing its shape. A survey is not a compulsory precondition to a small change or a replacement for system-level technical design.
 
+After a difficult session or repeated failure, offer **`/lain-retro`** to inspect the environment and propose checkable improvements. It is optional and user-invoked; neither diagnosis nor implementation starts it automatically. Use **`/lain-pr`** when writing a PR description from actual evidence. It formats the body without authorizing push, PR creation, issue closure or release.
+
 ## Reusable disciplines underneath
 
 - **`/lain-technical-design`** supplies risk-adaptive solution design and scope readiness. It delegates module shape to `/lain-codebase-design` and measurement to `/lain-prototype`. Binding shared constraints flow into the spec and relevant tickets; reversible local choices remain with the implementer. Optional `docs/agents/engineering.md` records existing authority and verification conventions without requiring a setup rerun.

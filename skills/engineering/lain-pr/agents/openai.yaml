@@ -1,0 +1,3 @@
+interface:
+  display_name: "lain-pr"
+  short_description: "Write source-linked PR descriptions with evidence and merge risk"

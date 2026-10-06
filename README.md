@@ -144,7 +144,7 @@ It's hard to explain how powerful this is. It might be the single coolest techni
 
 > "Always take small, deliberate steps. The rate of feedback is your speed limit. Never take on a task that’s too big."
 >
-> David Thomas & Andrew Hunt, [The Pragmatic Programmer](https://www.amazon.co.uk/Pragmatic-Programmer-Anniversary-Journey-Mastery/dp/B0833F1T3V)
+> David Thomas & Andrew Hunt, [The Pragmatic Programmer](https://www.amazon.co.uk/Pragmatic-Programmer-Anniversary-Journey-Mastery/dp/0321125215)
 
 **The Problem**: Let's say that you and the agent are aligned on what to build. What happens when the agent _still_ produces crap?
 
@@ -196,7 +196,7 @@ Technical risk decides how much design is needed; session count decides how to o
 
 [`/lain-prototype`](./skills/engineering/lain-prototype/SKILL.md) separates UI/logic demonstrations from reproducible technical experiments. Unrun benchmarks are not evidence. Large projects can hand off independently ready scopes without pretending the whole project is designed. Optional `docs/agents/engineering.md` records existing policy without imposing another setup step.
 
-Run `node --test skills/engineering/lain-to-tickets/*.test.mjs` and `node scripts/check-engineering-flow.mjs` for deterministic regression checks. Development evaluation scenarios live under `evals/`; passing structural checks does not establish behavioral outcome lift.
+Run `node --test skills/engineering/lain-to-tickets/*.test.mjs scripts/*.test.mjs` and `node scripts/check-engineering-flow.mjs` for deterministic regression checks. Development evaluation scenarios live under `evals/`; passing structural checks does not establish behavioral outcome lift. Adopted upstream changes and intentional exclusions are recorded in [the synchronization ledger](./.agents/upstream-sync.md).
 
 ## Reference
 
@@ -217,6 +217,7 @@ Skills I use daily for code work.
 - **[lain-to-tickets](./skills/engineering/lain-to-tickets/SKILL.md)**: Break any plan, spec, or conversation into a set of tracer-bullet tickets, each declaring its blocking edges, written as text in a local file, or as native blocking links on a real tracker.
 - **[lain-implement](./skills/engineering/lain-implement/SKILL.md)**: Build one bounded issue through contract rehydration, evidence-bearing vertical slices, and conditional blocker repair before committing.
 - **[lain-wayfinder](./skills/engineering/lain-wayfinder/SKILL.md)**: Plan a huge chunk of work, more than one agent session can hold, as a shared map of decision tickets on the issue tracker, and resolve them one at a time until the way to the destination is clear.
+- **[lain-retro](./skills/engineering/lain-retro/SKILL.md)**: Inspect a coding session and propose source-backed environment improvements, preferring deterministic checks for mechanical mistakes.
 
 **Model-invoked**
 
@@ -228,6 +229,7 @@ Skills I use daily for code work.
 - **[lain-domain-modeling](./skills/engineering/lain-domain-modeling/SKILL.md)**: Actively build and sharpen a project's domain model: challenge terms against the glossary, stress-test with edge-case scenarios, and update `CONTEXT.md` and ADRs inline.
 - **[lain-codebase-design](./skills/engineering/lain-codebase-design/SKILL.md)**: Shared discipline and vocabulary for designing deep modules: a lot of behaviour behind a small interface, placed at a clean seam, testable through that interface.
 - **[lain-code-review](./skills/engineering/lain-code-review/SKILL.md)**: Three-axis review of committed or working-tree changes since a fixed point: **Standards**, **Spec**, and **Design**, covered by one independent reviewer, with coordinator-verified findings and explicit incomplete-review reporting.
+- **[lain-pr](./skills/engineering/lain-pr/SKILL.md)**: Write a source-linked PR description with actual evidence, rollback limits and remaining obligations; publishing requires separate authority.
 - **[lain-resolving-merge-conflicts](./skills/engineering/lain-resolving-merge-conflicts/SKILL.md)**: Work through an in-progress git merge or rebase conflict hunk by hunk, resolving by intent traced to each side's primary source, then finish the operation (never `--abort`).
 - **[lain-wizard](./skills/engineering/lain-wizard/SKILL.md)**: Generate an interactive bash wizard that walks a human through steps only they can perform: provisioning infrastructure, setting up credentials or CI secrets, walking an unfamiliar third-party dashboard, or running a one-off migration or cutover.
 
@@ -240,7 +242,7 @@ General workflow tools, not code-specific.
 - **[lain-grill-me](./skills/productivity/lain-grill-me/SKILL.md)**: Get relentlessly interviewed about a plan or design until every branch of the design tree is resolved.
 - **[lain-handoff](./skills/productivity/lain-handoff/SKILL.md)**: Compact the current conversation into a handoff document so another agent can continue the work.
 - **[lain-teach](./skills/productivity/lain-teach/SKILL.md)**: Teach the user a new skill or concept over multiple sessions, using the current directory as a stateful teaching workspace.
-- **[lain-to-questionnaire](./skills/productivity/lain-to-questionnaire/SKILL.md)**: Turn a decision you can't answer alone into a Markdown questionnaire for the one person who can, filled in async, or together over a meeting. It grills you about the send (who it's for, what you need back), not the subject.
+- **[lain-to-questionnaire](./skills/productivity/lain-to-questionnaire/SKILL.md)**: Turn a decision you can't answer alone into a Markdown questionnaire for the one person who can, filled in async, or together over a meeting. It grills you about the send (who it's for, what you need back), not the underlying decision on their behalf.
 - **[lain-wait-what](./skills/productivity/lain-wait-what/SKILL.md)**: Fire this the moment a message doesn't land. The agent re-pitches it with the context you're missing, in plain English, using your `CONTEXT.md` vocabulary.
 
 **Model-invoked**

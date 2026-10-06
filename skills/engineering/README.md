@@ -15,6 +15,7 @@ Reachable only when you type them (Claude Code: `disable-model-invocation: true`
 - **[lain-to-tickets](./lain-to-tickets/SKILL.md)**: Produce validated vertical tickets with blocking edges and optional shared-constraint verification duties.
 - **[lain-implement](./lain-implement/SKILL.md)**: Build one bounded contract with relevant technical sources, TDD evidence and review.
 - **[lain-wayfinder](./lain-wayfinder/SKILL.md)**: Resolve a large decision map and hand off independently ready capabilities while other scopes remain in exploration.
+- **[lain-retro](./lain-retro/SKILL.md)**: Propose evidence-backed environment improvements, with deterministic checks for mechanical mistakes and no automatic edits.
 
 ## Model-invoked
 
@@ -28,5 +29,6 @@ Model- or user-reachable, with reusable disciplines underneath the human-invoked
 - **[lain-domain-modeling](./lain-domain-modeling/SKILL.md)**: Sharpen terms and relationships, update the glossary, and record qualifying ADRs.
 - **[lain-codebase-design](./lain-codebase-design/SKILL.md)**: Shared vocabulary for deep modules, small interfaces, clean seams and testability.
 - **[lain-code-review](./lain-code-review/SKILL.md)**: One independent reviewer covering Standards, Spec and Design, with coordinator-verified findings and explicit coverage and independence limitations.
+- **[lain-pr](./lain-pr/SKILL.md)**: Present source-linked intent, actual verification evidence and merge risk without implying publication authority.
 - **[lain-resolving-merge-conflicts](./lain-resolving-merge-conflicts/SKILL.md)**: Resolve merge or rebase conflicts by source intent while preserving unrelated work.
 - **[lain-wizard](./lain-wizard/SKILL.md)**: Guide a human through steps only they can perform, within the authorized task.

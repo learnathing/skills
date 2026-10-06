@@ -14,6 +14,8 @@ You invoke `/lain-ask-matt`; the agent does not reach for it automatically.
 | Planning itself requires several sessions | [Wayfinder](https://aihero.dev/skills-wayfinder) |
 | Ready work requires several implementation sessions | Spec, tickets, then implementation |
 | Incoming issues or a difficult bug | Triage or diagnosing bugs |
+| A change needs a reviewable PR description | [PR body](https://github.com/learnathing/skills/blob/main/docs/engineering/lain-pr.md), without publication authority |
+| A session exposed repeated friction or mistakes | Optional [retrospective](https://github.com/learnathing/skills/blob/main/docs/engineering/lain-retro.md) |
 
 ## Risk and coordination
 
@@ -31,7 +33,7 @@ No. Settled small changes skip a new interview and standalone spec. A risky task
 
 **Does it automatically run its recommendation?**
 
-No. User-invoked workflows stay under human control. Model-invoked disciplines are available to other skills within work already authorized.
+No. User-invoked workflows stay under human control. Model-invoked disciplines are available to other skills within work already authorized. A retrospective remains optional; writing a PR description does not authorize publishing it.
 
 **The router and a source skill disagree. Which wins?**
 
