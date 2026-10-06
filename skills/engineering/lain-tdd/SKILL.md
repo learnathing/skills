@@ -7,7 +7,7 @@ description: Test-driven development. Use when the user wants to build features 
 
 TDD advances through observable red and green states, followed by refactoring when a slice reveals a concrete structural improvement. It produces tests worth keeping without requiring a ceremonial third state.
 
-When exploring the codebase, read `CONTEXT.md` (if it exists) so test names and interface vocabulary match the project's domain language, and respect ADRs in the area you're touching.
+When exploring the codebase, use authoritative glossary/map paths from `docs/agents/domain.md` when configured. Otherwise accept `GLOSSARY.md` / `GLOSSARY-MAP.md` or legacy `CONTEXT.md` / `CONTEXT-MAP.md`, following the selected map to relevant contexts. If both naming families exist without explicit authority, resolve the source choice before treating either as canonical. An unreadable configured source is a coverage gap, not absence. Do not create or rename a glossary merely to run TDD. Match test names and interface vocabulary to the selected domain language, and respect ADRs in the area you're touching.
 
 ## What a good test is
 

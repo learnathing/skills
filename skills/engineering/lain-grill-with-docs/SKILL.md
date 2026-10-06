@@ -27,7 +27,7 @@ Before finishing, write a concise **decision handoff** into the conversation. Co
 - Open decisions with their affected scopes; safely deferred questions with revisit conditions
 - When relevant, accepted technical decision revisions, evidence and verification obligations
 
-`CONTEXT.md` remains a glossary. `lain-domain-modeling` owns glossary updates and qualifying ADRs; neither replaces the requirement handoff.
+The domain document remains a glossary. `lain-domain-modeling` owns source discovery, glossary updates and qualifying ADRs, respecting configured paths and existing names; neither replaces the requirement handoff.
 
 ## Close without adding an approval ritual
 

@@ -8,6 +8,8 @@ disable-model-invocation: true
 
 Move issues on the project issue tracker through a small state machine of triage roles.
 
+Use authoritative glossary/map paths from `docs/agents/domain.md` when configured. Otherwise accept `GLOSSARY.md` / `GLOSSARY-MAP.md` or legacy `CONTEXT.md` / `CONTEXT-MAP.md`, following the selected map to relevant contexts. If both naming families exist without explicit authority, resolve the source choice before treating either as canonical. An unreadable configured source is a coverage gap, not absence. Below, `CONTEXT.md` means the resolved glossary path, not a mandatory legacy filename. Preserve existing names; do not create parallel glossaries.
+
 If this repo treats external pull requests as a request surface (see the issue-tracker config), triage covers them too: **a PR is an issue with attached code**, using the same roles, same states, and same machine, with a few deltas marked "for a PR" below. Resolve a bare `#42` to an issue or PR per the tracker config.
 
 Every comment or issue posted to the issue tracker during triage **must** start with this disclaimer:

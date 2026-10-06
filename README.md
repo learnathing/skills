@@ -51,7 +51,7 @@ For a published fork, replace the source with your fork's repository:
 npx skills@latest add <your-fork-owner>/skills
 ```
 
-For this local checkout, run `bash scripts/link-skills.sh` to link the prefixed skills into the supported local harness directories.
+For this local checkout, run `bash scripts/link-skills.sh` with Node.js 22. The default links promoted engineering/productivity skills; experimental and miscellaneous skills require `--include-in-progress` and `--include-misc`. Preview with `--dry-run`. Existing unselected links stay until explicit `--prune`, which only removes links owned by this checkout. User directories and foreign links are never replaced. See [local linking](./.agents/local-linking.md) for scope, safety and recovery.
 
 Pick the skills you want, and which coding agents to install them on. **The installer lets you choose which skills to take, so make sure `lain-setup-matt-pocock-skills` is one of them.**
 
@@ -144,7 +144,7 @@ It's hard to explain how powerful this is. It might be the single coolest techni
 
 > "Always take small, deliberate steps. The rate of feedback is your speed limit. Never take on a task that’s too big."
 >
-> David Thomas & Andrew Hunt, [The Pragmatic Programmer](https://www.amazon.co.uk/Pragmatic-Programmer-Anniversary-Journey-Mastery/dp/0321125215)
+> David Thomas & Andrew Hunt, [The Pragmatic Programmer](https://www.amazon.co.uk/Pragmatic-Programmer-Anniversary-Journey-Mastery/dp/B0833F1T3V)
 
 **The Problem**: Let's say that you and the agent are aligned on what to build. What happens when the agent _still_ produces crap?
 
@@ -182,6 +182,12 @@ And crucially, [`/lain-improve-codebase-architecture`](./skills/engineering/lain
 
 Software engineering fundamentals matter more than ever. These skills are my best effort at condensing these fundamentals into repeatable practices, to help you ship the best apps of your career. Enjoy.
 
+## Domain-document compatibility
+
+Project configuration in `docs/agents/domain.md` takes precedence over filenames. Without explicit paths, readers accept `GLOSSARY.md` / `GLOSSARY-MAP.md` or legacy `CONTEXT.md` / `CONTEXT-MAP.md`, following the selected map to relevant contexts. Existing projects keep their names and do not need setup again. A wholly new simple project may create `GLOSSARY.md` lazily when its first term is resolved.
+
+Both naming families without explicit authority are ambiguous; an unreadable configured source is an evidence gap, not absence. No automatic rename or duplicate glossary is created. The [domain-modeling documentation](./docs/engineering/lain-domain-modeling.md) explains source selection and separately authorized migration. Historical examples and commit-pinned links retain their real filenames.
+
 ## Small changes and complex projects
 
 Technical risk decides how much design is needed; session count decides how to organize delivery.
@@ -210,7 +216,7 @@ Skills I use daily for code work.
 **User-invoked**
 
 - **[lain-ask-matt](./skills/engineering/lain-ask-matt/SKILL.md)**: Ask which skill or flow fits your situation. A router over the user-invoked skills in this repo.
-- **[lain-grill-with-docs](./skills/engineering/lain-grill-with-docs/SKILL.md)**: Grilling session that also builds your project's domain model, sharpening terminology and updating `CONTEXT.md` and ADRs inline.
+- **[lain-grill-with-docs](./skills/engineering/lain-grill-with-docs/SKILL.md)**: Grilling session that also builds your project's domain model, sharpening terminology and updating the authoritative glossary and ADRs inline.
 - **[lain-triage](./skills/engineering/lain-triage/SKILL.md)**: Move issues through a state machine of triage roles.
 - **[lain-improve-codebase-architecture](./skills/engineering/lain-improve-codebase-architecture/SKILL.md)**: Scan a codebase for deepening opportunities, present them as a visual HTML report, then grill through whichever one you pick.
 - **[lain-setup-matt-pocock-skills](./skills/engineering/lain-setup-matt-pocock-skills/SKILL.md)**: Configure this repo for the engineering skills (issue tracker, triage labels, domain doc layout). Run once per repo before using the other engineering skills.
@@ -229,11 +235,11 @@ Skills I use daily for code work.
 - **[lain-diagnosing-bugs](./skills/engineering/lain-diagnosing-bugs/SKILL.md)**: Disciplined diagnosis loop for hard bugs and performance regressions: build a feedback loop that goes red on this bug → minimise → hypothesise → instrument → fix → regression-test.
 - **[lain-research](./skills/engineering/lain-research/SKILL.md)**: Investigate a question against high-trust primary sources and capture the findings as a cited Markdown file in the repo, run as a background agent.
 - **[lain-tdd](./skills/engineering/lain-tdd/SKILL.md)**: Test-driven development with observable red and green states, plus verified refactoring when the slice reveals a concrete structural change.
-- **[lain-domain-modeling](./skills/engineering/lain-domain-modeling/SKILL.md)**: Actively build and sharpen a project's domain model: challenge terms against the glossary, stress-test with edge-case scenarios, and update `CONTEXT.md` and ADRs inline.
+- **[lain-domain-modeling](./skills/engineering/lain-domain-modeling/SKILL.md)**: Actively build and sharpen a project's domain model: challenge terms, stress-test scenarios, and update its configured glossary and ADRs without forced naming migration.
 - **[lain-codebase-design](./skills/engineering/lain-codebase-design/SKILL.md)**: Shared discipline and vocabulary for designing deep modules: a lot of behaviour behind a small interface, placed at a clean seam, testable through that interface.
 - **[lain-code-review](./skills/engineering/lain-code-review/SKILL.md)**: Three-axis review of committed or working-tree changes since a fixed point: **Standards**, **Spec**, and **Design**, covered by one independent reviewer, with coordinator-verified findings and explicit incomplete-review reporting.
 - **[lain-pr](./skills/engineering/lain-pr/SKILL.md)**: Write a source-linked PR description with actual evidence, rollback limits and remaining obligations; publishing requires separate authority.
-- **[lain-resolving-merge-conflicts](./skills/engineering/lain-resolving-merge-conflicts/SKILL.md)**: Work through an in-progress git merge or rebase conflict hunk by hunk, resolving by intent traced to each side's primary source, then finish the operation (never `--abort`).
+- **[lain-resolving-merge-conflicts](./skills/engineering/lain-resolving-merge-conflicts/SKILL.md)**: Resolve an in-progress merge or rebase by source intent, preserving unrelated work and respecting a later instruction to stop or abort.
 - **[lain-wizard](./skills/engineering/lain-wizard/SKILL.md)**: Generate an interactive bash wizard that walks a human through steps only they can perform: provisioning infrastructure, setting up credentials or CI secrets, walking an unfamiliar third-party dashboard, or running a one-off migration or cutover.
 
 ### Productivity
@@ -246,7 +252,7 @@ General workflow tools, not code-specific.
 - **[lain-handoff](./skills/productivity/lain-handoff/SKILL.md)**: Compact the current conversation into a handoff document so another agent can continue the work.
 - **[lain-teach](./skills/productivity/lain-teach/SKILL.md)**: Teach the user a new skill or concept over multiple sessions, using the current directory as a stateful teaching workspace.
 - **[lain-to-questionnaire](./skills/productivity/lain-to-questionnaire/SKILL.md)**: Turn a decision you can't answer alone into a Markdown questionnaire for the one person who can, filled in async, or together over a meeting. It grills you about the send (who it's for, what you need back), not the underlying decision on their behalf.
-- **[lain-wait-what](./skills/productivity/lain-wait-what/SKILL.md)**: Fire this the moment a message doesn't land. The agent re-pitches it with the context you're missing, in plain English, using your `CONTEXT.md` vocabulary.
+- **[lain-wait-what](./skills/productivity/lain-wait-what/SKILL.md)**: Fire this the moment a message doesn't land. The agent re-pitches it with the context you're missing, using plain language and the existing authoritative domain glossary.
 
 **Model-invoked**
 

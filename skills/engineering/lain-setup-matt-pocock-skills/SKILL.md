@@ -10,7 +10,7 @@ Scaffold the per-repo configuration that the engineering skills assume:
 
 - **Issue tracker**: where issues live, with GitHub, GitLab, local Markdown, and custom trackers supported.
 - **Triage labels**: the strings used for the five canonical triage roles.
-- **Domain docs**: where `CONTEXT.md` and ADRs live and how consumers find them.
+- **Domain docs**: the authoritative glossary, context map and ADR locations, preserving existing filenames.
 - **Engineering policy, optional**: existing technical-source locations, decision authority and verification commands, not a blanket architecture questionnaire.
 
 This is a prompt-driven skill, not a deterministic script. Explore, present what you found, confirm with the user, then write.
@@ -23,7 +23,7 @@ Read the existing repository before proposing configuration:
 
 - `git remote -v` and `.git/config` for the real repository and tracker.
 - `AGENTS.md`, `CLAUDE.md`, and any existing `## Agent skills` block.
-- `CONTEXT.md`, `CONTEXT-MAP.md`, and relevant ADR locations.
+- Configured glossary and map paths in `docs/agents/domain.md`; otherwise `GLOSSARY.md` / `GLOSSARY-MAP.md` or legacy `CONTEXT.md` / `CONTEXT-MAP.md`, and relevant ADR locations. Follow the selected map to relevant contexts. If both naming families exist without explicit authority, resolve the source choice rather than silently selecting one. An unreadable configured source is a coverage gap, not absence.
 - `docs/agents/` and `.scratch/` for existing tracker or domain conventions.
 - Whether `lain-triage` is installed, which determines whether label configuration is needed.
 - Evidence of several domain contexts, such as an existing context map or independently named domains. Workspace/package layout can be a clue, not proof that each package is a bounded context.
@@ -39,7 +39,7 @@ Record the choice in `docs/agents/issue-tracker.md`. The GitHub and GitLab templ
 
 **Section B: Triage label vocabulary.** Skip when `lain-triage` is not installed. Otherwise offer the existing defaults: `needs-triage`, `needs-info`, `ready-for-agent`, `ready-for-human`, `wontfix`. Collect overrides only when the tracker uses other names. This configures a mapping, not permission to create or alter remote labels.
 
-**Section C: Domain docs.** Reuse an existing layout. Default to a single `CONTEXT.md` and `docs/adr/` for a new simple project. When the repository has real multiple domain contexts, confirm the context map and per-context locations; do not infer domain boundaries solely from package count.
+**Section C: Domain docs.** Reuse an existing layout and record its actual authoritative glossary and map paths. Default to a single `GLOSSARY.md` and `docs/adr/` for a new simple project, created lazily when there is a resolved term or qualifying decision to record. When the repository has real multiple domain contexts, confirm the context map and per-context locations; do not infer domain boundaries solely from package count. Do not rename existing domain files or create a second glossary as a setup side effect. Legacy `CONTEXT.md` layouts need no migration or setup rerun just to remain usable.
 
 **Section D: Engineering policy, optional.** When existing policy or the current task needs a durable pointer, propose only known technical-source locations, permitted agent choices, responsible human authority and actual verification commands using [engineering.md](engineering.md). Ask only for an unresolved authorization or constraint relevant to this scope. Never infer approval for external costs, private-data transfer, production changes or irreversible choices. Skip this section when there is nothing useful to record; technical design does not require a setup rerun.
 

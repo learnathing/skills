@@ -13,7 +13,7 @@ metadata:
 
 Organize the evidence already available for a change. This is a format reference, not authority to push, open or merge a PR, close an issue, change files, or deploy. Take those actions only when separately authorized.
 
-Read the originating request or spec and the intended diff. Use the configured domain glossary. Without configuration, use the existing `CONTEXT.md` or `GLOSSARY.md`; follow its map for the affected context. If both conventions exist without an authoritative choice, report the ambiguity rather than silently choosing or creating a second glossary.
+Read the originating request or spec and the intended diff. Use authoritative glossary/map paths from `docs/agents/domain.md` when configured. Otherwise accept `GLOSSARY.md` / `GLOSSARY-MAP.md` or legacy `CONTEXT.md` / `CONTEXT-MAP.md`, following the selected map for the affected context. If both naming families exist without explicit authority, report the ambiguity rather than silently choosing or creating a second glossary. An unreadable configured source is a coverage gap, not absence.
 
 ## Format
 

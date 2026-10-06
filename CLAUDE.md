@@ -20,7 +20,9 @@ Every `SKILL.md` is either user-invoked (`disable-model-invocation: true` plus `
 
 [`lain-ask-matt`](./skills/engineering/lain-ask-matt/SKILL.md) is the router that maps every user-reachable skill and how they relate. The same trigger that re-syncs a docs page applies to it: whenever you add, rename, remove, or change how a user-reachable skill fits the flows, re-read `lain-ask-matt`'s `SKILL.md` and update it so the map stays accurate: a new skill it never mentions, or a stale one it still routes to, is a router that lies.
 
-To (re)link every skill into the local harness skill directories (`~/.claude/skills`, `~/.agents/skills`), run `scripts/link-skills.sh`. Each entry is a symlink into this repo, so a `git pull` keeps installed skills current; re-run the script after adding, removing, or renaming a skill.
+To link promoted skills into `~/.claude/skills` and `~/.agents/skills`, run `bash scripts/link-skills.sh` with Node.js 22. Experimental and miscellaneous skills require explicit opt-ins; existing links are removed only with explicit checkout-owned pruning. Read [.agents/local-linking.md](./.agents/local-linking.md) for preview, scope, ownership and recovery rules. Never replace a real user directory or a foreign link to refresh an installation.
+
+Domain readers use explicit project configuration first, then either GLOSSARY or legacy CONTEXT naming. Follow the selected context map; do not silently choose between conflicting naming families or treat an unreadable configured source as absent. Existing projects need no forced rename. See [domain modeling](./skills/engineering/lain-domain-modeling/SKILL.md) for discovery and authorized migration, and [.agents/upstream-sync.md](./.agents/upstream-sync.md) for adopted and intentionally skipped upstream changes.
 
 No em-dashes anywhere in this repo's prose (`SKILL.md` files, docs, `README.md`, `CHANGELOG.md`, ADRs, changesets, code comments). Where a sentence reaches for one, rewrite it instead with a comma, colon, period, parentheses, or a conjunction, whichever the sentence actually wants; never do a blind character substitution.
 

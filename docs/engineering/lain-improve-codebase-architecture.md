@@ -1,101 +1,54 @@
 ## What it does
 
-`lain-improve-codebase-architecture` surveys a codebase for **deepening opportunities**: places where a shallow module (an interface nearly as complex as the thing it hides) could become a deep one. It writes them up as a self-contained HTML report, and then [grills](https://www.aihero.dev/ai-coding-dictionary/grilling) you through whichever one you pick.
+`lain-improve-codebase-architecture` surveys a codebase for **deepening opportunities**: places where a shallow module could hide more complexity behind a useful small interface. It produces an HTML report, then explores the candidate you choose.
 
-It never changes the code. The whole run produces one HTML file in your OS temp directory and a conversation; the refactor itself happens later, in a separate [session](https://www.aihero.dev/ai-coding-dictionary/session), through the normal build flow. That is what makes it a survey rather than a refactoring tool, and it is why the skill is worth running on a codebase you are not ready to touch yet.
-
-Two filters keep the report from becoming generic cleanup advice. Every candidate has to pass the **deletion test**: would removing this module concentrate complexity behind a smaller interface, or just spread it across callers? Only the "concentrates" cases earn a card. And unless you point it at a specific area, it reads recent commit history first and biases the scan toward paths that are actively changing, on the grounds that a deepening in code nobody touches is a refactor you will never cash in.
+This is a survey, not a refactoring implementation. The report goes outside the repository. During an authorized follow-up discussion, domain terms and qualifying ADRs can be recorded; production code changes belong to separately authorized implementation work.
 
 ## When to reach for it
 
-You invoke this by typing `/lain-improve-codebase-architecture`; the [agent](https://www.aihero.dev/ai-coding-dictionary/agent) will not reach for it on its own.
+You invoke `/lain-improve-codebase-architecture`; the agent does not start it automatically. Name a module, subsystem or source of friction when you have one. Otherwise the skill uses recent change history to focus on areas where improved structure could help real work.
 
-It sits outside the build loop: it is not a step in the main loop but something you run periodically to queue up more work to improve the codebase. The four situations it gets used in:
-
-| Situation | How it is used |
+| Situation | Direction |
 | --- | --- |
-| Routine upkeep | Run it every few days, or whenever a spare moment appears, to stop structure rotting between features. |
-| Before a big build | Point it at the [spec](https://www.aihero.dev/ai-coding-dictionary/spec): "how can we make this change easy?" This is the most effective prompt for it. |
-| Brownfield audit | Run it on a large, unstructured or [vibe-coded](https://www.aihero.dev/ai-coding-dictionary/vibe-coding) repo to find out what shape it is actually in. |
-| Legacy test work | Use it to find the missing seams first, before writing tests against untestable code. |
+| Find candidate improvements in an existing codebase | This survey |
+| Design the interface of a selected module | [lain-codebase-design](https://github.com/learnathing/skills/blob/main/docs/engineering/lain-codebase-design.md) |
+| Diagnose one reported failure | [lain-diagnosing-bugs](https://github.com/learnathing/skills/blob/main/docs/engineering/lain-diagnosing-bugs.md) |
+| Resolve a large map of shared decisions | [lain-wayfinder](https://github.com/learnathing/skills/blob/main/docs/engineering/lain-wayfinder.md) |
 
-Where it is confusable with siblings:
+## Sources and report
 
-- For designing one module you have already chosen, use [lain-codebase-design](https://aihero.dev/skills-codebase-design): that is the bench, this is the survey that finds what to put on it.
-- For a whole effort too big to hold in one session, use [lain-wayfinder](https://aihero.dev/skills-wayfinder).
-- For "this specific thing is broken," use [lain-diagnosing-bugs](https://aihero.dev/skills-diagnosing-bugs). It hands back here when the real finding is that there is no good seam to lock the bug down.
+Use glossary/map paths from `docs/agents/domain.md` when configured. Otherwise accept `GLOSSARY.md` / `GLOSSARY-MAP.md` or legacy `CONTEXT.md` / `CONTEXT-MAP.md`, following the selected map to relevant contexts. Both naming families without explicit authority require a source choice. An unreadable configured source remains a gap; it does not authorize creating a replacement glossary. Existing names are preserved, and domain modeling owns lazy creation when new terms actually need recording.
 
-## Prerequisites
+The scan looks for concrete friction: scattered knowledge, shallow interfaces, leaking seams and behavior that cannot be tested at a useful boundary. Candidates use the domain's vocabulary and the shared module/interface/depth/seam terminology. ADR conflicts are called out when the observed problem is strong enough to justify reopening a decision.
 
-None to run it. It reads `CONTEXT.md` and any ADRs in `docs/adr/` if they exist, and speaks in your domain's own nouns when they do: a candidate reads as "deepen the Order intake module," not "refactor the FooBarHandler."
-
-It writes in two places. The report goes to `<tmpdir>/architecture-review-<timestamp>.html`, outside the repo. During the grilling loop it will add or sharpen terms in `CONTEXT.md`, creating that file if it does not exist, and offer to record a rejected candidate as an ADR so a future run does not re-suggest it.
-
-## Depth, and the report that hunts for it
-
-The skill turns on one idea: **depth**. A deep module puts a lot of behaviour behind a small, stable interface. A shallow one leaks its implementation through an interface nearly as wide as the code beneath it. The report hunts for shallowness in three forms: pure functions extracted only for testability while the real bugs live in how they are called (no **locality**), modules leaking across their **seams**, and a concept you cannot understand without opening five files. It closes with a proposal for the deepening that fixes it.
-
-Each candidate is a card: the files involved, the friction, a plain-English solution, the benefit stated in terms of **locality** and **leverage**, a before/after diagram, and a strength badge.
-
-| Badge | What it means for you |
-| --- | --- |
-| `Strong` | The deletion test passes clearly and the friction is real. Take these seriously. |
-| `Worth exploring` | Plausible deepening, but the payoff depends on where the code is going next. |
-| `Speculative` | Surfaced for completeness. Most of these are safe to ignore. |
-
-The report ends with a **Top recommendation** (the one it would tackle first), and then the skill stops and asks which candidate you want to explore. Nothing has been decided at that point, and no code has moved.
-
-## What happens after you pick one
-
-Picking a candidate starts a [lain-grilling](https://aihero.dev/skills-grilling) session over it: constraints, what sits behind the seam, which tests survive, what the deepened interface should look like. The output of that session is a decision, not a diff. From there the normal flow applies: take the decision into [lain-to-spec](https://aihero.dev/skills-to-spec), then [lain-to-tickets](https://aihero.dev/skills-to-tickets), then [lain-implement](https://aihero.dev/skills-implement).
+Each report card identifies files, the problem, a proposed direction, benefits, a before/after view and recommendation strength. A top recommendation explains where to start. The report lives at `<tmpdir>/architecture-review-<timestamp>.html`; the skill reports that path and asks which candidate to explore before proposing detailed interfaces.
 
 ## Common questions
 
-**It grilled me for an hour about one idea instead of showing me options. Can I turn that off?**
+**Does this automatically refactor the selected module?**
 
-Yes: say so when you invoke it ("don't grill me, just show the report"). This is the loudest complaint the skill has. One user put it bluntly: they liked it as "a convenient way to get a thorough analysis of improvements," and after the grilling loop was added found it "borderline unusable," reporting sessions where it proposed a single solution and then asked "10's or 100's of questions." The design intent is that the report comes first and the grill only starts on a candidate you chose, but weaker [models](https://www.aihero.dev/ai-coding-dictionary/model) skip straight to interviewing you about the first idea they had. Reports in that thread vary sharply by model, and it is an open issue: the skill does not yet have a documented no-grill mode.
+No. Selecting a candidate starts exploration of constraints and interface choices. The resulting decisions enter the appropriate authorized design or implementation workflow.
 
-**The report opened as unstyled raw HTML with no diagrams. What happened?**
+**Will it rename an old CONTEXT.md?**
 
-The report loads Tailwind and Mermaid from CDNs, so it needs network access when you open it, and it breaks silently when something blocks those scripts. The filed case was a security hook demanding SRI hashes: the agent added them, the CDN served different bytes to the browser than to the `curl` used to compute the hash, and the browser blocked the script. Offline and locked-down environments hit the same wall. The agent cannot see this, because it never renders the page. The workaround is to ask for inline CSS and hand-built SVG diagrams instead of the CDN scaffold. This is an open issue and a real rough edge.
+No. It reads and updates the selected authoritative source through domain modeling. New naming support does not authorize migration or a second writable glossary.
 
-**It gave me twelve candidates. Do I work through them in the same session or start a new one?**
+**Does the report work offline?**
 
-One candidate per session. Working through several in one conversation fills the [context window](https://www.aihero.dev/ai-coding-dictionary/context-window) with the report, the grilling, the domain-model edits and the code changes all at once. The report only lives in a temp file, so carry the candidate itself rather than the file: pick one, grill it, take the decision into `/lain-to-spec`, and turn the rest into [tickets](https://www.aihero.dev/ai-coding-dictionary/ticket) you can pick up independently later. Put the chosen improvement into a spec rather than going straight to implementation. This is a recurring question with no documented workflow in the skill itself.
+The existing scaffold uses Tailwind and Mermaid from CDNs. An offline or locked-down environment needs a suitable self-contained alternative; a written HTML file alone does not prove that its scripts rendered successfully.
 
-**How should I prompt it?**
+**What happens when I reject a candidate?**
 
-With the next thing you are building in mind. Where a big build is coming up, point it at the spec and ask "how can we make this change easy?" An unprompted run scans for hot spots on its own, which is fine for routine upkeep, but naming a direction is what makes the report actionable.
-
-**Does it work on a large legacy codebase?**
-
-Partly. It is strong on big existing codebases lacking consistent structure, and it is the recommended upkeep mechanism after any one-time structural setup. The honest counterweight: users with genuinely out-of-control projects report it "helped a little but still doesn't seem to cut it," and one developer with an eight-year legacy codebase reported the model going in circles where the same skill produces a clean graph on a tidy repo. There is no dedicated `/refactor` skill for that case yet. If the codebase has no shared vocabulary at all, [lain-grill-with-docs](https://aihero.dev/skills-grill-with-docs) to establish one first tends to make this skill's output much better.
-
-**How is this different from `/lain-codebase-design`?**
-
-`/lain-codebase-design` is a reference, not a session driver. It supplies the vocabulary (module, interface, depth, seam, adapter, leverage, locality), and this skill borrows it. Pointing a fresh agent at `/lain-codebase-design` as the thing to "do" is a known failure: with no process of its own to follow, the agent invents one, re-explores code and runs for a very long time before asking you anything. Drive with this skill; consume that one.
-
-**Will it ever tell me the codebase is fine?**
-
-Rarely, and you should know that going in. The skill is built to output findings, so the framing pushes it toward producing candidates rather than concluding that nothing is wrong. The strength badges are the defence: a report where everything is `Speculative` is the skill telling you it found nothing, in the only way it knows how.
-
-**Does it work in Codex or another harness?**
-
-Partially. The exploration step names Claude Code's `Agent` tool with `subagent_type=Explore` directly, so a [harness](https://www.aihero.dev/ai-coding-dictionary/harness) without that tool may skip the parallel exploration rather than substitute its own. The skill still runs; the scan is just less thorough. A harness-neutral rewrite has been proposed but is not merged.
-
-**How do I actually implement deep modules in TypeScript?**
-
-There is no good answer shipped with the skill. The recurring request is for a `TYPESCRIPT.md` giving concrete file and module layouts for the principles, and it does not exist. The skill will tell you where a deepening belongs and what should sit behind the seam; translating that into a package or directory structure is currently on you.
+A durable, non-obvious reason can justify an ADR so a later survey does not repeat the same suggestion. Temporary priorities and self-evident reasons do not need permanent decision records.
 
 ## It's working if
 
-- The candidates name your domain's concepts, not invented class names: "the Order intake module," not "the FooBarHandler."
-- The candidates cluster in files you have edited recently, not in dormant corners of the repo.
-- No code changed during the run. The only new file is the HTML report in your temp directory.
-- It stops after the report and asks which candidate you want, rather than continuing on its own.
-- Each card explains the payoff as locality or leverage, and says which tests get simpler, not just "this is cleaner."
-- Rejecting a candidate for a durable reason gets you an offer to record an ADR, so the next run does not re-suggest it.
+- Findings identify concrete friction in relevant code rather than generic cleanup wishes.
+- Candidate names follow the selected domain glossary.
+- Benefits explain locality, leverage or verification improvements.
+- The report is followed by a choice, not an unrequested implementation.
+- Glossary or ADR changes are distinguished from the external HTML artifact and production code work.
 
 ## Where it fits
 
-`lain-improve-codebase-architecture` is **periodic maintenance**: run it every few days, outside any chain, to queue up work rather than to do it. Its neighbours are [lain-codebase-design](https://aihero.dev/skills-codebase-design), which owns the depth-and-seam vocabulary every candidate is written in, [lain-grilling](https://aihero.dev/skills-grilling), which walks the decision tree once you have chosen a candidate, and [lain-domain-modeling](https://aihero.dev/skills-domain-modeling), which keeps `CONTEXT.md` and the ADRs current as the decision settles. What it produces is an idea, which re-enters the main build flow at [lain-grill-with-docs](https://aihero.dev/skills-grill-with-docs) or [lain-to-spec](https://aihero.dev/skills-to-spec). For which skill fits a situation, [lain-ask-matt](https://aihero.dev/skills-ask-matt) is the router over the whole set.
+This is optional codebase maintenance. [lain-codebase-design](https://github.com/learnathing/skills/blob/main/docs/engineering/lain-codebase-design.md) supplies its structural vocabulary, while [lain-domain-modeling](https://github.com/learnathing/skills/blob/main/docs/engineering/lain-domain-modeling.md) owns domain updates. [lain-ask-matt](https://github.com/learnathing/skills/blob/main/docs/engineering/lain-ask-matt.md) selects a route; a small settled change does not need a survey first.
