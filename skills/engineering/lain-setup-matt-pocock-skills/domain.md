@@ -1,51 +1,25 @@
 # Domain Docs
 
-How the engineering skills should consume this repo's domain documentation when exploring the codebase.
+How engineering skills consume this repository's domain documentation. During setup, replace this explanation with the confirmed concrete glossary/map paths and ADR locations where those are already known; preserve existing project-specific conventions. Do not write unresolved placeholder paths as configuration.
 
 ## Before exploring, read these
 
-- **`CONTEXT.md`** at the repo root, or
-- **`CONTEXT-MAP.md`** at the repo root if it exists: it points at one `CONTEXT.md` per context. Read each one relevant to the topic.
-- **`docs/adr/`**: read ADRs that touch the area you're about to work in. In multi-context repos, also check `src/<context>/docs/adr/` for context-scoped decisions.
+Use explicitly configured glossary and map paths first. If no source paths are configured, discover `GLOSSARY.md` / `GLOSSARY-MAP.md` or legacy `CONTEXT.md` / `CONTEXT-MAP.md` at the repository root. Follow the selected map to the glossary of each relevant domain context; its targets may have custom names.
 
-If any of these files don't exist, **proceed silently**. Don't flag their absence; don't suggest creating them upfront. The `/lain-domain-modeling` skill (reached via `/lain-grill-with-docs` and `/lain-improve-codebase-architecture`) creates them lazily when terms or decisions actually get resolved.
+When both naming families exist without an explicit authoritative selection, resolve which sources govern the affected domain rather than silently choosing or creating another glossary. A configured or map-referenced source that cannot be read is a coverage gap, not an absent optional file. Recover it or report the affected limitation. Merely reading these files does not require active domain modeling.
 
-## File structure
+Read relevant ADRs under the configured decision locations, commonly `docs/adr/` for system-wide decisions and per-context `docs/adr/` for scoped decisions.
 
-Single-context repo (most repos):
-
-```
-/
-├── CONTEXT.md
-├── docs/adr/
-│   ├── 0001-event-sourced-orders.md
-│   └── 0002-postgres-for-write-model.md
-└── src/
-```
-
-Multi-context repo (presence of `CONTEXT-MAP.md` at the root):
-
-```
-/
-├── CONTEXT-MAP.md
-├── docs/adr/                          ← system-wide decisions
-└── src/
-    ├── ordering/
-    │   ├── CONTEXT.md
-    │   └── docs/adr/                  ← context-specific decisions
-    └── billing/
-        ├── CONTEXT.md
-        └── docs/adr/
-```
+When no optional glossary, map or ADR exists and none is identified as a required source, proceed without creating paperwork. `lain-domain-modeling` creates files lazily when terms or qualifying decisions are resolved. Preserve the existing naming family; a wholly new simple project can default to `GLOSSARY.md`. Do not rename or duplicate existing sources without a separate migration request.
 
 ## Use the glossary's vocabulary
 
-When your output names a domain concept (in an issue title, a refactor proposal, a hypothesis, a test name), use the term as defined in `CONTEXT.md`. Don't drift to synonyms the glossary explicitly avoids.
+When output names a domain concept, use the term in the authoritative glossary. Do not drift to synonyms it explicitly avoids. A missing term is either invented language to reconsider or a genuine modeling gap to surface, not permission to manufacture a domain decision.
 
-If the concept you need isn't in the glossary yet, that's a signal: either you're inventing language the project doesn't use (reconsider) or there's a real gap (note it for `/lain-domain-modeling`).
+The glossary defines domain concepts only. It is not a spec, architecture notebook or implementation log. Multi-context layouts preserve scoped definitions instead of merging them merely because filenames differ.
 
 ## Flag ADR conflicts
 
-If your output contradicts an existing ADR, surface it explicitly rather than silently overriding:
+If an output contradicts an existing ADR, surface the specific conflict instead of silently overriding it:
 
-> _Contradicts ADR-0007 (event-sourced orders), but worth reopening because…_
+> Contradicts ADR-0007 (event-sourced orders), but worth reopening because...
