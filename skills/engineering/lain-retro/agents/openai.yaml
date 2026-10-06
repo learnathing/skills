@@ -1,0 +1,5 @@
+interface:
+  display_name: "lain-retro"
+  short_description: "Find evidence-backed improvements to the agent environment"
+policy:
+  allow_implicit_invocation: false

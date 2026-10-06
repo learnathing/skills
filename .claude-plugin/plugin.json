@@ -36,6 +36,8 @@
     "./skills/engineering/lain-codebase-design",
     "./skills/engineering/lain-technical-design",
     "./skills/engineering/lain-code-review",
+    "./skills/engineering/lain-pr",
+    "./skills/engineering/lain-retro",
     "./skills/engineering/lain-resolving-merge-conflicts",
     "./skills/engineering/lain-wizard",
     "./skills/productivity/lain-grill-me",
