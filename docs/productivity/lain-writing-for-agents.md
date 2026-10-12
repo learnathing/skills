@@ -1,70 +1,61 @@
 ## What it does
 
-`lain-writing-for-agents` has two audiences: runtime agent instructions and artifacts people must review or use. Artifact mode puts understandable behavior, conclusions and exceptions before tracking machinery. It applies during the producing skill's normal draft, not through an extra document or approval stage.
+`lain-writing-for-agents` separates runtime instructions from artifacts people must review. Instruction mode removes explanation the agent does not need. Artifact mode keeps the behavior, conclusions, exceptions and evidence a developer needs to judge the work. It does not create a second human-only contract or another approval stage.
 
-Instruction mode removes explanations the agent does not need. Artifact mode keeps explanations that a person needs, even when the model already knows them. It borrows clear actors, conditions, results and consistent terminology from STE without claiming ASD-STE100 conformance or forcing English on other languages. Exact identifiers, permissions, source meanings and evidence states remain unchanged.
-
-It was called `writing-great-skills` until v1.1. The rename tracks what it always was underneath: almost none of it is skill-specific. The skill-only mechanics (frontmatter, the model- versus user-invoked choice, router skills) are disclosed to a linked `SKILL-MECHANICS.md` you read only when the document in front of you is a skill. The instruction-compression advice below applies to runtime instructions, not to deleting substantive explanations from shared artifacts. Producers invoke artifact mode automatically while writing; developers need not request a second simplified copy.
+Artifact mode now also maintains the current reading path of long-lived work: what changed, what is actually verified, what remains unresolved and where the authoritative source lives. It borrows clear actors, conditions and consistent terminology from STE without claiming ASD-STE100 conformance or forcing English on another working language.
 
 ## When to reach for it
 
-Type `/lain-writing-for-agents`, or the agent reaches for it on its own when you're creating or editing a skill, or modifying `AGENTS.md` or `CLAUDE.md`.
+Type `/lain-writing-for-agents`, or the agent reaches for it when writing or editing skills and repository instructions. Artifact producers use the shared artifact writing reference while they draft; developers do not need to request a second simplified copy.
 
-Reach for it by hand for everything else an agent reads: your docs, specs and [tickets](https://www.aihero.dev/ai-coding-dictionary/ticket), system and [AFK](https://www.aihero.dev/ai-coding-dictionary/afk) prompts. The test is one question: does an agent read this? And it does not matter how the document gets in front of it, whether a pointer names it, a human pastes it, or it simply sits in the repo. For working out what a codebase actually contains in the first place, use [lain-grill-with-docs](https://aihero.dev/skills-grill-with-docs); this reference governs how a document reads, not what it knows.
+| Work | Applicable guidance |
+| --- | --- |
+| Runtime instructions, AGENTS.md or CLAUDE.md | Context pointers, information hierarchy, completion criteria and pruning |
+| Spec, ticket, research, review or decision report | Concrete behavior and evidence before trace machinery |
+| Ongoing ticket or design record | Current state before history; source updates within existing authority |
+| Transitions, dependencies or measured comparisons | Optional question-driven table or diagram |
 
-## The two loads
+## Current truth without losing history
 
-The idea the whole reference turns on is a pair of budgets every document and pointer spends:
+A readiness label cannot tell you whether work is implemented, integrated, reviewed or releasable. A local implementation ticket that has started carries a compact Current state record with execution, verification, the actual checked source/revision and remaining duties. The configured tracker still owns its lifecycle; a second status table must not contradict it.
 
-- **Context load**: the cost of always-loaded material on the agent's window: an `AGENTS.md` line, a skill description, anything sitting in context every [turn](https://www.aihero.dev/ai-coding-dictionary/turn) whether or not it fires.
-- **Cognitive load**: the cost on you, namely which documents exist and when to reach for each. You are the index. Not a cost to minimise: it is the price of human agency.
+New blockers and accepted decisions update their current authoritative section before a history entry is appended. An unaccepted requirement difference stays visible without silently overwriting the accepted contract. A summary cannot turn an untested alternative into a failed experiment, or an agent-operated GUI check into human acceptance.
 
-Once you think in these two loads, most authoring decisions (split or don't, inline or disclose, point or push) become the same trade made in different places.
+Descriptive source links point to real files and anchors. A multi-file effort can reuse a visible project index to reach hidden `.scratch` documents; the index links to current sources instead of copying their status. Handoffs distinguish supplied sources, external links and unavailable dependencies.
 
-## The levers
+## Visuals only when they answer a question
 
-- **[Context pointers](https://www.aihero.dev/ai-coding-dictionary/context-pointer)**: the reference held in context that names out-of-context material and encodes when to reach it. A skill description and an `AGENTS.md` line naming a doc are the same object; the pointer's *wording*, not its target, decides how reliably the agent reaches through it.
-- **Information hierarchy**: the ladder from in-file step, to in-file reference, to disclosed reference behind a pointer. **[Progressive disclosure](https://www.aihero.dev/ai-coding-dictionary/progressive-disclosure)** is the move down that ladder so the top stays legible.
-- **Completion criteria**: the clarity and demand of each step's done-condition, and the **legwork** that demand drives; the defence against **premature completion**.
-- **Leading words**: a compact concept already in the model's pretraining (*tight*, *red*, *tracer bullet*) that the agent thinks with while running the document. It anchors twice: execution in the body, invocation in the pointer.
-- **Pruning**: single source of truth, relevance, and the no-op test applied sentence by sentence, against **duplication**, **sediment** and **sprawl**.
+A decision table suits conditional behavior. A state diagram can explain navigation changes; a sequence diagram can explain ordering between actors; a small dependency graph can explain why a ticket waits. A short ADR often needs only a paragraph. Verification states are not a progress percentage, and unmeasured options are not zero-valued bars.
+
+Keep the source revision and text equivalent beside a diagram. Follow the project's existing rendering format and source/image convention. Do not introduce a website, CDN or external upload just to draw a picture. If the actual renderer was unavailable, disclose that rather than claiming visual verification.
 
 ## Common questions
 
-**Where did `/writing-great-skills` go?**
-It is this skill, renamed in v1.1. Practitioners were already pointing it at `AGENTS.md`, docs, specs, tickets and runtime prompts long before the name caught up; structure, leading words and pruning turn out to be the craft of any text an agent reads. There is no alias. Reinstall under the new name.
+**Does every artifact need a summary, state table and diagram?**
 
-**"Writing for agents": so the agent does the writing?**
-The other way round. You are the author; the agent is the reader. That is the whole difficulty of the genre: you are writing for a reader who has already read everything, so explanation is waste and precision is the entire job.
+No. Use only what the reader's question needs. A new untouched ticket needs no invented execution record; a one-paragraph decision needs no executive summary. Maintenance happens inside already-authorized writing, not a mandatory extra phase.
 
-**Can't I just ask the agent to write it for me?**
-You can, and it will produce something verbose. Left alone the model explains what it already knows, and it will not apply the no-op test or reach for a leading word on its own. Use the reference on the draft: a review pass is where most of its value lands.
+**Can the tools prove the document is readable?**
 
-**I asked an agent to trim a document and it cut the functionality.**
-Agents told to "streamline" optimise for length, because length is the thing they can see. The no-op test is behavioural, not aesthetic: delete the line and ask whether the agent's behaviour changed. When a sentence fails, delete the whole sentence rather than trim words from it, and settle a disagreement about it by running the document, not by arguing.
+No. The local-link helper checks a declared subset of Markdown destinations and anchors without fetching external links. Unsupported syntax or renderer-specific anchors remain unverified. Ticket and constraint checks validate structure and identity, not authority, source meaning, actual completion or reader understanding.
 
-**How do I know when it's done?**
-When it works, and you can no longer find duplication, sediment or no-ops. There is no automated eval here; the check is a manual run plus the failure-mode vocabulary as a diagnostic. When a document misbehaves, that vocabulary is also the repair kit: name the failure mode first, then fix that.
+**Do I need to translate machine fields into the reader's language?**
 
-**Should this live in `CLAUDE.md` or somewhere else?**
-Ask which load you want to pay. `CLAUDE.md` loads into every [session](https://www.aihero.dev/ai-coding-dictionary/session) unconditionally; material behind a pointer costs only the pointer's own line until it fires. Anything that applies in one context out of ten is paying context load the nine other times.
+No. Keep IDs, parser keys, code identifiers, quantities and evidence-state tokens exact. Write the explanation in the reader's language, keeping conditions and exceptions beside their results.
 
-**Do I need to rewrite my documents for each new model?**
-Mostly no, and over-fitting to one model is its own trap. Updating for a new model is usually another no-op pass rather than a rewrite.
+**Where did instruction pruning go?**
 
-**My skill only works on the exact task I built it from.**
-The common route (do the work once, then have the agent write it up as a skill) over-indexes on that one run, and the exemplars come out too specific. Keep the run as evidence, then abstract deliberately: strip what belonged to that repo and those files, and write for the class of task.
-
-**English isn't my first language. Do I lose the leading-word advantage?**
-No. Finding the word that packs the most behaviour into the fewest [tokens](https://www.aihero.dev/ai-coding-dictionary/token) is work the reference does for you. It is one of the things it is for.
+It remains in instruction mode: context pointers disclose only relevant references, completion criteria define observable outcomes, and each instruction must earn its context cost. Those techniques are not permission to delete an explanation a human needs or a verified copy a delivery contract requires.
 
 ## It's working if
 
-- The document gets shorter as it gets better, and you are surprised how little is left.
-- You can point at a leading word and watch it doing work in more than one place.
-- Nothing is stated twice, in any form. Duplication is the most reliable sign a document was never tested.
-- Reference that only one branch needs sits behind a pointer rather than in the main file.
+- A developer can recover behavior and material exceptions without decoding a manifest first.
+- Current limitations are visible without searching a long Comments history.
+- Ready, implemented, independently reviewed and releasable are not interchangeable claims.
+- A source ID leads to the relevant definition and revision.
+- A diagram preserves the same failure branches and remains understandable through nearby text.
+- Comprehension claims come from actual reader tasks, not a checklist or word count.
 
 ## Where it fits
 
-This is a reach-for-it-anytime standalone reference. It has no neighbour in the chain because it sits underneath the whole set rather than beside any one skill: every skill here was written against it, and the documents the other skills leave behind (a `CONTEXT.md` and its ADRs, a spec, a ticket) are exactly the text it governs once an agent has to read them. When you're unsure which skill or flow fits a task, [lain-ask-matt](https://aihero.dev/skills-ask-matt) routes you over the whole set.
+This is a model-invoked reference beneath artifact producers, not a new stage between planning and implementation. [To-spec](https://github.com/learnathing/skills/blob/main/docs/engineering/lain-to-spec.md) uses it for behavior-first contracts; [to-tickets](https://github.com/learnathing/skills/blob/main/docs/engineering/lain-to-tickets.md) uses it for readable delivery and tracking. [Ask Matt](https://github.com/learnathing/skills/blob/main/docs/engineering/lain-ask-matt.md) routes the set.

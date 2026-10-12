@@ -2,6 +2,8 @@
 
 `lain-to-tickets` turns ready plans, specs or settled conversations into tracer-bullet vertical implementation slices. Each ticket has a source contract, blocking edges and required evidence. It publishes only the exact validated breakdown approved by the user.
 
+A published readiness snapshot is not the ticket's permanent execution state. The same artifact can retain its contract while showing what has actually been implemented, checked and left open.
+
 ## When to reach for it
 
 You invoke `/lain-to-tickets`; the agent does not invoke it automatically. Use it when a ready delivery needs several implementation sessions. A small settled change can use [implement](https://aihero.dev/skills-implement) directly. Unresolved shared design or prerequisite evidence belongs in design or a decision map, not a ready implementation ticket.
@@ -16,40 +18,47 @@ You invoke `/lain-to-tickets`; the agent does not invoke it automatically. Use i
 | `Verifies` | Constraints whose verification scenario this ticket owns |
 | `Technical trace` | Exact definitions of applicable constraints |
 
-Relevant tickets also point to accepted design sources and describe their actual verification duties. Ordinary schema-v1 manifests and tickets stay valid without these fields. Scenario-based applicability survives changing provisional ticket names into real tracker identifiers.
+Relevant tickets point to accepted sources and describe actual verification duties. Explain how a constraint applies to this ticket separately from its exact canonical definition. Ordinary schema-v1 tickets remain valid without optional registry fields. Changing provisional names into tracker IDs does not change scenario-based applicability.
+
+## Publication and tracking
+
+| Phase | What the validator checks | What a pass does not establish |
+| --- | --- | --- |
+| `publication`, the default | Ready label, unchecked acceptance, exact source definitions, ownership, dependencies and shared constraints | Approval, comprehension, source currency or actual execution |
+| Explicit `--phase=tracking` | A non-empty configured live status, Current state fields, checked or unchecked acceptance, and the same contract/graph checks | New publication readiness, completion, dependency release or authorization |
+
+Once implementation starts, Current state appears after the outcome: execution, verification, the checked source/revision, and remaining duties. This keeps an implemented but unreviewed result visible without resetting its status or checkboxes to satisfy draft validation. Relevant historical sources must still be read, but obsolete Comments or fenced examples cannot satisfy missing current fields in tracking mode.
+
+Use native tracker lifecycle state when available, and update its existing summary within authority. Do not create competing states or remote labels as a side effect. A readiness label alone is not enough to claim a ticket or release a dependency.
 
 ## Structure, comprehension and integration
 
-The deterministic validator checks mandatory fields, exact definitions, unique ownership, graph cycles and the optional constraint registry. It can reject missing or stale references relative to the supplied manifest. It does not fetch sources or prove their currency, semantic sufficiency, authority or experimental validity.
-
 A fresh cold reader receives representative ticket shapes and only their declared pointers, then reconstructs the behavior and shared constraints. Missing independent sampling is disclosed. A complete template is not a substitute for understanding.
 
-Prefer an early real end-to-end integration path and assign later quality, migration or lifecycle checks to the relevant slices. On a constraint revision, reconcile the source, update affected tickets, rerun structural validation and affected cold-reader samples, and preserve unrelated work and concurrent ownership.
+Prefer an early real integration path and assign later quality, migration or lifecycle checks to the relevant slices. On a constraint revision, reconcile the source, update affected tickets, rerun structural validation and affected cold-reader samples, and preserve unrelated work and concurrent ownership. Current blockers and material limitations update the current section before history is appended.
 
 ## Common questions
 
-**Does every ticket need an architecture section?**
+**Does a green tracking check mean the ticket is done?**
 
-No. Only affected tickets receive optional shared-constraint fields. Local choices and advisory ideas do not need a registry.
+No. It verifies the structure of a live record, not whether its evidence supports completion. Independent review, integration and release duties retain their own requirements.
 
-**Can several tickets own one scenario?**
+**Does every new ticket need a progress table?**
 
-No. `Owns` remains exclusive. `Applies` is deliberately shared, while the final verification scenario has one accountable owner.
+No. A new untouched draft needs no invented execution record. After work starts, keep the current state compact; use real evidence links rather than copied logs.
 
 **Is per-ticket review sufficient?**
 
-Not for a multi-ticket delivery. Integrate and run relevant checks as slices land, then run a final [code review](https://aihero.dev/skills-code-review) from the branch point.
+Not for multi-ticket delivery. Integrate and check as slices land, then run final [code review](https://aihero.dev/skills-code-review) from the branch point.
 
 ## It's working if
 
-- Tickets are complete, observable vertical slices, not isolated database or API layers.
-- Every source scenario has one owner and blocking edges are acyclic.
-- The validator passes on the exact approved artifacts.
-- Affected tickets share consistent constraint revisions and verification responsibility.
-- Cold-reader limitations and missing evidence are visible.
-- Unrelated work is not replanned on every design-document edit.
-
-- A developer sees the outcome, acceptance conditions and dependency reasons before the machine fields; exact source definitions remain available. See the [shared artifact writing reference](https://github.com/learnathing/skills/blob/main/docs/productivity/lain-writing-for-agents.md).
+- Tickets remain complete, observable vertical slices.
+- Each source scenario has one owner and dependencies are acyclic.
+- Draft validation still runs on the exact approved artifacts.
+- A developer can distinguish implementation from remaining review or integration work.
+- Source revisions, limitations and superseded decisions stay traceable.
+- The [shared artifact writing reference](https://github.com/learnathing/skills/blob/main/docs/productivity/lain-writing-for-agents.md) keeps outcomes before machine fields without creating a second contract.
 
 ## Where it fits
 

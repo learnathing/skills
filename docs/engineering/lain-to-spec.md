@@ -2,21 +2,27 @@
 
 `lain-to-spec` synthesizes settled conversation and repository context into a traceable specification and publishes ready work to the configured tracker. It does not interview, invent a technical solution or run experiments.
 
+The spec explains behavior before the examples that verify it. A developer should not have to simulate a long test script or decode three ID columns to discover the product rule. The source and publication requirements remain unchanged.
+
 ## When to reach for it
 
 You invoke `/lain-to-spec`; the agent does not invoke it automatically. Use it when settled work needs multiple implementation sessions, or one capability on a larger map is ready. A settled single-session change can use [implement](https://aihero.dev/skills-implement) without a standalone spec.
 
-## Traceability and scope readiness
+## Behavior and traceability
+
+Group scenarios by reader question or capability. Explain the rule and important exceptions, then place examples beside it. Compact condition/result tables work for choices; operation/result pairs work for multi-step cases. IDs remain stable even when the same case is laid out differently. A diagram is optional, must refer to the same revision and retain an equivalent explanation including failure paths.
+
+Every binding claim has a source ID. Invariants have exercising scenarios; scenarios have an observation seam and required evidence. Change scenarios describe newly passing behavior, while preservation scenarios retain an already-passing baseline. The Delivery Manifest retains the exact definitions that downstream tickets own, after the main reading path.
+
+## Source authority and scope readiness
 
 The configured tracker comes from setup. Sources include the decision handoff, relevant glossary, ADRs, pinned compatibility facts, accepted technical design and actual experiment evidence.
 
-Every binding claim has a source ID. Invariants have exercising scenarios; scenarios have an observation seam and required evidence. Change scenarios describe newly passing behavior, while preservation scenarios retain an already-passing baseline. The Delivery Manifest contains the exact definitions that downstream tickets own.
+Existing implementation behavior does not silently override the request. The spec distinguishes an accepted exception, an observed limitation and an unresolved difference. A consequential unresolved difference keeps its dependent scope out of ready-for-agent status. In a blocked draft, the difference appears near the beginning as well as in its relevant section.
 
-Assessment-only technical checking is not a design session. Missing consequential choices or prerequisite evidence keep the dependent scope out of ready-for-agent status. A clearly labelled draft may retain open questions, but it is not permission to implement around them. Existing or accepted verification seams can be reused; a new consequential seam choice returns to design rather than being invented during synthesis.
+Assessment-only checking is not a design session. Existing or accepted verification seams can be reused; a new consequential seam returns to design. A spec owns behavior and binding shared or hard-to-reverse constraints. Design notes own rationale and evidence. Local module choices and tunable parameters do not become product requirements.
 
-A spec owns behavior and binding shared or hard-to-reverse constraints. Design notes own solution rationale and evidence. Tunable parameters, file placement and local refactoring do not become requirements. Agent-made decisions retain their real authority and source, not invented user approval.
-
-The optional `technical_constraints` registry supplies scoped IDs, revisions, source anchors, affected scenario IDs and a verification owner. Schema version 1 and ordinary manifests remain compatible. Structural traceability is not evidence that the architecture works or that an unrun benchmark passed.
+The optional schema-v1 constraint registry retains exact definitions, source anchors, affected scenario IDs and verification ownership. When current scopes share a constraint, the cross-manifest checker detects different exact definitions under the same ID and revision. It does not establish approval, semantic equivalence or source freshness, and does not require scanning historical archives.
 
 ## Common questions
 
@@ -24,23 +30,22 @@ The optional `technical_constraints` registry supplies scoped IDs, revisions, so
 
 Not here. It can recover accepted decisions and existing compatibility facts. New consequential choices must be resolved before ready publication, using [technical design](https://github.com/learnathing/skills/blob/main/docs/engineering/lain-technical-design.md) or clarification.
 
-**Must every schema field or algorithm parameter be fixed?**
+**Must every scenario be in the same table?**
 
-No. Only source-backed constraints belong in the spec. Preserve implementation freedom for local and tunable choices.
+No. Use the form that makes the behavior clear without losing stable IDs or exact definitions. A long sequence can remain one scenario, with each operation next to its expected result.
 
 **Must the entire project be settled?**
 
-No. Name the current capability scope and its shared prerequisites. Independent future questions may remain open; difficult requirements cannot silently disappear to make the scope look ready.
+No. Name the current capability and its shared prerequisites. Independent future questions may remain open; difficult requirements cannot disappear to make a scope look ready.
 
 ## It's working if
 
-- Binding claims and original decisions have durable traces.
-- Invariants, scenarios and verification form a complete current-scope contract.
-- No unresolved critical choice is published as ready.
-- Shared constraints retain exact accepted revisions and evidence obligations.
-- Small ordinary work needs no optional registry or design packet.
-
-- A developer sees outcomes, failure cases and exclusions before source indexes and JSON, without losing the original decisions. See the [shared artifact writing reference](https://github.com/learnathing/skills/blob/main/docs/productivity/lain-writing-for-agents.md).
+- A developer can explain the rule before reading the detailed verification sequence.
+- Material exceptions and open requirement differences are not hidden in compatibility metadata.
+- Binding claims and original decisions retain durable traces.
+- Shared constraints have consistent accepted definitions and revisions.
+- Small ordinary work needs no optional registry, diagram or design packet.
+- The [shared artifact writing reference](https://github.com/learnathing/skills/blob/main/docs/productivity/lain-writing-for-agents.md) improves the reading path without weakening the contract.
 
 ## Where it fits
 

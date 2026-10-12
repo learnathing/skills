@@ -28,10 +28,16 @@ Simplify wording before freezing a new definition. For an existing exact-match d
 
 Use diagrams or HTML only when they help explain the same source revision. Preserve error branches and supply a text equivalent. Keep the skill's required canonical format; a separate website, video, or extra document is not a default upgrade. Do not hide a blocker behind a visual.
 
+## Current state and navigation
+
+When an artifact outlives one session or you update implementation/evidence records, read [LIVING-ARTIFACTS.md](LIVING-ARTIFACTS.md). Separate readiness from execution and verification, update the authoritative current section before appending history, and provide usable source links. Apply this within the caller's existing update authority, not as a new tracker lifecycle or approval gate.
+
+When a reader must reconstruct transitions, dependencies or comparisons, read [VISUALS.md](VISUALS.md) to choose between text, a table and a diagram. No diagram is required for a simple artifact. Verify the actual renderer or disclose an unrendered source; preserve an adjacent text equivalent.
+
 ## Source comparison
 
 During the existing drafting or source-review step, compare the visible prose with the original decisions, not only the generated manifest. Check that behavior, exclusions, uncertainty, and material decisions remain recoverable without decoding internal workflow fields. Repair omissions through the existing process; do not add a separate readability approval gate.
 
-When revising an artifact, identify material changes, new assumptions, and open questions. Reuse an existing summary instead of asking people to reapprove settled decisions. A proposal is not an accepted decision, a planned check is not evidence, and an agent-authored learning note is not proof the user mastered a topic.
+A supported conclusion must not become more certain in its summary than in its evidence. Distinguish requested behavior, accepted exceptions, observed compatibility facts and unresolved differences. When revising an artifact, identify material changes, new assumptions, and open questions. Reuse an existing summary instead of asking people to reapprove settled decisions. A proposal is not an accepted decision, a planned check is not evidence, and an agent-authored learning note is not proof the user mastered a topic.
 
 Structural checks verify fields, references, and exact copies, not human comprehension. An agent cold read tests agent handoff. Evaluate developer understanding separately with unseen examples and questions about behavior and exceptions; word count and self-scored readability checklists are not outcome evidence.

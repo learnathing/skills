@@ -19,10 +19,14 @@ A decision can be proposed, accepted, deferred, or superseded. Acceptance comes 
 
 State the particular scope that can proceed and the source/evidence on which it relies. A project can contain ready and blocked scopes simultaneously. Do not force future capabilities into a premature global spec. If an unresolved shared identity or permissions model affects two capabilities, neither is ready merely because each has a local plan.
 
+When new evidence arrives, update the current readiness statement and its checked source/revision before appending history. State implementation limitations and open requirement differences beside the relevant behavior. A summary cannot upgrade "not tested" into "failed" or a preferred option into the only proven viable option. Preserve the basis for an accepted choice without reopening alternatives merely for presentation.
+
 ## Shared constraints in delivery
 
 The authoritative spec's Delivery Manifest may include `technical_constraints`. Use scoped IDs across specs. Each entry pins one accepted definition and source, the delivery IDs it applies to, and one affected delivery ID responsible for verifying it. `Owns` remains exclusive delivery ownership; `Applies` is shared compliance; `Verifies` is the assigned verification obligation.
 
-Only encode source-backed constraints that actually bind delivery. Local algorithms, file positions, speculative reuse and advisory ideas need no registry entry. [DELIVERY-CONSTRAINTS.md](DELIVERY-CONSTRAINTS.md) owns the optional serialization; the ticket skill owns its executable validator. Do not copy competing schemas into other skills.
+Only encode source-backed constraints that actually bind delivery. Local algorithms, file positions, speculative reuse and advisory ideas need no registry entry. [DELIVERY-CONSTRAINTS.md](DELIVERY-CONSTRAINTS.md) owns the optional serialization and cross-manifest check; the ticket skill owns its executable per-scope validator. Do not copy competing schemas into other skills.
+
+One ID and revision has one exact normative definition. Keep per-ticket explanations as clearly labeled application notes, not alternate definitions. Reuse the canonical source or regenerate required exact copies; compare relevant current manifests rather than blindly comparing every historical snapshot. A new meaning needs a new accepted revision, not a reworded string under the old revision.
 
 When a decision changes, update its source first, identify affected specs and tickets, update their manifest references, rerun structural validation and the affected cold-reader/verification sample, then re-establish readiness. Do not silently rewrite all tickets, and do not mutate stable scenario meanings under unchanged IDs.

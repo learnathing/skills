@@ -43,4 +43,16 @@ Verifies: kb:C1@1
 
 The existing two-argument validator checks the optional registry, exact definitions and revisions, applicability, verification ownership and source-pointer presence. It rejects references when the manifest has no corresponding registry. It does not fetch sources or prove that the manifest is current, the source supports the claim, evidence is sufficient, or an approver exists. The cold reader and design/source review still own those judgments.
 
+## Same revision across delivery scopes
+
+A scoped ID and revision denotes one exact normative definition, even when several specs use it. Per-scope `applies_to` and `verified_by` can differ; a shortened explanation is not a new canonical definition. Put that explanation beside the affected behavior, clearly separate from the exact registry field. Resolve a conflict at the source and regenerate affected copies within authority.
+
+When the affected constraint is shared across current scopes, stage the relevant current manifests without changing their definitions and run:
+
+```bash
+node <this-skill-directory>/check-constraint-revisions.mjs <current-manifest.json> <other-current-manifest.json>
+```
+
+Select these inputs by actual source authority. Do not scan every archive or obsolete spec into a new global gate. The check rejects different exact definitions under the same scoped ID/revision and malformed records; it allows different revisions and scope-specific applicability. It compares supplied strings, not their semantics, approval, authority, source-link equivalence or freshness. A same-string pass is not evidence that the source exists. Retain the regular per-scope ticket validator as well.
+
 On a constraint revision, re-establish the source, find affected delivery IDs and tickets, update only affected references, rerun validation and affected cold-reader checks. Known-obsolete contracts cannot be implemented just because an old snapshot passes. Unrelated document edits do not invalidate a constraint revision.
