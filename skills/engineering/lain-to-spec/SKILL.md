@@ -22,6 +22,8 @@ Build a source index before drafting. Preserve decision IDs from the handoff. Wh
 
 Require exact source IDs for the decision-bearing contract: observable outcomes, invariants, public interface and error semantics, and binding shared or hard-to-reverse technical choices. Scenarios cite the decisions they exercise. Code can supply pinned compatibility facts, but it does not create a new requirement by itself. Implementation-discoverable choices such as likely modules or file locations are not normative requirements and need no invented source ID.
 
+Reconcile a requested behavior with any conflicting compatibility fact explicitly. Separate an accepted exception, an observed implementation limitation, and an unresolved requirement difference. Put a material exception beside the behavior it limits. Never silently downgrade the request to what existing code happens to do, or describe an untested alternative as disproved. An unresolved consequential difference blocks only its dependent scope.
+
 If a missing decision changes observable behaviour, an invariant, an interface, or an error mode, stop and list it. Tell the user to continue `/lain-grill-with-docs`; do not invent an answer or publish a ready spec.
 
 ### 2. Choose verification seams
@@ -48,6 +50,8 @@ Publish only when:
 
 During the existing source comparison, check that the readable contract preserves the original conditions, limits, exceptions, exclusions and uncertainty. Material requirements must not appear only in the manifest. On revision, identify material changes and unresolved choices without asking for repeated approval of settled decisions. Do not add a separate readability gate or human-only version.
 
+For constraints shared with other current scopes, load the technical-design serialization reference in assessment-only mode and use its cross-manifest definition check on the relevant staged manifests. Resolve any same-ID/same-revision definition conflict at the source; do not reconcile it by silently rewriting ticket prose. Different revisions or applicability sets are not automatically conflicts.
+
 Publish the gated spec to the project issue tracker and apply the `ready-for-agent` triage label.
 
 <spec-template>
@@ -58,15 +62,21 @@ The problem that the user is facing, from the user's perspective.
 
 ## Outcome
 
-The observable result the user or caller needs and why it matters. Do not require a new business case for a settled change.
+The observable result the user or caller needs and why it matters. Do not require a new business case for a settled change. For a revision, state the current scope and material change; for a blocked draft, put the blocking difference here rather than only at the end.
 
 ## Scenarios
 
-Use the smallest complete set of happy-path, boundary, and failure scenarios that exercises every invariant. Do not add hypothetical behaviour that was never decided.
+Organize by reader question or capability. Explain the governing behavior before its verification examples. Use paragraphs, a compact condition/result table, or operation/result pairs as appropriate; do not force every scenario into one five-column trace table. Keep IDs and source references beside the relevant claim, not as three leading columns the reader must decode.
 
-| ID | Type | Source ID | Situation | Expected behaviour |
-| --- | --- | --- | --- | --- |
-| S1 | change or preservation | D1 | Concrete setup and action | Caller-visible result |
+### <What does this action change?>
+
+<The behavior and its important exceptions, with source IDs. A small scope may omit this subheading.>
+
+**S1** (`change` or `preservation`; source D1): <Concrete situation, action, and observable result.>
+
+<For a multi-step example, put each action next to its expected result. Keep one stable scenario ID when the steps jointly verify one outcome; do not split or renumber accepted scenarios for layout alone.>
+
+Use the smallest complete set of happy-path, boundary, and failure scenarios that exercises every invariant. Do not add hypothetical behaviour that was never decided. A state or sequence diagram is optional when it answers the same question more clearly; use the writing reference's visual guidance, name its source revision and retain the text equivalent and error branches.
 
 ## Out of Scope
 
@@ -117,7 +127,7 @@ Omit this optional section when it is empty. In a blocked draft, also state the 
 
 | ID | Exact decision or compatibility fact | Origin or durable anchor |
 | --- | --- | --- |
-| D1 | The confirmed decision in precise, readable language | Decision handoff, ADR, prototype, or pinned compatibility evidence |
+| D1 | The confirmed decision in precise, readable language | Descriptive source link to an actual heading/anchor and the applicable revision |
 
 ## Delivery Manifest
 

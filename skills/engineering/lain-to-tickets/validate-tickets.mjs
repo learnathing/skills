@@ -4,10 +4,15 @@ import fs from "node:fs";
 import path from "node:path";
 import { validateTechnicalConstraints } from "./technical-constraints.mjs";
 
-const [sourceManifestPath, draftDirectory, ...unexpectedArguments] = process.argv.slice(2);
+// Publication remains the default. Tracking validates live records, not readiness.
+const args = process.argv.slice(2);
+const phaseOptions = args.filter((arg) => arg.startsWith("--phase="));
+const phase = phaseOptions[0]?.slice("--phase=".length) ?? "publication";
+const positional = args.filter((arg) => !arg.startsWith("--phase="));
+const [sourceManifestPath, draftDirectory, ...unexpectedArguments] = positional;
 
-if (!sourceManifestPath || !draftDirectory || unexpectedArguments.length > 0) {
-  console.error("Usage: validate-tickets.mjs <source-manifest.json> <draft-directory>");
+if (!sourceManifestPath || !draftDirectory || unexpectedArguments.length > 0 || phaseOptions.length > 1 || !["publication", "tracking"].includes(phase) || positional.some((arg) => arg.startsWith("--"))) {
+  console.error("Usage: validate-tickets.mjs <source-manifest.json> <draft-directory> [--phase=publication|tracking]");
   process.exit(2);
 }
 
@@ -80,11 +85,30 @@ function section(body, heading) {
   return (nextHeading === -1 ? remainder : remainder.slice(0, nextHeading)).trim();
 }
 
+// Only the current, unfenced document participates in tracking validation.
+function trackingBody(text) {
+  let fence;
+  const active = [];
+  for (const line of text.split(/\r?\n/)) {
+    const marker = /^ {0,3}(`{3,}|~{3,})/.exec(line);
+    if (!fence && marker) { fence = marker[1]; continue; }
+    if (fence) {
+      if (new RegExp(`^ {0,3}${fence[0]}{${fence.length},}\\s*$`).test(line)) fence = undefined;
+      continue;
+    }
+    if (/^## (?:Comments|History)[ \t]*$/.test(line)) break;
+    active.push(line);
+  }
+  return active.join("\n");
+}
+
 const files = markdownFiles(root);
 if (files.length === 0) errors.push("No Markdown ticket drafts found");
 
 const tickets = files.map((file) => {
-  const body = fs.readFileSync(file, "utf8");
+  const original = fs.readFileSync(file, "utf8");
+  // Historical snapshots must not satisfy missing current fields or definitions.
+  const body = phase === "tracking" ? trackingBody(original) : original;
   const relative = path.relative(root, file);
   const id = field(body, "Ticket");
   const blockedBy = values(field(body, "Blocked by"));
@@ -93,7 +117,19 @@ const tickets = files.map((file) => {
   if (!body.match(/^# \S.+$/m)) errors.push(`${relative}: missing ticket title`);
   if (!id) errors.push(`${relative}: missing Ticket field`);
   if (!field(body, "Blocked by")) errors.push(`${relative}: missing Blocked by field`);
-  if (field(body, "Status") !== "ready-for-agent") errors.push(`${relative}: Status must be ready-for-agent`);
+  if (phase === "publication") {
+    if (field(body, "Status") !== "ready-for-agent") errors.push(`${relative}: Status must be ready-for-agent`);
+  } else {
+    const statuses = [...body.matchAll(/^Status:[ \t]*(.*)$/gm)];
+    if (statuses.length !== 1 || !statuses[0][1].trim()) errors.push(`${relative}: requires one non-empty live Status field`);
+    const current = section(body, "Current state");
+    const headers = body.match(/^## Current state[ \t]*$/gm) ?? [];
+    if (headers.length !== 1) errors.push(`${relative}: tracking requires one Current state section`);
+    for (const name of ["Execution", "Verification", "As of", "Remaining"]) {
+      const matches = [...current.matchAll(new RegExp(`^${escaped(name)}:[ \\t]*(.*)$`, "gm"))];
+      if (matches.length !== 1 || !matches[0][1].trim()) errors.push(`${relative}: Current state requires one non-empty ${name} field`);
+    }
+  }
   if (owns.length === 0) errors.push(`${relative}: Owns must contain at least one source ID`);
   if (!field(body, "What to build")) errors.push(`${relative}: missing What to build field`);
 
@@ -107,8 +143,9 @@ const tickets = files.map((file) => {
     }
   }
 
-  if (!section(body, "Acceptance criteria").match(/^- \[ \] \S/m)) {
-    errors.push(`${relative}: Acceptance criteria needs an unchecked observable criterion`);
+  const acceptancePattern = phase === "publication" ? /^- \[ \] \S/m : /^- \[[ xX]\] \S/m;
+  if (!acceptancePattern.test(section(body, "Acceptance criteria"))) {
+    errors.push(`${relative}: Acceptance criteria needs ${phase === "publication" ? "an unchecked" : "a checked or unchecked"} observable criterion`);
   }
 
   for (const sourceId of owns) {
@@ -181,3 +218,5 @@ if (errors.length > 0) {
 }
 
 console.log(`Validated ${tickets.length} tickets against ${requiredSourceIds.length} manifest delivery IDs; graph acyclic.`);
+
+if (phase === "tracking") console.log("Tracking structure only: not publication readiness, verified completion, dependency release or lifecycle authorization.");

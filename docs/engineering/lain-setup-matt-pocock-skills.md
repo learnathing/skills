@@ -1,6 +1,8 @@
 ## What it does
 
-`lain-setup-matt-pocock-skills` records the repository's tracker, triage vocabulary and domain-document layout. It can also retain useful existing engineering policy and evidence locations. Setup discovers and confirms project configuration; it does not design the system or impose a technical questionnaire.
+`lain-setup-matt-pocock-skills` records the repository's tracker, triage vocabulary and domain-document layout. It can also retain useful existing engineering policy and evidence locations. Setup discovers and confirms configuration; it does not design the system or impose a technical questionnaire.
+
+The local-Markdown tracker convention now distinguishes publication readiness from ongoing execution and verification. It does not force every tracker to adopt new labels or a second state machine.
 
 ## When to reach for it
 
@@ -8,7 +10,7 @@ You invoke `/lain-setup-matt-pocock-skills`; the agent cannot invoke it for you.
 
 ## Configuration and existing policy
 
-Setup reads repository instructions, remotes, existing documents and actual commands. It presents proposed changes before writing, preserves unrelated user content, and updates the selected instruction file's pointer block instead of appending duplicates.
+Setup reads repository instructions, remotes, existing documents and actual commands. It presents proposed changes before writing, preserves unrelated content, and updates the selected instruction file's pointer block instead of appending duplicates.
 
 | Artifact | Condition |
 | --- | --- |
@@ -17,37 +19,37 @@ Setup reads repository instructions, remotes, existing documents and actual comm
 | `docs/agents/triage-labels.md` | Triage skill is installed and configured |
 | `docs/agents/engineering.md` | Useful sourced engineering policy needs recording |
 
-The optional engineering document can point to design and experiment sources, actual verification commands, delegated technical choices and responsible human authority. Missing values are not permission for private-data transfer, paid resources or production changes. Do not generate empty registers or guess a resource budget.
+Optional engineering policy records known sources, verification commands and authority. Missing settings are not permission for private-data transfer, paid resources or production changes. Do not generate empty registers or guess budgets. Reuse the existing domain layout; package boundaries alone do not prove domain boundaries. `CONTEXT.md` remains vocabulary, not an architecture notebook.
 
-Reuse the existing domain layout. A workspace or package boundary alone does not prove a domain boundary; a simple project needs only a single context, while real multiple domains can use a context map. `CONTEXT.md` stays vocabulary, not an architecture document.
+## Readable local tracking
+
+Local specs and implementation tickets remain in `.scratch/`. When work starts, Current state records execution, verification, the actual checked source/revision and remaining duties. Comments preserve history; material current limitations are not left only at the end of that history. Tracking validation permits live status and checked criteria without loosening draft publication requirements.
+
+Reuse a visible project index or README for descriptive links into a multi-file effort. Create a small index only when it is actually missing and authorized; do not relocate files or copy a second status register. Link to a real source heading or anchor, not an ID that merely appears in a table.
+
+Decision-map tickets keep their own open/claimed/resolved lifecycle and do not run through the implementation-ticket validator. Native remote trackers retain their existing lifecycle conventions.
 
 ## Common questions
 
-**Must the project use GitHub?**
+**Must the project use GitHub or these local states?**
 
-No. GitHub, GitLab and local Markdown have templates. Another tracker can be described in project configuration without rewriting skills.
+No. GitHub, GitLab and local Markdown have templates; other trackers can use project configuration. Existing native status and ownership rules stay authoritative.
 
-**Must setup run again for technical design?**
+**Must setup run again for every implementation?**
 
-No. Engineering policy is optional. Existing repository and task instructions still govern authority and verification.
+No. Reconfigure only when needed or requested. The artifact writer can use existing authority and state conventions without another setup ceremony.
 
-**Does setup choose the retrieval engine or data model?**
+**Does setup mark old work done or create remote labels?**
 
-No. It records sources and authority. Solution decisions belong to the affected task's technical design and evidence.
-
-**Does it create remote labels or provision services?**
-
-Not implicitly. A label mapping is configuration, not authorization to mutate the tracker or external infrastructure.
+No. Configuration is not authority to change an issue lifecycle, create labels or infer evidence. Historical tickets need an actual source/evidence check before their current state is updated.
 
 ## It's working if
 
 - Tracker and label mappings match the actual project workflow.
-- Existing policy is preserved instead of replaced with guessed defaults.
-- Only useful, sourced engineering settings are written.
-- Small work does not need an empty policy document or repeated setup.
-- Downstream skills can recover their configuration without asking again.
-
-- A configuration note says what a setting controls and where its source lives, while preserving exact keys, paths and authority. See the [shared artifact writing reference](https://github.com/learnathing/skills/blob/main/docs/productivity/lain-writing-for-agents.md).
+- Readiness is not mistaken for completion or a free claim.
+- Current evidence gaps are easy to find without erasing their history.
+- A visible entry reaches local artifacts without duplicating their contents.
+- The [shared artifact writing reference](https://github.com/learnathing/skills/blob/main/docs/productivity/lain-writing-for-agents.md) keeps exact keys and authority alongside clear explanations.
 
 ## Where it fits
 
