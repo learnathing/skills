@@ -25,6 +25,8 @@ UI/logic questions can use an interactive prototype. Feasibility, retrieval qual
 
 Prefer one context for bounded planning when it fits. For larger work, retain scoped source IDs, accepted decision revisions and evidence, and load only the relevant subset in each session. Use handoff for actual portability rather than between every pair of phases.
 
+A clear high-level goal with unsettled technical details normally needs agent investigation and design, not a user technology questionnaire. Clarification is for material intent or authority that existing sources and delegation cannot settle. Domain modeling is conditional: established terms and harmless synonyms do not require a naming session.
+
 ## Common questions
 
 **Is there one mandatory sequence?**

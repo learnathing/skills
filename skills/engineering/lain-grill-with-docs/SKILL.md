@@ -6,13 +6,15 @@ disable-model-invocation: true
 
 When writing the artifacts described here, call the Skill tool with "lain-writing-for-agents" in artifact mode. Reuse the reference when already loaded. If unavailable, disclose once and draft directly without weakening existing gates. The decision handoff starts with the agreed outcome, scope and material open choices. Place the source index after the understandable agreement, preserving exact decisions, acceptance examples and authority. This is the same handoff, not an additional summary or approval ceremony.
 
-Call the Skill tool twice, for "lain-grilling" and "lain-domain-modeling".
+Call the Skill tool with "lain-grilling".
+
+Read relevant existing domain definitions without starting a terminology exercise. Only if a material domain ambiguity remains after source inspection, a genuinely new project concept needs a definition, or a qualifying ADR is needed, call the Skill tool with "lain-domain-modeling". An explicit request to build or revise the domain model also qualifies. Clear synonyms, passive glossary reading and ordinary internal naming do not trigger it. If the needed skill is unavailable, disclose the limitation and keep the affected meaning unresolved rather than inventing a definition.
 
 ## Establish the requirement
 
 Use the request, prior decisions and relevant evidence to establish whose problem this change solves, the situation, observable success, current scope and exclusions. Check relevant failure modes and constraints for gaps that could change the outcome. This is a coverage check, not a fixed questionnaire: infer routine context, reuse settled answers, and skip irrelevant dimensions. Challenge a proposed solution when it would not solve the stated problem; do not require a new business case or metric for an already clear change.
 
-Work the **decision-bearing frontier**: branches that change observable behaviour, a domain invariant, a public interface or error mode, or a hard-to-reverse choice. Facts discoverable from the codebase are the agent's work. Reversible choices within the task's authority remain the agent's work; implementation details that can safely wait are not interview questions. Use judgment about investigation depth and useful examples rather than question counts or a prescribed reasoning sequence.
+Work the **decision-bearing frontier**, distinguishing agent work from questions for the user. Observable behavior, invariants, interfaces, failure modes and hard-to-reverse choices need supported decisions, but they do not all need a new user answer. Investigate facts and resolve design choices within the existing intent and authority. Ask only when a material difference remains that sources or delegation cannot settle, with a recommended outcome and its consequences. Do not require the user to choose data structures or learn implementation jargon to finish a product interview. Stop questioning once this scope no longer needs human input; unresolved technical evidence still affects readiness.
 
 Once the requested scope is clear, reuse a still-applicable technical assessment or call the Skill tool with "lain-technical-design" in assessment-only mode. If it identifies a design gap, use design mode within the authorized planning scope; bring back only choices that require human authority. An interview-only request does not authorize experiments or implementation.
 
