@@ -1,6 +1,6 @@
 ---
 name: lain-grill-me
-description: A relentless interview to sharpen a plan or design.
+description: Clarify a plan or decision with recommendations and only the questions that need your input.
 disable-model-invocation: true
 ---
 

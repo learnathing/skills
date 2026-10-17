@@ -94,7 +94,7 @@ I built these skills as a way to fix common failure modes I see with Claude Code
 
 **The Problem**. The most common failure mode in software development is misalignment. You think the dev knows what you want. Then you see what they've built - and you realize it didn't understand you at all.
 
-This is just the same in the AI age. There is a communication gap between you and the agent. The fix for this is a **grilling session** - getting the agent to ask you detailed questions about what you're building.
+This is just the same in the AI age. There is a communication gap between you and the agent. A **grilling session** clarifies only the material choices that still need your input. The agent investigates facts, recommends an approach and resolves technical choices within the authority you supplied; it does not make you complete a design questionnaire.
 
 **The Fix** is to use:
 
@@ -109,36 +109,13 @@ These are my most popular skills. They help you align with the agent before you 
 >
 > Eric Evans, [Domain-Driven-Design](https://www.amazon.co.uk/Domain-Driven-Design-Tackling-Complexity-Software/dp/0321125215)
 
-**The Problem**: At the start of a project, devs and the people they're building the software for (the domain experts) are usually speaking different languages.
+**The Problem**: Unnecessary jargon and newly invented names make a change harder to understand. A familiar word can also conceal different product meanings.
 
-I felt the same tension with my agents. Agents are usually dropped into a project and asked to figure out the jargon as they go. So they use 20 words where 1 will do.
+**The Fix** is to reuse accurate project names, relevant standards and mature industry terminology. Keep necessary explanations in the reader's language. Do not rename a service, API or product concept merely to match a skill's preferred vocabulary.
 
-**The Fix** for this is a shared language. It's a document that helps agents decode the jargon used in the project.
+[`/lain-domain-modeling`](./skills/engineering/lain-domain-modeling/SKILL.md) is for material ambiguity or genuinely needed project definitions, not a compulsory naming session. If "cancel" could mean either stopping a future action or also reversing a completed one, first inspect the existing sources; ask only if a consequential difference remains. A clear synonym does not need an interruption or a glossary edit.
 
-<details>
-<summary>
-Example
-</summary>
-
-Here's an example [`CONTEXT.md`](https://github.com/mattpocock/course-video-manager/blob/076a5a7a182db0fe1e62971dd7a68bcadf010f1c/CONTEXT.md), from my `course-video-manager` repo. Which one is easier to read?
-
-- **BEFORE**: "There's a problem when a lesson inside a section of a course is made 'real' (i.e. given a spot in the file system)"
-- **AFTER**: "There's a problem with the materialization cascade"
-
-This concision pays off session after session.
-
-</details>
-
-This is built into [`/lain-grill-with-docs`](./skills/engineering/lain-grill-with-docs/SKILL.md). It's a grilling session, but that helps you build a shared language with the AI, and document hard-to-explain decisions in ADR's.
-
-It's hard to explain how powerful this is. It might be the single coolest technique in this repo. Try it, and see.
-
-> [!TIP]
-> A shared language has many other benefits than reducing verbosity:
->
-> - **Variables, functions and files are named consistently**, using the shared language
-> - As a result, the **codebase is easier to navigate** for the agent
-> - The agent also **spends fewer tokens on thinking**, because it has access to a more concise language
+[`/lain-grill-with-docs`](./skills/engineering/lain-grill-with-docs/SKILL.md) reads relevant domain definitions and invokes active modeling only when needed. A glossary retains project-specific meanings, not a general technical encyclopedia. Qualifying ADRs still record the choice, reason and trade-off.
 
 ### #3: The Code Doesn't Work
 
@@ -213,7 +190,7 @@ Skills I use daily for code work.
 **User-invoked**
 
 - **[lain-ask-matt](./skills/engineering/lain-ask-matt/SKILL.md)**: Ask which skill or flow fits your situation. A router over the user-invoked skills in this repo.
-- **[lain-grill-with-docs](./skills/engineering/lain-grill-with-docs/SKILL.md)**: Grilling session that also builds your project's domain model, sharpening terminology and updating `CONTEXT.md` and ADRs inline.
+- **[lain-grill-with-docs](./skills/engineering/lain-grill-with-docs/SKILL.md)**: Clarify material decisions and retain a source-backed handoff; reuse domain language and model new meanings only when needed.
 - **[lain-triage](./skills/engineering/lain-triage/SKILL.md)**: Move issues through a state machine of triage roles.
 - **[lain-improve-codebase-architecture](./skills/engineering/lain-improve-codebase-architecture/SKILL.md)**: Scan a codebase for deepening opportunities, present them as a visual HTML report, then grill through whichever one you pick.
 - **[lain-setup-matt-pocock-skills](./skills/engineering/lain-setup-matt-pocock-skills/SKILL.md)**: Configure this repo for the engineering skills (issue tracker, triage labels, domain doc layout). Run once per repo before using the other engineering skills.
@@ -230,7 +207,7 @@ Skills I use daily for code work.
 - **[lain-diagnosing-bugs](./skills/engineering/lain-diagnosing-bugs/SKILL.md)**: Disciplined diagnosis loop for hard bugs and performance regressions: build a feedback loop that goes red on this bug → minimise → hypothesise → instrument → fix → regression-test.
 - **[lain-research](./skills/engineering/lain-research/SKILL.md)**: Investigate a question against high-trust primary sources and capture the findings as a cited Markdown file in the repo, run as a background agent.
 - **[lain-tdd](./skills/engineering/lain-tdd/SKILL.md)**: Test-driven development with observable red and green states, plus verified refactoring when the slice reveals a concrete structural change.
-- **[lain-domain-modeling](./skills/engineering/lain-domain-modeling/SKILL.md)**: Actively build and sharpen a project's domain model: challenge terms against the glossary, stress-test with edge-case scenarios, and update `CONTEXT.md` and ADRs inline.
+- **[lain-domain-modeling](./skills/engineering/lain-domain-modeling/SKILL.md)**: Resolve material domain ambiguity, preserve established names and record only necessary project definitions or qualifying ADRs.
 - **[lain-codebase-design](./skills/engineering/lain-codebase-design/SKILL.md)**: Shared discipline and vocabulary for designing deep modules: a lot of behaviour behind a small interface, placed at a clean seam, testable through that interface.
 - **[lain-code-review](./skills/engineering/lain-code-review/SKILL.md)**: Three-axis review of committed or working-tree changes since a fixed point: **Standards**, **Spec**, and **Design**, covered by one independent reviewer, with coordinator-verified findings and explicit incomplete-review reporting.
 - **[lain-pr](./skills/engineering/lain-pr/SKILL.md)**: Write a source-linked PR description with actual evidence, rollback limits and remaining obligations; publishing requires separate authority.
@@ -243,7 +220,7 @@ General workflow tools, not code-specific.
 
 **User-invoked**
 
-- **[lain-grill-me](./skills/productivity/lain-grill-me/SKILL.md)**: Get relentlessly interviewed about a plan or design until every branch of the design tree is resolved.
+- **[lain-grill-me](./skills/productivity/lain-grill-me/SKILL.md)**: Clarify a plan or decision with recommendations and only the questions that need your input.
 - **[lain-handoff](./skills/productivity/lain-handoff/SKILL.md)**: Compact the current conversation into a handoff document so another agent can continue the work.
 - **[lain-teach](./skills/productivity/lain-teach/SKILL.md)**: Teach the user a new skill or concept over multiple sessions, using the current directory as a stateful teaching workspace.
 - **[lain-to-questionnaire](./skills/productivity/lain-to-questionnaire/SKILL.md)**: Turn a decision you can't answer alone into a Markdown questionnaire for the one person who can, filled in async, or together over a meeting. It grills you about the send (who it's for, what you need back), not the underlying decision on their behalf.
@@ -251,5 +228,5 @@ General workflow tools, not code-specific.
 
 **Model-invoked**
 
-- **[lain-grilling](./skills/productivity/lain-grilling/SKILL.md)**: Interview the user relentlessly about a plan, decision, or idea until every branch of the design tree is resolved. The reusable interview primitive behind `lain-grill-me`, `lain-grill-with-docs`, `lain-triage`, `lain-wayfinder` and `lain-improve-codebase-architecture`.
+- **[lain-grilling](./skills/productivity/lain-grilling/SKILL.md)**: Investigate and recommend before asking for material choices that evidence, intent and delegation cannot resolve. The reusable interview primitive behind `lain-grill-me`, `lain-grill-with-docs`, `lain-triage`, `lain-wayfinder` and `lain-improve-codebase-architecture`.
 - **[lain-writing-for-agents](./skills/productivity/lain-writing-for-agents/SKILL.md)**: Writing documents for agents: skills, AGENTS.md/CLAUDE.md, and any doc an agent reaches by a pointer.

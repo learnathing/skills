@@ -1,6 +1,6 @@
 ## What it does
 
-`lain-grill-with-docs` clarifies a requirement, sharpens domain vocabulary and preserves the decisions needed to implement it. The combined requirement must retain the meaning the user accepted or delegated; finishing the questions does not by itself establish agreement.
+`lain-grill-with-docs` clarifies a requirement, reuses established language and preserves the decisions needed to implement it. The combined requirement must retain the meaning the user accepted or delegated; finishing the questions does not by itself establish agreement.
 
 ## When to reach for it
 
@@ -15,6 +15,12 @@ You invoke `/lain-grill-with-docs`; the [agent](https://www.aihero.dev/ai-coding
 ## Prerequisites
 
 A workspace provides the code and existing decisions to investigate. The skill updates domain documents when needed. It uses an existing issue or document convention to save a requirement handoff when work actually moves between [sessions](https://www.aihero.dev/ai-coding-dictionary/session) and writing is authorized.
+
+## Domain work only when needed
+
+Reading the glossary does not start a modeling exercise. Active [domain modeling](https://aihero.dev/skills-domain-modeling) is invoked only for a material ambiguity left after source inspection, a genuinely needed project definition, an explicit modeling request or a qualifying ADR. Clear synonyms and normal internal names do not require your approval.
+
+The agent investigates facts and recommends a design within the supplied constraints. A caller-visible choice already supported by intent or delegation does not become a new question. Remaining questions explain observable differences and trade-offs, not unfamiliar technology menus. End questioning when this scope no longer needs human input; unresolved evidence still affects readiness.
 
 ## The decision handoff
 

@@ -15,6 +15,12 @@ Type `/lain-technical-design`, or the agent reaches for it when shared data iden
 | Authority, access or a shared prerequisite is missing | Keep the affected scope blocked |
 | Planning itself needs several sessions | Recommend a decision map, not a huge one-shot specification |
 
+## Recommend an approach, not a technology questionnaire
+
+In design mode, the agent works down from the goal and inspected constraints, recommends an approach and validates uncertain technical choices within authority. It compares alternatives only when they could change the result. You do not need to pick a data structure or learn implementation jargon before it can proceed.
+
+A remaining question explains an observable consequence and includes a recommendation. Existing intent or delegation can settle even a caller-visible choice; missing authority, private-data permissions or a material unresolved preference cannot be replaced by model confidence. Assessment-only mode still stops before design or experimentation.
+
 ## Sources and authority
 
 Read relevant code, tests, accepted design and ADRs, plus optional `docs/agents/engineering.md`. Missing optional policy does not require setup. Reversible choices inside authority remain autonomous; material cost, data handling, product semantics and consequential choices outside that authority require the responsible human.

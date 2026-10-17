@@ -7,7 +7,7 @@ Skills I use daily for code work.
 Reachable only when you type them (Claude Code: `disable-model-invocation: true`; Codex: `policy.allow_implicit_invocation: false` in `agents/openai.yaml`).
 
 - **[lain-ask-matt](./lain-ask-matt/SKILL.md)**: Choose a flow by technical risk and delivery scope, preserving the direct path for settled small changes.
-- **[lain-grill-with-docs](./lain-grill-with-docs/SKILL.md)**: Clarify decisions, sharpen domain language, and retain a source-indexed handoff including relevant technical readiness.
+- **[lain-grill-with-docs](./lain-grill-with-docs/SKILL.md)**: Clarify material decisions and retain a source-indexed handoff; activate domain modeling only when needed.
 - **[lain-triage](./lain-triage/SKILL.md)**: Move issues through a state machine of triage roles.
 - **[lain-improve-codebase-architecture](./lain-improve-codebase-architecture/SKILL.md)**: Survey deepening opportunities, present a visual report, then explore the selected candidate.
 - **[lain-setup-matt-pocock-skills](./lain-setup-matt-pocock-skills/SKILL.md)**: Configure tracker, labels and domain docs; optionally preserve useful existing engineering policy.
@@ -26,8 +26,8 @@ Model- or user-reachable, with reusable disciplines underneath the human-invoked
 - **[lain-diagnosing-bugs](./lain-diagnosing-bugs/SKILL.md)**: Diagnose hard bugs and performance regressions through a disciplined feedback loop.
 - **[lain-research](./lain-research/SKILL.md)**: Investigate primary sources and retain cited findings.
 - **[lain-tdd](./lain-tdd/SKILL.md)**: Observable Red and Green cycles, preserving existing behavior and refactoring when a concrete improvement emerges.
-- **[lain-domain-modeling](./lain-domain-modeling/SKILL.md)**: Sharpen terms and relationships, update the glossary, and record qualifying ADRs.
-- **[lain-codebase-design](./lain-codebase-design/SKILL.md)**: Shared vocabulary for deep modules, small interfaces, clean seams and testability.
+- **[lain-domain-modeling](./lain-domain-modeling/SKILL.md)**: Resolve material domain ambiguity, preserve established names and record only necessary project definitions or qualifying ADRs.
+- **[lain-codebase-design](./lain-codebase-design/SKILL.md)**: Design deep modules and useful interfaces without replacing accurate project or industry terminology.
 - **[lain-code-review](./lain-code-review/SKILL.md)**: One independent reviewer covering Standards, Spec and Design, with coordinator-verified findings and explicit coverage and independence limitations.
 - **[lain-pr](./lain-pr/SKILL.md)**: Present source-linked intent, actual verification evidence and merge risk without implying publication authority.
 - **[lain-resolving-merge-conflicts](./lain-resolving-merge-conflicts/SKILL.md)**: Resolve merge or rebase conflicts by source intent while preserving unrelated work.

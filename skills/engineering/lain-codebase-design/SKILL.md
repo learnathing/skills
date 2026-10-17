@@ -5,21 +5,23 @@ description: Shared vocabulary for designing deep modules. Use when the user wan
 
 # Codebase Design
 
-Design **deep modules**: a lot of behaviour behind a small interface, placed at a clean seam, testable through that interface. Use this language and these principles wherever code is being designed or restructured. The aim is leverage for callers, locality for maintainers, and testability for everyone.
+Design **deep modules**: a lot of behaviour behind a small interface, placed at a clean seam, testable through that interface. Apply these principles to the affected design while retaining accurate project and industry terminology. The aim is leverage for callers, locality for maintainers, and testability for everyone.
 
 ## Glossary
 
-Use these terms exactly: don't substitute "component," "service," "API," or "boundary." Consistent language is the whole point.
+These are scoped analysis concepts, not a replacement dictionary for the project. Use established terms such as component, service, API and boundary when they accurately name the thing being discussed. Explain a distinction only when it affects the design; do not rename public APIs, product concepts or code symbols merely to match this glossary.
 
-**Module**: anything with an interface and an implementation. Deliberately scale-agnostic: a function, class, package, or tier-spanning slice. _Avoid_: unit, component, service.
+This is a reference within the caller's authorized task, not authority to start a new redesign or interview. Compare alternative interfaces only when a real unresolved design choice warrants it, not to manufacture work for an already settled change.
 
-**Interface**: everything a caller must know to use the module correctly: the type signature, but also invariants, ordering constraints, error modes, required configuration, and performance characteristics. _Avoid_: API, signature (too narrow, they refer only to the type-level surface).
+**Module**: anything with an interface and an implementation. Deliberately scale-agnostic: a function, class, package, or tier-spanning slice. A named service or component may be the module under discussion; retain that name.
+
+**Interface**: everything a caller must know to use the module correctly: the type signature, but also invariants, ordering constraints, error modes, required configuration, and performance characteristics. An API may describe this contract; a type signature alone may omit important caller obligations. Keep the actual API name and explain missing constraints when relevant.
 
 **Implementation**: what's inside a module, its body of code. Distinct from **Adapter**: a thing can be a small adapter with a large implementation (a Postgres repo) or a large adapter with a small implementation (an in-memory fake). Reach for "adapter" when the seam is the topic; "implementation" otherwise.
 
 **Depth**: leverage at the interface. The amount of behaviour a caller (or test) can exercise per unit of interface they have to learn. A module is **deep** when a large amount of behaviour sits behind a small interface, **shallow** when the interface is nearly as complex as the implementation.
 
-**Seam** _(Michael Feathers)_: a place where you can alter behaviour without editing in that place; the *location* at which a module's interface lives. Where to put the seam is its own design decision, distinct from what goes behind it. _Avoid_: boundary (overloaded with DDD's bounded context).
+**Seam** _(Michael Feathers)_: a place where you can alter behaviour without editing in that place; the *location* at which a module's interface lives. Where to put the seam is its own design decision, distinct from what goes behind it. A boundary is not necessarily a seam; qualify the kind of boundary when that distinction matters.
 
 **Adapter**: a concrete thing that satisfies an interface at a seam. Describes *role* (what slot it fills), not substance (what's inside).
 
@@ -106,7 +108,7 @@ Good interfaces make testing natural:
 
 - **Depth as ratio of implementation-lines to interface-lines** (Ousterhout): rewards padding the implementation. We use depth-as-leverage instead.
 - **"Interface" as the TypeScript `interface` keyword or a class's public methods**: too narrow: interface here includes every fact a caller must know.
-- **"Boundary"**: overloaded with DDD's bounded context. Say **seam** or **interface**.
+- **Treating every boundary as a seam**: distinguish a domain, process, security or module boundary from a point where behavior can be varied. The word boundary is valid; the distinction depends on the design.
 
 ## Going deeper
 

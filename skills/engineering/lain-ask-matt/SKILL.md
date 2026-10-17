@@ -22,9 +22,9 @@ Technical risk decides design depth; session count decides coordination. Routing
 | A bounded shared interface, data, algorithm, failure, security or migration decision is unsettled | `/lain-technical-design`, or `/lain-grill-with-docs` for unresolved product choices |
 | Several scopes depend on unresolved shared decisions that exceed one planning session | `/lain-wayfinder`, using a thin baseline and scope-by-scope technical design |
 
-`/lain-technical-design` is model-invoked and can also be typed directly. It distinguishes reuse, a bounded design gap, and a blocker; it owns the risk rules and optional shared-constraint handoff. Main-flow entry points also check readiness, so bypassing this router does not bypass the precondition.
+`/lain-technical-design` is model-invoked and can also be typed directly. It distinguishes reuse, a bounded design gap, and a blocker; it owns the risk rules and optional shared-constraint handoff. Main-flow entry points also check readiness, so bypassing this router does not bypass the precondition. A clear high-level goal with unresolved implementation choices normally goes to agent investigation and design, not a user technology questionnaire; only unresolved intent or authority needs clarification.
 
-1. **Does the request need clarification?** Use **`/lain-grill-with-docs`** when decisions need an interview and you are working in a working directory. It retains domain vocabulary and qualifying ADRs. Without a working directory, use **`/lain-grill-me`**. Skip a new interview for a settled request; do not ask again for existing decisions or codebase-answerable facts.
+1. **Does the request need clarification?** Use **`/lain-grill-with-docs`** when decisions need an interview and you are working in a working directory. It reuses established language and loads active domain modeling only for material ambiguity, a needed new concept, an explicit modeling request or a qualifying ADR. Without a working directory, use **`/lain-grill-me`**. Skip a new interview for a settled request; do not ask again for existing decisions or codebase-answerable facts.
 2. **Does a question need evidence beyond discussion?**
    - **UI or logic interaction** → `/lain-prototype` for a throwaway artifact to react to.
    - **Technical feasibility, retrieval quality, capacity or migration** → `/lain-prototype` in technical-experiment mode, with a baseline, reproducible commands and actual evidence.
@@ -59,7 +59,7 @@ After a difficult session or repeated failure, offer **`/lain-retro`** to inspec
 ## Reusable disciplines underneath
 
 - **`/lain-technical-design`** supplies risk-adaptive solution design and scope readiness. It delegates module shape to `/lain-codebase-design` and measurement to `/lain-prototype`. Binding shared constraints flow into the spec and relevant tickets; reversible local choices remain with the implementer. Optional `docs/agents/engineering.md` records existing authority and verification conventions without requiring a setup rerun.
-- **`/lain-domain-modeling`** sharpens domain language and records qualifying ADRs. Reading an existing glossary alone does not invoke active domain-modeling work. `CONTEXT.md` remains a glossary, not a specification or architecture notebook.
+- **`/lain-domain-modeling`** resolves material domain ambiguity and records needed project meanings or qualifying ADRs. Established terms and harmless synonyms need no naming interview; passive glossary reading does not invoke active domain work. `CONTEXT.md` remains a glossary, not a specification or architecture notebook.
 - **`/lain-codebase-design`** supplies deep-module vocabulary for a small interface at a clean seam. It is used by TDD, architecture improvement, and technical design when module shape matters.
 
 ## Phase boundaries
@@ -79,7 +79,7 @@ Generated artifacts use `lain-writing-for-agents` in artifact mode inside their 
 ## Standalone
 
 - **`/lain-grill-me`**: stateless interviewing when there is no working directory. With a repository, `/lain-grill-with-docs` leaves the relevant domain paper trail.
-- **`/lain-grilling`**: the model-invoked interview primitive. Facts are the agent's work; unresolved decisions belong to their authorized owner. It does not authorize implementation merely by completing an interview.
+- **`/lain-grilling`**: the model-invoked clarification discipline. The agent investigates and recommends; the human-question frontier contains only material choices that sources, intent and delegation cannot settle. It does not authorize implementation merely by completing an interview.
 - **`/lain-resolving-merge-conflicts`**: an in-progress merge or rebase, resolved by intent traced to each side's source. Preserve unrelated work and respect a later instruction to stop or abort.
 - **`/lain-prototype`**: a bounded UI/logic demonstration or technical experiment. The result returns to the authoritative design or spec before separately authorized production implementation. Retain the useful evidence outside production paths.
 - **`/lain-research`**: source-backed investigation with a cited Markdown result. Research informs a decision; it does not replace an experiment or make the decision by itself.

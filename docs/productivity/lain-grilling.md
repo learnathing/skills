@@ -1,62 +1,54 @@
 ## What it does
 
-`lain-grilling` is the reusable interview discipline for a plan, decision or idea. It uses a **design tree** to track which decisions depend on others and asks only for choices that still need their authorized owner. Existing answers and delegated choices do not become new approval gates.
+`lain-grilling` clarifies a plan or decision without asking the user to do the agent's research or technical design. The agent investigates, recommends an approach and handles choices within existing authority. Questions are reserved for material differences that evidence, intent and delegation cannot settle.
+
+A **design tree** tracks dependencies. It is not a checklist of questions the user must answer, and finishing an interview does not prove technical readiness.
 
 ## When to reach for it
 
-Type `/lain-grilling`, or the [agent](https://www.aihero.dev/ai-coding-dictionary/agent) reaches for it automatically when the task calls for an interview. It is the model-invoked member of the grilling family.
+Type `/lain-grilling`, or the [agent](https://www.aihero.dev/ai-coding-dictionary/agent) uses it when an interview or pressure-test is needed. It remains model-invoked.
 
 | Situation | Route |
 | --- | --- |
-| A plain interview without a workspace | [grill-me](https://aihero.dev/skills-grill-me) |
-| Requirements and decisions in a workspace | [grill-with-docs](https://aihero.dev/skills-grill-with-docs) |
-| Several dependent planning scopes | [wayfinder](https://aihero.dev/skills-wayfinder) |
-| A question that needs a demonstration | [prototype](https://aihero.dev/skills-prototype), within the authorized scope |
-| Another [skill](https://www.aihero.dev/ai-coding-dictionary/skill) needs an interview | Invoke `lain-grilling` rather than copying the technique |
+| Clarify an idea without a workspace | [Grill me](https://aihero.dev/skills-grill-me) |
+| Clarify a requirement against project sources | [Grill with docs](https://aihero.dev/skills-grill-with-docs) |
+| The goal is clear but the implementation approach is not | [Technical design](https://github.com/learnathing/skills/blob/main/docs/engineering/lain-technical-design.md) |
+| Another skill needs a bounded interview | Use this discipline rather than copying its questions |
 
-## Rounds and the frontier
+## A smaller human-question frontier
 
-The **frontier** contains unresolved decisions whose prerequisites are settled. Independent questions can share a round; a question that depends on an unanswered one comes later. Numbers and recommendations make it easy to respond without quoting every question. The grouping and presentation adapt to the user's needs, with no fixed question or round count.
+The **frontier** contains only decisions that still need human input. Discoverable facts and authorized technical choices remain agent work. Independent questions can share a round; questions depending on an unanswered choice come later. Each question gives a recommendation and explains what a different answer would change for the user.
 
-Facts are investigated with available tools. Independent research can be delegated when useful; a missing delegation tool does not prevent direct investigation. Only work that depends on missing evidence waits.
+A caller-visible choice need not be asked again when existing intent or delegation already supports it. Conversely, model confidence does not authorize a new cost, data transfer or irreversible operation. Recommendations, delegated choices and user decisions remain distinguishable.
 
-The agent makes routine, reversible choices within the authority supplied by the request and conversation. It distinguishes those choices from user decisions. Recommendations outside that authority remain proposals until accepted. New evidence or changed instructions reopen the affected branches, rather than restarting the whole interview.
+Stop when no material human-owned question remains for the current scope, not when every possible design branch has been explored. Remaining evidence gaps still block the work that depends on them.
 
 ## Common questions
 
-**Can I ask for one question at a time?**
+**Must I understand implementation details to finish the interview?**
 
-Yes. Tell the agent how you want to answer. Grouped independent questions are a default, not a requirement that overrides your instructions.
+No. The agent investigates technical questions and explains any remaining choice through outcomes and trade-offs. Saying that you do not know a technical answer should return the investigation to the agent, not produce the same question in different jargon.
 
-**Where did `/batch-grill-me` go?**
+**Can I ask for deeper discussion or one question at a time?**
 
-Round-based interviewing lives in `lain-grilling`, so the wrappers use the same mechanism. There is no separate batch skill to install.
+Yes. Explicit learning and design co-creation requests can go deeper. Your latest instruction controls scope, rhythm and stopping; there is no universal question quota.
 
-**It ran out of questions and started building.**
+**Does ending the interview authorize building?**
 
-An interview-only request does not authorize implementation. Work already authorized can proceed once its prerequisite decisions are settled. There is no universal extra confirmation round, and ending an interview with unresolved choices must not be reported as agreement.
+No. An interview-only request ends with a summary. Already authorized work can continue when its prerequisites are settled. A stop instruction does not accept unresolved proposals.
 
-**Can it decide anything without asking me?**
+**Do I have to make every decision myself?**
 
-Yes, within the authority you have supplied. Routine, reversible choices and facts it can investigate should not be sent back for approval. Consequential choices outside that authority still need their responsible owner. The summary should distinguish delegated selections from decisions you made yourself.
-
-**Can I stop or limit the interview?**
-
-Yes. Your latest instruction controls its scope and depth. The skill does not impose a numeric cap of its own. When you stop early, it preserves unresolved choices and their consequences instead of silently selecting answers.
-
-**I installed a wrapper but the interview does not run.**
-
-`grill-me` and `grill-with-docs` depend on this skill; the latter also uses [domain-modeling](https://aihero.dev/skills-domain-modeling). With a selective installation, include the dependencies. A missing dependency should be reported rather than claiming it ran.
+No. The agent makes choices supported by the supplied intent and authority. An unresolved preference or permission is different from an unknown fact; it cannot be settled merely by researching or experimenting.
 
 ## It's working if
 
-- You can answer independent questions together, or use the rhythm you requested.
-- A question does not require guessing an answer you have not given yet.
-- The agent looks up facts instead of asking you to research them.
-- Delegated choices keep moving, and recommendations are not misreported as your decisions.
-- A stop instruction produces a useful summary with remaining choices visible.
-- Already authorized work proceeds without duplicate approval once its prerequisites are settled.
+- The agent uses existing sources before asking you for information.
+- Questions explain consequential outcomes rather than demand technology selections.
+- Harmless wording differences do not interrupt progress.
+- Delegated decisions keep moving without being attributed to you.
+- Stops, evidence gaps and unaccepted choices remain explicit.
 
 ## Where it fits
 
-`lain-grilling` is a reusable discipline, not a mandatory build step. [Grill-with-docs](https://aihero.dev/skills-grill-with-docs) adds requirement handoffs and domain records; [grill-me](https://aihero.dev/skills-grill-me) exposes a plain interview. [Ask Matt](https://aihero.dev/skills-ask-matt) routes among these and the other workflows.
+This is a reusable clarification discipline, not a mandatory build step. [Grill with docs](https://aihero.dev/skills-grill-with-docs) adds a source-backed handoff and conditional domain work; [grill me](https://aihero.dev/skills-grill-me) exposes a plain conversation. [Ask Matt](https://aihero.dev/skills-ask-matt) selects the route.
