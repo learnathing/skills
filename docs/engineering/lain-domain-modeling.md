@@ -29,7 +29,7 @@ A distinguishing example can expose whether "cancel" means stopping a future act
 
 Reuse the configured document names and locations. Create the glossary or ADR directory only when a useful authorized record exists. Keep the glossary separate from specs, implementation notes and conversation history.
 
-An ADR is still offered only when the choice is hard to reverse, surprising without context and the result of a real trade-off. A paragraph may be enough. The [artifact writing reference](https://github.com/learnathing/skills/blob/main/docs/productivity/lain-writing-for-agents.md) keeps the choice, reason and consequence readable without hiding proposal or acceptance status.
+An ADR is still offered only when the choice is hard to reverse, surprising without context and the result of a real trade-off. A paragraph may be enough. The [shared artifact writing reference](https://github.com/learnathing/skills/blob/main/docs/productivity/lain-writing-for-agents.md) keeps the choice, reason and consequence readable without hiding proposal or acceptance status.
 
 ## Common questions
 
