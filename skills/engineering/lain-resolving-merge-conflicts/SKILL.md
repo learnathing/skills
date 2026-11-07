@@ -1,6 +1,7 @@
 ---
 name: lain-resolving-merge-conflicts
 description: "Use when you need to resolve an in-progress git merge/rebase conflict."
+disable-model-invocation: true
 ---
 
 1. **See the current state** of the merge/rebase. Record HEAD, the operation in progress, unresolved paths, and staged, unstaged, and untracked changes. Separate pre-existing user work from the merge or rebase result before editing. Check git history and the conflicting files.

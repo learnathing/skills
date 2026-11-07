@@ -199,6 +199,7 @@ Skills I use daily for code work.
 - **[lain-implement](./skills/engineering/lain-implement/SKILL.md)**: Build one bounded issue through contract rehydration, evidence-bearing vertical slices, and conditional blocker repair before committing.
 - **[lain-wayfinder](./skills/engineering/lain-wayfinder/SKILL.md)**: Plan a huge chunk of work, more than one agent session can hold, as a shared map of decision tickets on the issue tracker, and resolve them one at a time until the way to the destination is clear.
 - **[lain-retro](./skills/engineering/lain-retro/SKILL.md)**: Inspect a coding session and propose source-backed environment improvements, preferring deterministic checks for mechanical mistakes.
+- **[lain-resolving-merge-conflicts](./skills/engineering/lain-resolving-merge-conflicts/SKILL.md)**: Work through an in-progress git merge or rebase conflict hunk by hunk, resolving by intent traced to each side's primary source, then finish the operation (never `--abort`).
 
 **Model-invoked**
 
@@ -211,7 +212,6 @@ Skills I use daily for code work.
 - **[lain-codebase-design](./skills/engineering/lain-codebase-design/SKILL.md)**: Shared discipline and vocabulary for designing deep modules: a lot of behaviour behind a small interface, placed at a clean seam, testable through that interface.
 - **[lain-code-review](./skills/engineering/lain-code-review/SKILL.md)**: Three-axis review of committed or working-tree changes since a fixed point: **Standards**, **Spec**, and **Design**, covered by one independent reviewer, with coordinator-verified findings and explicit incomplete-review reporting.
 - **[lain-pr](./skills/engineering/lain-pr/SKILL.md)**: Write a source-linked PR description with actual evidence, rollback limits and remaining obligations; publishing requires separate authority.
-- **[lain-resolving-merge-conflicts](./skills/engineering/lain-resolving-merge-conflicts/SKILL.md)**: Work through an in-progress git merge or rebase conflict hunk by hunk, resolving by intent traced to each side's primary source, then finish the operation (never `--abort`).
 - **[lain-wizard](./skills/engineering/lain-wizard/SKILL.md)**: Generate an interactive bash wizard that walks a human through steps only they can perform: provisioning infrastructure, setting up credentials or CI secrets, walking an unfamiliar third-party dashboard, or running a one-off migration or cutover.
 
 ### Productivity
