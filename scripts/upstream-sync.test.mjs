@@ -78,3 +78,28 @@ test("PR evidence and retrospective authority remain explicit", () => {
   assert.match(retro, /independent review and complete coverage/);
   assert.match(retro, /no mandatory retrospective/);
 });
+
+test("adopted upstream fixes remain in their skills", () => {
+  const gh = read("skills/engineering/lain-setup-matt-pocock-skills/issue-tracker-github.md");
+  assert.match(gh, /gh repo view --json nameWithOwner/);
+  assert.match(gh, /drops the comment/);
+  assert.match(read("skills/engineering/lain-setup-matt-pocock-skills/issue-tracker-gitlab.md"), /-O json/);
+  const setup = read("skills/engineering/lain-setup-matt-pocock-skills/SKILL.md");
+  assert.match(setup, /run them only after the user confirms/);
+  assert.match(setup, /reachable repository/);
+  const wayfinder = read("skills/engineering/lain-wayfinder/SKILL.md");
+  assert.match(wayfinder, /never add a triage label/);
+  assert.match(wayfinder, /placeholder `#<n>`/);
+  assert.match(wayfinder, /open no pull request/);
+  assert.match(wayfinder, /`wayfinder:<type>` label names/);
+  assert.match(read("CLAUDE.md"), /fresh context window/);
+  for (const file of [
+    "skills/engineering/lain-research/SKILL.md",
+    "skills/engineering/lain-wayfinder/SKILL.md",
+    "skills/engineering/lain-improve-codebase-architecture/SKILL.md",
+    "skills/engineering/lain-codebase-design/DESIGN-IT-TWICE.md",
+    "skills/productivity/lain-grilling/SKILL.md",
+  ]) assert.match(read(file), /fresh context window/, file);
+  assert.match(read("skills/engineering/lain-diagnosing-bugs/SKILL.md"), /prove the mutation landed/);
+  assert.match(read("skills/engineering/lain-wizard/template.sh"), /^run_wizard "\$@"; exit$/m);
+});

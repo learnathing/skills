@@ -55,6 +55,8 @@ Preserve and supersede it, identify its dependents, then re-establish their read
 - Shared unresolved prerequisites cannot be bypassed by parallel implementation.
 - Decision revisions retain history and update affected dependencies.
 - Production work is handed to its authorized delivery flow.
+- Maps and decision tickets carry only `wayfinder:` labels, never a triage label such as `ready-for-agent`, and each ticket is resolved as the type its label names.
+- Cross-references use real issue identifiers, and research branches are pushed without a pull request.
 
 - The map shows what decisions matter and what each unresolved question blocks, without duplicating every child ticket. See the [shared artifact writing reference](https://github.com/learnathing/skills/blob/main/docs/productivity/lain-writing-for-agents.md).
 

@@ -41,11 +41,12 @@ No. Reconfigure only when needed or requested. The artifact writer can use exist
 
 **Does setup mark old work done or create remote labels?**
 
-No. Configuration is not authority to change an issue lifecycle, create labels or infer evidence. Historical tickets need an actual source/evidence check before their current state is updated.
+It does not mark old work done. Configuration is not authority to change an issue lifecycle or infer evidence, so historical tickets need an actual source/evidence check before their current state is updated. For labels, setup lists the configured triage labels your GitHub or GitLab tracker lacks and offers the exact create commands. It runs them only after you confirm, and reports any it left uncreated.
 
 ## It's working if
 
 - Tracker and label mappings match the actual project workflow.
+- A GitHub or GitLab tracker resolves from inside the repo (`gh repo view` or `glab repo view` prints it), and issues land in your own repo, not in the upstream repo a fork points at.
 - Readiness is not mistaken for completion or a free claim.
 - Current evidence gaps are easy to find without erasing their history.
 - A visible entry reaches local artifacts without duplicating their contents.

@@ -43,6 +43,7 @@ No, unless separately authorized. A verified implementation commit is not an imp
 ## It's working if
 
 - Task ownership and the starting worktree are explicit.
+- A passed ticket reference is fetched and its title stated before any edit.
 - Existing design is reused without unnecessary artifacts.
 - Shared constraints use accepted, applicable revisions.
 - Tests and required experiments have actual evidence.

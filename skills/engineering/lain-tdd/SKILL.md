@@ -21,7 +21,7 @@ See [tests.md](tests.md) for examples and [mocking.md](mocking.md) for mocking g
 
 A **seam** is the public boundary you test at: the interface where you observe behavior without reaching inside. Tests live at seams, never against internals.
 
-Use source-agreed seams when they exist. Otherwise prefer an established repository seam and record it in the cycle evidence. Ask the user only when the choice changes an externally observable or hard-to-reverse interface contract, or when materially different seams encode different caller behaviour. Internal Java visibility or a test seam alone does not make the choice a user decision.
+Use source-agreed seams when they exist. Otherwise prefer an established repository seam and record it in the cycle evidence. Ask the user only when the choice changes an externally observable or hard-to-reverse interface contract, or when materially different seams encode different caller behaviour. Internal Java visibility or a test seam alone does not make the choice a user decision. Give each proposed or recorded seam a one-line note on what it catches and what it misses.
 
 When the shape of that interface is itself in question (how deep the module is, where the seam belongs, what the interface should expose), call the Skill tool with "lain-codebase-design" for the vocabulary. It is the shared source of the module, interface, depth, seam, adapter, leverage and locality terms, and it is a reference to consult, not a session to run.
 

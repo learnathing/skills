@@ -39,7 +39,9 @@ Summarize what exists and what is missing. Lead with the recommended answer, ski
 
 Record the choice in `docs/agents/issue-tracker.md`. The GitHub and GitLab templates keep "PRs as a request surface" off by default; do not turn it on or raise it without need.
 
-**Section B: Triage label vocabulary.** Skip when `lain-triage` is not installed. Otherwise offer the existing defaults: `needs-triage`, `needs-info`, `ready-for-agent`, `ready-for-human`, `wontfix`. Collect overrides only when the tracker uses other names. This configures a mapping, not permission to create or alter remote labels.
+A GitHub or GitLab tracker needs a reachable repository. When no `git remote` points at the chosen host, get the repository URL from the user and wire it up locally (`git init` if needed, then `git remote add origin <url>`). Section A is done when `gh repo view` or `glab repo view` prints that project from inside this directory; if it cannot, stop and report what is missing.
+
+**Section B: Triage label vocabulary.** Skip when `lain-triage` is not installed. Otherwise offer the existing defaults: `needs-triage`, `needs-info`, `ready-for-agent`, `ready-for-human`, `wontfix`. Collect overrides only when the tracker uses other names. This configures a mapping, not permission to create or alter remote labels. On GitHub or GitLab, list the configured labels the tracker lacks and offer the exact `gh label create` or `glab label create` commands; run them only after the user confirms. Without missing labels created, `lain-triage` cannot apply them, so report any left uncreated.
 
 **Section C: Domain docs.** Reuse an existing layout. Default to a single `CONTEXT.md` and `docs/adr/` for a new simple project. When the repository has real multiple domain contexts, confirm the context map and per-context locations; do not infer domain boundaries solely from package count.
 

@@ -76,7 +76,7 @@ Publish only the exact breakdown the user approved. Before publishing, rerun the
 Publish the approved tickets. **How** depends on the tracker `/lain-setup-matt-pocock-skills` configured; the tickets are the same either way, only the shape of the blocking edges changes:
 
 - **Local files**: write one file per ticket under `.scratch/<feature-slug>/issues/<NN>-<slug>.md`, numbered from `01` in dependency order. Each file's `Ticket` and `Blocked by` fields use those exact identifiers.
-- **A real issue tracker**: publish one issue per ticket in dependency order so blocking edges can reference real identifiers. Use native blocking relationships where available, otherwise keep the `Blocked by` field. Apply the `ready-for-agent` triage label unless instructed otherwise.
+- **A real issue tracker**: publish one issue per ticket in dependency order so blocking edges can reference real identifiers. Use native blocking relationships where available, otherwise keep the `Blocked by` field. If the source was an existing issue, make each ticket its sub-issue (the tracker doc's operation). Apply the `ready-for-agent` triage label unless instructed otherwise.
 
 Publish the validated staged artifacts. Map provisional identifiers to final tracker identifiers, update only `Ticket` and `Blocked by`, and rerun the validator on the final staged bodies before sending them to the tracker. Encode the same edges as native relationships where supported.
 

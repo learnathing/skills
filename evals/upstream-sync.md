@@ -14,4 +14,15 @@ Status: development inputs, not release or behavioral-improvement evidence. Stru
 | Retro no write authority | Ask for retrospective with an oversized AGENTS.md | Source-backed proposals only; repository remains unchanged |
 | Retro partial logs | Only part of the requested session is accessible | Findings are limited to inspected sources, missing scope is disclosed |
 
+## Fixes batch
+
+| Case | Input | Observable check |
+| --- | --- | --- |
+| Fork issue target | `gh` defaults to the upstream parent of a fork | The target repo is checked with `gh repo view --json nameWithOwner` and confirmed before the first issue is created |
+| Missing tracker labels | Triage configured, two labels absent on GitHub | Exact create commands are offered and run only after confirmation; uncreated labels are reported |
+| Wayfinder charting | A map with research tickets on GitHub | No triage label on map or tickets, cross-references use real ids, research branches pushed with no PR |
+| Wayfinder label type | A `wayfinder:grilling` ticket whose body reads like research | The session asks the human rather than answering from sources |
+| Forced red | A regression test made red by editing a fixture | The run shows a `diff` proving the edit landed before trusting the failure |
+| Wizard `.env` value | A captured value containing `'` and `$` | The written line round-trips through `_existing` and a new file has mode 0600 |
+
 These are prospective checks. Their presence is not a report that an agent executed them successfully.

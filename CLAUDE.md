@@ -24,6 +24,8 @@ To (re)link every skill into the local harness skill directories (`~/.claude/ski
 
 No em-dashes anywhere in this repo's prose (`SKILL.md` files, docs, `README.md`, `CHANGELOG.md`, ADRs, changesets, code comments). Where a sentence reaches for one, rewrite it instead with a comma, colon, period, parentheses, or a conjunction, whichever the sentence actually wants; never do a blind character substitution.
 
+Every skill that dispatches a subagent says to start it with a fresh context window. Some harnesses (Codex, for one) fork the parent conversation by default, and a fork inherits the parent's context, which is what the subagent was meant to escape.
+
 ## Skill quality
 
 A skill is a measurable delta over the base model, not a tutorial for capabilities the model already has. Keep only project-specific policy, non-obvious workflow state, tool protocol, durable artifacts, safety constraints, and completion criteria that change observable behaviour.
