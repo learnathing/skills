@@ -3,7 +3,7 @@ name: lain-diagnosing-bugs
 description: Diagnosis loop for hard bugs and performance regressions. Use when the user says "diagnose"/"debug this", or reports something broken/throwing/failing/slow.
 ---
 
-When writing the artifacts described here, call the Skill tool with "lain-writing-for-agents" in artifact mode. Reuse the reference when already loaded. If unavailable, disclose once and draft directly without weakening existing gates. A diagnosis note or final report leads with the observed symptom, supported cause or provisional hypothesis, and verification limits. Then give the discriminating probe or verified fix with redacted evidence. Keep observed facts separate from inference, retain unsuccessful probes when relevant, and do not make an unverified production diagnosis sound certain.
+A diagnosis note or final report leads with the observed symptom, the supported cause or provisional hypothesis, and the verification limits, keeping observed facts separate from inference.
 
 # Diagnosing Bugs
 

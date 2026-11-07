@@ -1,6 +1,6 @@
 # Ticket contract template
 
-Use one artifact per ticket. Call the Skill tool with "lain-writing-for-agents" in artifact mode while drafting. If unavailable, disclose once and use this template without weakening its source or verification rules. Keep the literal field names and section headings below for the schema-v1 validator; their values and explanatory prose may use the reader's working language.
+Use one artifact per ticket. Keep the literal field names and section headings below for the schema-v1 validator; their values and explanatory prose may use the reader's working language.
 
 Lead with the outcome and acceptance criteria. Keep material failure behavior, invariants and shared constraints readable before the provenance fields. An ID is not a substitute for its meaning. Avoid paraphrasing the same success result under several headings; refer to an existing complete acceptance criterion when appropriate.
 
@@ -64,4 +64,4 @@ Keep this same ticket readable as it changes. Under the existing authority to up
 
 The published `Status:` and unchecked boxes were a readiness snapshot, not an instruction to stay ready forever. Use the configured live tracker status and preserve actual checked criteria. For published local tickets run `validate-tickets.mjs <manifest> <directory> --phase=tracking`; a tracking pass never certifies completion. The default publication mode remains unchanged. Do not select already-started work from the old readiness label alone.
 
-Before appending Comments, update the current section for new blockers, material limitations or accepted superseding decisions. Preserve history and source authority; unresolved differences stay visible without silently rewriting the accepted contract. Link evidence instead of copying whole logs. Use the artifact-mode living-document reference for source ownership, visible indexes and handoff boundaries.
+Before appending Comments, update the current section for new blockers, material limitations or accepted superseding decisions. Preserve history and source authority; unresolved differences stay visible without silently rewriting the accepted contract. Link evidence instead of copying whole logs.

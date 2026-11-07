@@ -66,7 +66,7 @@ No. It inspects evidence and reports missing obligations. Design and implementat
 - Missing measurement, unfinished checks and missing independence are disclosed accurately.
 - Blockers, advisories and future release obligations remain distinct.
 
-- Finding titles name affected behavior, with concrete impact and evidence; every required review axis and non-pass state remains visible. See the [shared artifact writing reference](https://github.com/learnathing/skills/blob/main/docs/productivity/lain-writing-for-agents.md).
+- Finding titles name affected behavior, with concrete impact and evidence; every required review axis and non-pass state remains visible.
 
 ## Where it fits
 

@@ -50,7 +50,7 @@ It does not mark old work done. Configuration is not authority to change an issu
 - Readiness is not mistaken for completion or a free claim.
 - Current evidence gaps are easy to find without erasing their history.
 - A visible entry reaches local artifacts without duplicating their contents.
-- The [shared artifact writing reference](https://github.com/learnathing/skills/blob/main/docs/productivity/lain-writing-for-agents.md) keeps exact keys and authority alongside clear explanations.
+- Generated configuration explains each setting while keeping exact keys and authority.
 
 ## Where it fits
 

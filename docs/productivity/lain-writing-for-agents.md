@@ -6,7 +6,7 @@ Artifact mode now also maintains the current reading path of long-lived work: wh
 
 ## When to reach for it
 
-Type `/lain-writing-for-agents`, or the agent reaches for it when writing or editing skills and repository instructions. Artifact producers use the shared artifact writing reference while they draft; developers do not need to request a second simplified copy.
+Type `/lain-writing-for-agents`, or the agent reaches for it when writing or editing skills and repository instructions. Artifact mode runs only when you ask for it, for example "make this spec easier to read". Each artifact-producing skill already states its own reading order in one line, so ordinary specs, tickets and reports do not load this reference.
 
 | Work | Applicable guidance |
 | --- | --- |
@@ -58,4 +58,4 @@ It remains in instruction mode: context pointers disclose only relevant referenc
 
 ## Where it fits
 
-This is a model-invoked reference beneath artifact producers, not a new stage between planning and implementation. [To-spec](https://github.com/learnathing/skills/blob/main/docs/engineering/lain-to-spec.md) uses it for behavior-first contracts; [to-tickets](https://github.com/learnathing/skills/blob/main/docs/engineering/lain-to-tickets.md) uses it for readable delivery and tracking. [Ask Matt](https://github.com/learnathing/skills/blob/main/docs/engineering/lain-ask-matt.md) routes the set.
+This is the model-invoked reference for agent instructions, plus an on-request artifact mode. Producers such as [to-spec](https://github.com/learnathing/skills/blob/main/docs/engineering/lain-to-spec.md) and [to-tickets](https://github.com/learnathing/skills/blob/main/docs/engineering/lain-to-tickets.md) keep their behavior-first reading order in their own instructions and templates. [Ask Matt](https://github.com/learnathing/skills/blob/main/docs/engineering/lain-ask-matt.md) routes the set.

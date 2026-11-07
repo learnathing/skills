@@ -3,7 +3,7 @@ name: lain-code-review
 description: "Review committed or working-tree changes since a fixed point against Standards, Spec, and Design with one independent reviewer. Use for branches, PRs, work in progress, and implementation quality gates."
 ---
 
-When writing the artifacts described here, call the Skill tool with "lain-writing-for-agents" in artifact mode. Reuse the reference when already loaded. If unavailable, disclose once and draft directly without weakening existing gates. This writing call belongs to the calling coordinator when presenting the final report, not to the independent reviewer; do not add calls to the reviewer's no-skills brief. Name the affected behavior in each finding title and explain its concrete impact before dense source details. Keep all three axes, finding fields, blocker/advisory distinctions and every applicable non-pass state; do not turn fewer words into omitted coverage.
+In the final report, title each finding by the affected behavior and state its concrete impact before source details.
 
 # Code Review
 

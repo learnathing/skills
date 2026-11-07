@@ -3,7 +3,7 @@ name: lain-technical-design
 description: "Resolve technical risk before committing work to an implementation route. Use when requirements leave shared interfaces, data identity, algorithms, failure semantics, migrations, security, capacity, or cross-ticket decisions unsettled, or when another skill needs a readiness assessment."
 ---
 
-When writing the artifacts described here, call the Skill tool with "lain-writing-for-agents" in artifact mode. Reuse the reference when already loaded. If unavailable, disclose once and draft directly without weakening existing gates. Lead a design note with the problem, proposed or accepted choice, reason and consequences. Keep blockers and material trade-offs visible before revision registers. A readiness conclusion names the particular scope and evidence, not just reuse/design-needed/blocked. Preserve the existing lazy-document and assessment-only boundaries.
+A design note leads with the problem, the proposed or accepted choice, its reason and consequences, with blockers and material trade-offs before any revision register.
 
 # Technical Design
 

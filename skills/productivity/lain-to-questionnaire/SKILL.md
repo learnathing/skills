@@ -4,7 +4,7 @@ description: Turn a decision you can't fully answer into a questionnaire for som
 disable-model-invocation: true
 ---
 
-When writing the artifacts described here, call the Skill tool with "lain-writing-for-agents" in artifact mode. Reuse the reference when already loaded. If unavailable, disclose once and draft directly without weakening existing gates. Match the recipient's language and knowledge, not the agent's internal terminology. Make each question answerable on its own with context, one requested fact or choice, and an answer space. Separate supplied facts from proposals; do not lead the recipient into approving an assumed answer. Include a deadline or effort only when supplied or supported, not invented to fill the template.
+Use the recipient's language and knowledge, not internal terminology, and make each question answerable on its own with its context and an answer space.
 
 Turn something the user can't answer alone into a **questionnaire**: a Markdown document they hand to one person to fill in async, or fill out together over a meeting. The recipient holds knowledge the user lacks; the questionnaire pulls it out of them.
 

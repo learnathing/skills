@@ -1,11 +1,11 @@
 ---
 name: lain-writing-for-agents
-description: "Write agent instructions or artifacts shared with people. Use for skills, AGENTS.md, CLAUDE.md, specs, tickets, decision notes, research, handoffs, review reports, and other generated project documents."
+description: "Write agent instructions: skills, AGENTS.md, CLAUDE.md and the documents they point to. Use when writing or editing those, or when the user explicitly asks to make a document or report easier for people to read."
 ---
 
 ## Choose the reader
 
-For a document or report that a person must understand or decide from, use **artifact mode**: read [HUMAN-ARTIFACTS.md](HUMAN-ARTIFACTS.md), apply it while drafting, then return to the caller. This is a writing reference, not a new workflow stage or authority to edit or publish. Reuse it when already loaded.
+When the user explicitly asks to make a document or report easier for people to read, use **artifact mode**: read [HUMAN-ARTIFACTS.md](HUMAN-ARTIFACTS.md) and apply it while drafting. Producer skills carry their own one-line reading order and do not enter this mode on their own.
 
 For runtime agent instructions, use the reference below. Artifact mode does not apply its instruction-compression rules: essential explanations for people are not redundant merely because the model knows them.
 

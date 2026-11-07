@@ -18,7 +18,7 @@ For migrations, verify representative data, compatibility during transition, and
 
 ## Capture the result
 
-Save a small reproducible runner when useful. Use the caller's artifact-mode writing reference for the report, with the answer and its limits before the reproducibility trail:
+Save a small reproducible runner when useful. Write the report with the answer and its limits before the reproducibility trail:
 
 - Question, evidence status, supported conclusion and its limits; distinguish a measured result from a recommendation
 - Supported decision, or the next discriminating experiment when inconclusive

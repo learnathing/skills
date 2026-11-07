@@ -50,7 +50,7 @@ No, unless separately authorized. A verified implementation commit is not an imp
 - New shared contradictions are escalated rather than hidden by defaults.
 - Review limitations and unperformed production steps are reported honestly.
 
-- The completion report says what changed and what remains unverified before the command evidence, without weakening the commit gate. See the [shared artifact writing reference](https://github.com/learnathing/skills/blob/main/docs/productivity/lain-writing-for-agents.md).
+- The completion report says what changed and what remains unverified before the command evidence, without weakening the commit gate.
 
 ## Where it fits
 

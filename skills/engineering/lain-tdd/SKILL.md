@@ -3,7 +3,7 @@ name: lain-tdd
 description: Test-driven development. Use when the user wants to build features or fix bugs test-first, mentions "red-green-refactor", or wants integration tests.
 ---
 
-When writing the artifacts described here, call the Skill tool with "lain-writing-for-agents" in artifact mode. Reuse the reference when already loaded. If unavailable, disclose once and draft directly without weakening existing gates. For cycle evidence, name the behavior first, then its actual command and observed result. Keep change and preservation scenarios distinct; a preservation check need not fail first. Preserve the existing evidence requirements without adding a report file, extra test run or review stage merely for presentation.
+Cycle evidence names the behavior first, then its actual command and observed result.
 
 # Test-Driven Development
 

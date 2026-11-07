@@ -49,7 +49,7 @@ Not with this skill by default. Keep one bounded question and stopping condition
 - Evidence limitations, permissions and resource constraints are visible.
 - Decisions return to the authoritative source without silently shipping throwaway code.
 
-- A walkthrough says what to try and observe; an experiment report gives its supported answer and limits before raw results. See the [shared artifact writing reference](https://github.com/learnathing/skills/blob/main/docs/productivity/lain-writing-for-agents.md).
+- A walkthrough says what to try and observe; an experiment report gives its supported answer and limits before raw results.
 
 ## Where it fits
 

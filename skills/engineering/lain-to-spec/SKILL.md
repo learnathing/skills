@@ -8,7 +8,7 @@ This skill takes the current conversation context and codebase understanding and
 
 The issue tracker and triage label vocabulary should have been provided to you. If not, tell the user to run `/lain-setup-matt-pocock-skills`.
 
-Call the Skill tool with "lain-writing-for-agents" in artifact mode while drafting. If unavailable, disclose once and use the template directly; source and publication gates still apply. Write for a developer who knows the project but did not attend this discussion, as well as the implementing agent. Use the reader's working language for explanatory prose; keep machine keys and stable IDs unchanged. Reading order is not decision authority: retain every source and publication requirement below.
+Write for a developer who knows the project but did not attend this discussion, as well as the implementing agent. Use the reader's working language for explanatory prose; keep machine keys and stable IDs unchanged.
 
 ## Process
 

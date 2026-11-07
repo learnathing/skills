@@ -35,7 +35,7 @@ The body says so and keeps the obligation visible. It cannot turn missing execut
 - Rollback limitations and affected consumers are visible.
 - No publication or release happens merely because the description is complete.
 
-- The PR body explains the user-visible purpose before dense trace data and keeps evidence gaps and rollback limitations visible. See the [shared artifact writing reference](https://github.com/learnathing/skills/blob/main/docs/productivity/lain-writing-for-agents.md).
+- The PR body explains the user-visible purpose before dense trace data and keeps evidence gaps and rollback limitations visible.
 
 ## Where it fits
 

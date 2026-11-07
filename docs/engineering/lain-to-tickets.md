@@ -59,7 +59,7 @@ Not for multi-ticket delivery. Integrate and check as slices land, then run fina
 - Draft validation still runs on the exact approved artifacts.
 - A developer can distinguish implementation from remaining review or integration work.
 - Source revisions, limitations and superseded decisions stay traceable.
-- The [shared artifact writing reference](https://github.com/learnathing/skills/blob/main/docs/productivity/lain-writing-for-agents.md) keeps outcomes before machine fields without creating a second contract.
+- Each ticket puts the outcome before its machine fields, in one contract.
 
 ## Where it fits
 

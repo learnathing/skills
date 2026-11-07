@@ -4,7 +4,7 @@ description: "Configure this repo for the engineering skills: issue tracker, tri
 disable-model-invocation: true
 ---
 
-When writing the artifacts described here, call the Skill tool with "lain-writing-for-agents" in artifact mode. Reuse the reference when already loaded. If unavailable, disclose once and draft directly without weakening existing gates. Generated project configuration first says what the setting controls and where its actual source lives. Use descriptive pointers, explain custom labels where needed, and keep optional policy lean. Preserve actual paths, commands, keys, permissions and the existing confirmation rules; plain language is not permission to rename configuration or grant new authority.
+Generated configuration first says what each setting controls and where its actual source lives.
 
 # Setup Matt Pocock's Skills
 

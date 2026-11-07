@@ -4,7 +4,7 @@ description: "Implement a piece of work based on a spec or set of tickets."
 disable-model-invocation: true
 ---
 
-When writing the artifacts described here, call the Skill tool with "lain-writing-for-agents" in artifact mode. Reuse the reference when already loaded. If unavailable, disclose once and draft directly without weakening existing gates. Use the shared writing reference for the implementation contract and completion report, not as another implementation phase. Lead with what changed and what remains blocked or unverified, then show acceptance-linked commands, commits and finding dispositions. Actual fallback behavior and release obligations stay visible. Preserve the original six-state execution and commit gates below.
+The completion report leads with what changed and what remains blocked or unverified, then the acceptance-linked commands, commits and finding dispositions.
 
 # Implement
 

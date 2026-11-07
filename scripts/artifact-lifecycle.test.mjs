@@ -230,13 +230,13 @@ test("local-link CLI leaves renderer-dependent anchors explicitly unverified", (
   const result = spawnSync(process.execPath, [path.join(root, "skills/productivity/lain-writing-for-agents/check-local-links.mjs"), directory, "index.md"], { encoding: "utf8", timeout: 10000 });
   assert.ifError(result.error); assert.equal(result.status, 2); assert.match(result.stderr, /UNVERIFIED/);
 });
-test("resynced docs keep their section order, absolute links and writer pointer", () => {
+test("resynced docs keep their section order and absolute links", () => {
   for (const file of ["docs/productivity/lain-writing-for-agents.md", ...["lain-to-spec", "lain-to-tickets", "lain-technical-design", "lain-setup-matt-pocock-skills"].map((name) => `docs/engineering/${name}.md`)]) {
     const doc = read(file); let previous = -1;
     for (const heading of ["What it does", "When to reach for it", "Common questions", "It's working if", "Where it fits"]) {
       const at = doc.indexOf(`## ${heading}\n`); assert.ok(at > previous, `${file}: ${heading}`); previous = at;
     }
     assert.doesNotMatch(doc, /^# /m); assert.doesNotMatch(doc, /\]\((?!https:\/\/)[^)]+\)/);
-    assert.ok(doc.includes("shared artifact writing reference")); assert.ok(!doc.includes("\u2014"));
+    assert.ok(!doc.includes("\u2014"));
   }
 });

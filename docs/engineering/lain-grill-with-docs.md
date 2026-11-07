@@ -73,7 +73,7 @@ Not when no new term or qualifying trade-off arose. The decision handoff is stil
 - Existing answers are reused, and an authorized next step does not wait for duplicate approval.
 - A new session can recover saved decisions without treating a glossary or an unexplained ID as the requirement.
 
-- The handoff makes the agreement and unresolved choices understandable before its full source index, without another approval ritual. See the [shared artifact writing reference](https://github.com/learnathing/skills/blob/main/docs/productivity/lain-writing-for-agents.md).
+- The handoff makes the agreement and unresolved choices understandable before its full source index, without another approval ritual.
 
 ## Where it fits
 
