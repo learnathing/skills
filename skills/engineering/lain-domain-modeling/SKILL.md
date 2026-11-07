@@ -3,7 +3,7 @@ name: lain-domain-modeling
 description: Resolve material domain ambiguity and preserve project-specific meanings. Use when behavior depends on conflicting domain definitions, a new project concept needs a definition, the user asks to build or revise a domain model or glossary, or a qualifying ADR needs recording or revision.
 ---
 
-When writing the artifacts described here, call the Skill tool with "lain-writing-for-agents" in artifact mode. Reuse the reference when already loaded. If unavailable, disclose once and draft directly without weakening existing gates. A glossary defines the concept in plain domain language, with a distinguishing example only when needed, not a chain of other undefined terms. An ADR leads with the choice, reason and consequential trade-off, keeping proposal/acceptance and supersession clear. Preserve existing document names, the glossary-only boundary and the three-part ADR eligibility test; do not require more headings or records.
+Define a glossary term in plain domain language, not a chain of other undefined terms. An ADR leads with the choice, the reason and the consequential trade-off.
 
 # Domain Modeling
 

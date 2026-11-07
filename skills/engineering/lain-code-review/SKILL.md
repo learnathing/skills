@@ -3,7 +3,7 @@ name: lain-code-review
 description: "Review committed or working-tree changes since a fixed point against Standards, Spec, and Design with one independent reviewer. Use for branches, PRs, work in progress, and implementation quality gates."
 ---
 
-When writing the artifacts described here, call the Skill tool with "lain-writing-for-agents" in artifact mode. Reuse the reference when already loaded. If unavailable, disclose once and draft directly without weakening existing gates. This writing call belongs to the calling coordinator when presenting the final report, not to the independent reviewer; do not add calls to the reviewer's no-skills brief. Name the affected behavior in each finding title and explain its concrete impact before dense source details. Keep all three axes, finding fields, blocker/advisory distinctions and every applicable non-pass state; do not turn fewer words into omitted coverage.
+In the final report, title each finding by the affected behavior and state its concrete impact before source details.
 
 # Code Review
 
@@ -35,7 +35,7 @@ Find the originating spec in this order:
 3. Issue references in commit messages, fetched through `docs/agents/issue-tracker.md`
 4. If no spec exists, skip the Spec axis and say so. Ask only when the user explicitly requested Spec compliance and the missing source prevents that review. A supplied or identified source that cannot be read is a coverage gap, not evidence that no spec exists
 
-Find repository standards such as `AGENTS.md`, `CLAUDE.md`, `CODING_STANDARDS.md`, and `CONTRIBUTING.md`. Find the relevant `CONTEXT.md`, ADRs, and the agreed seams. Read the Design rubric in [review-rubrics.md](review-rubrics.md). When the change affects shared technical constraints, also read their accepted source revisions, relevant design and experiment evidence, and any configured engineering policy. Load only the affected subset. A design note is not authority to invent requirements, and a structural validator pass is not architecture or benchmark evidence.
+Find repository standards such as `AGENTS.md`, `CLAUDE.md`, `CODING_STANDARDS.md`, and `CONTRIBUTING.md`. Find the relevant `CONTEXT.md`, ADRs, and the agreed seams. Read the Design rubric in [review-rubrics.md](review-rubrics.md). When the change affects shared technical constraints, also read their accepted source revisions, relevant design and experiment evidence, and any configured engineering policy. Load only the affected subset. A structural validator pass is not architecture or benchmark evidence.
 
 ## 3. Run one independent review
 

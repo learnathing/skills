@@ -39,4 +39,4 @@ Mermaid source and text equivalents are supplied. Rendering and human comprehens
 
 ## Integration
 
-No new user-invoked skill, plugin registration, mandatory review stage, automatic tracker mutation, or renderer dependency is added. Existing artifact-mode consumers reach the current-state and visual references conditionally through the same shared writer. If the implementation discipline is later extracted into `lain-implementation`, retain that source's gates and its artifact-mode pointer; do not recreate an obsolete full implementation entry point.
+No new user-invoked skill, plugin registration, mandatory review stage, automatic tracker mutation, or renderer dependency is added. Artifact mode, and with it the current-state and visual references, runs only when a user explicitly asks for it. If the implementation discipline is later extracted into `lain-implementation`, retain that source's gates and its one-line reading order; do not recreate an obsolete full implementation entry point.

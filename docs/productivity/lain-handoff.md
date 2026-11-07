@@ -71,7 +71,7 @@ Both work; they suit different situations. As a skill it ships and updates throu
 - The suggested-skills section names the skill you'd have reached for yourself.
 - Nothing in it is a key, a token, or a password.
 
-- The next reader can identify the goal, current state and authorized next step without reconstructing the task from a list of paths. See the [shared artifact writing reference](https://github.com/learnathing/skills/blob/main/docs/productivity/lain-writing-for-agents.md).
+- The next reader can identify the goal, current state and authorized next step without reconstructing the task from a list of paths.
 
 ## Where it fits
 

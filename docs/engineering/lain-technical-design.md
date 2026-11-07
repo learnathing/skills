@@ -60,7 +60,7 @@ No. It identifies the differing supplied strings and their sources. The source o
 - A fresh implementation session recovers the relevant shared contract.
 - The same ID/revision does not hide several competing normative definitions.
 - Unrelated work is not invalidated by presentation edits.
-- The [shared artifact writing reference](https://github.com/learnathing/skills/blob/main/docs/productivity/lain-writing-for-agents.md) keeps decisions and consequences ahead of registers.
+- A design note puts the decision and its consequences ahead of any revision register.
 
 ## Where it fits
 

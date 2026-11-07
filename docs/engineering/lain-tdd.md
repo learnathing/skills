@@ -64,7 +64,7 @@ No. The source issue must carry its spec trace, exclusions, and relevant pointer
 - A reported refactor names a concrete structural change and its final passing result.
 - Mocks appear only at external boundaries.
 
-- Cycle evidence starts from the tested behavior and keeps actual Red/Green results distinct from preservation checks. See the [shared artifact writing reference](https://github.com/learnathing/skills/blob/main/docs/productivity/lain-writing-for-agents.md).
+- Cycle evidence starts from the tested behavior and keeps actual Red/Green results distinct from preservation checks.
 
 ## Where it fits
 

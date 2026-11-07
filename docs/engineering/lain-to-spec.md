@@ -45,7 +45,7 @@ No. Name the current capability and its shared prerequisites. Independent future
 - Binding claims and original decisions retain durable traces.
 - Shared constraints have consistent accepted definitions and revisions.
 - Small ordinary work needs no optional registry, diagram or design packet.
-- The [shared artifact writing reference](https://github.com/learnathing/skills/blob/main/docs/productivity/lain-writing-for-agents.md) improves the reading path without weakening the contract.
+- A developer who missed the discussion can follow the spec without losing any contract detail.
 
 ## Where it fits
 

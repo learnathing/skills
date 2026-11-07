@@ -53,7 +53,7 @@ In repository instructions and, when useful, optional engineering policy. Editin
 - Ready independent capabilities can leave a larger planning map.
 - Recommendations follow the actual source-skill boundaries.
 
-- Readability is handled inside artifact-producing skills through the existing writing reference; routing does not add another mandatory interview, approval or human-only document.
+- Readability is handled inside each artifact-producing skill by its own reading order; artifact mode in the writing reference runs only on explicit request.
 
 ## Where it fits
 

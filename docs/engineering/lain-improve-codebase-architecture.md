@@ -96,7 +96,7 @@ There is no good answer shipped with the skill. The recurring request is for a `
 - Each card explains the payoff as locality or leverage, and says which tests get simpler, not just "this is cleaner."
 - Rejecting a candidate for a durable reason gets you an offer to record an ADR, so the next run does not re-suggest it.
 
-- Each visual has a readable explanation of the concrete friction, proposed difference, impact and uncertainty. See the [shared artifact writing reference](https://github.com/learnathing/skills/blob/main/docs/productivity/lain-writing-for-agents.md).
+- Each visual has a readable explanation of the concrete friction, proposed difference, impact and uncertainty.
 
 ## Where it fits
 

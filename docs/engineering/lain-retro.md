@@ -34,7 +34,7 @@ Only findings supported by the records it can inspect. It reports gaps rather th
 - A mechanical-rule proposal includes failing and allowed examples.
 - The report separates observed problems from untested improvement hypotheses.
 
-- A proposed environment change is tied to an observed problem and a verification plan, not presented as an already measured improvement. See the [shared artifact writing reference](https://github.com/learnathing/skills/blob/main/docs/productivity/lain-writing-for-agents.md).
+- A proposed environment change is tied to an observed problem and a verification plan, not presented as an already measured improvement.
 
 ## Where it fits
 

@@ -177,7 +177,7 @@ Run `node --test skills/engineering/lain-to-tickets/*.test.mjs scripts/*.test.mj
 
 ## Readable project artifacts
 
-Specs, tickets, decision notes, research, handoffs and reports serve developers as well as agents. Their producers use the existing writing reference in artifact mode: explain behavior, conclusions and important exceptions before tracing machinery. This does not add a required polish stage or change source authority, machine keys, evidence, or approval gates. See the [writing modes](./docs/productivity/lain-writing-for-agents.md) and the [covered artifacts](./.agents/artifact-readability.md).
+Specs, tickets, decision notes, research, handoffs and reports serve developers as well as agents. Each producer states its artifact's reading order in one line: behavior, conclusions and important exceptions come before tracing machinery. The fuller artifact mode of the writing reference runs only when you ask for it, so ordinary artifacts load no extra guidance. See the [writing modes](./docs/productivity/lain-writing-for-agents.md) and the [covered artifacts](./.agents/artifact-readability.md).
 
 ## Reference
 

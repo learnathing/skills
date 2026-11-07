@@ -68,7 +68,7 @@ No, it now fires them for you. In the unreleased changes since v1.1, a charting 
 - Every claim in it carries a link, and following two at random lands you on an official doc, a spec, or the actual source file, not on someone's write-up of it.
 - You can make the decision you were stuck on from the file alone, without going back to the sources yourself.
 
-- The note answers the research question with citations and uncertainty before the search trail, distinguishing facts from recommendations. See the [shared artifact writing reference](https://github.com/learnathing/skills/blob/main/docs/productivity/lain-writing-for-agents.md).
+- The note answers the research question with citations and uncertainty before the search trail, distinguishing facts from recommendations.
 
 ## Where it fits
 

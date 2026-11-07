@@ -3,7 +3,7 @@ name: lain-technical-design
 description: "Resolve technical risk before committing work to an implementation route. Use when requirements leave shared interfaces, data identity, algorithms, failure semantics, migrations, security, capacity, or cross-ticket decisions unsettled, or when another skill needs a readiness assessment."
 ---
 
-When writing the artifacts described here, call the Skill tool with "lain-writing-for-agents" in artifact mode. Reuse the reference when already loaded. If unavailable, disclose once and draft directly without weakening existing gates. Lead a design note with the problem, proposed or accepted choice, reason and consequences. Keep blockers and material trade-offs visible before revision registers. A readiness conclusion names the particular scope and evidence, not just reuse/design-needed/blocked. Preserve the existing lazy-document and assessment-only boundaries.
+A design note leads with the problem, the proposed or accepted choice, its reason and consequences, with blockers and material trade-offs before any revision register.
 
 # Technical Design
 
@@ -33,7 +33,7 @@ For a runnable feasibility, retrieval-quality, capacity, or migration question, 
 
 In design mode, turn the high-level goal and inspected constraints into a recommended approach before asking the user to select technologies. Use established project and industry terminology, explain the material trade-off, and compare only alternatives that could change the result. Investigate implementation details yourself; do not turn a technology menu into a product interview. A small authorized experiment can resolve uncertainty that discussion cannot, but missing evidence stays explicit until it runs.
 
-Make reversible technical choices within explicit project or task authority and record that authority and the evidence. A caller-visible choice supported by existing intent or delegation needs no new approval merely because it is visible. Ask only about material unresolved product semantics, cost, data handling, irreversible trade-offs or missing authority that sources and delegation cannot settle. Translate the remaining choice into observable consequences with a recommendation. A user's lack of technical expertise is not permission to choose their goals or spend resources for them. Never attribute an agent recommendation to the user. Design discussion alone does not authorize paid resources, production changes, or sending private data elsewhere.
+Make reversible technical choices within explicit project or task authority and record that authority and the evidence. A caller-visible choice supported by existing intent or delegation needs no new approval merely because it is visible. Ask only about material unresolved product semantics, cost, data handling, irreversible trade-offs or missing authority that sources and delegation cannot settle. Translate the remaining choice into observable consequences with a recommendation. Never attribute an agent recommendation to the user. Design discussion alone does not authorize paid resources, production changes, or sending private data elsewhere.
 
 ## 3. Capture only what downstream work needs
 

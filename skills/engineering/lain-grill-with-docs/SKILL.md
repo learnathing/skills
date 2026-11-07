@@ -4,7 +4,7 @@ description: Clarify requirements and consequential design choices, preserving d
 disable-model-invocation: true
 ---
 
-When writing the artifacts described here, call the Skill tool with "lain-writing-for-agents" in artifact mode. Reuse the reference when already loaded. If unavailable, disclose once and draft directly without weakening existing gates. The decision handoff starts with the agreed outcome, scope and material open choices. Place the source index after the understandable agreement, preserving exact decisions, acceptance examples and authority. This is the same handoff, not an additional summary or approval ceremony.
+The decision handoff starts with the agreed outcome, scope and open material choices; the source index comes after them.
 
 Call the Skill tool with "lain-grilling".
 

@@ -2,7 +2,7 @@
 
 ## Scope
 
-Generated artifacts, not just specs and tickets, should let their intended reader understand behavior, question assumptions and decide what happens next. The writing owner is `lain-writing-for-agents` in artifact mode. Its co-located `HUMAN-ARTIFACTS.md` is the single writing reference. No new skill, mandatory polish stage or second source of truth is introduced.
+Generated artifacts, not just specs and tickets, should let their intended reader understand behavior, question assumptions and decide what happens next. Each producer below states its reading order in one line of its own `SKILL.md`, and the spec and ticket templates keep the behavior-first section order. The fuller `HUMAN-ARTIFACTS.md` in `lain-writing-for-agents` runs only when a user explicitly asks for artifact mode; producers do not load it on their own, because it cost about 2,700 words per artifact and no recorded failure or executed evaluation showed it was needed.
 
 ## Covered producers
 
@@ -37,10 +37,10 @@ One short paragraph is still sufficient for an eligible ADR. Glossaries remain t
 
 ## Verification
 
-Run `node --test scripts/readable-artifacts.test.mjs` for real validator compatibility checks with Chinese prose and multi-sentence definitions. Run `node --test scripts/artifact-wiring.test.mjs` to check the declared producer/reference/doc wiring in a complete checkout. Existing ticket, review and engineering-flow checks remain required. Mechanical checks do not establish human comprehension or agent task quality.
+Run `node --test scripts/readable-artifacts.test.mjs` for real validator compatibility checks with Chinese prose and multi-sentence definitions. Existing ticket, review and engineering-flow checks remain required. Mechanical checks do not establish human comprehension or agent task quality.
 
 `evals/readable-artifacts.md` defines a separate human-understanding evaluation. Its examples are development inputs, not executed human trials. Do not publish readability or performance uplift without that evidence.
 
 ## Integration boundary
 
-Prepared against main `cf935302dca2adba1a37003923f8ddeb20fa517c`. Separate upstream integration work may have extracted `lain-implement` into a shared `lain-implementation` skill. When that work reaches the integration branch, place the same report-writing pointer at the shared implementation owner, rather than duplicating its six-state contract or restoring the old entry-point body. Reconcile changed domain-document discovery rules instead of overwriting them.
+Prepared against main `cf935302dca2adba1a37003923f8ddeb20fa517c`. Separate upstream integration work may have extracted `lain-implement` into a shared `lain-implementation` skill. When that work reaches the integration branch, place the same one-line reading order at the shared implementation owner, rather than duplicating its six-state contract or restoring the old entry-point body. Reconcile changed domain-document discovery rules instead of overwriting them.

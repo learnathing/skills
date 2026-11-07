@@ -58,7 +58,7 @@ Preserve and supersede it, identify its dependents, then re-establish their read
 - Maps and decision tickets carry only `wayfinder:` labels, never a triage label such as `ready-for-agent`, and each ticket is resolved as the type its label names.
 - Cross-references use real issue identifiers, and research branches are pushed without a pull request.
 
-- The map shows what decisions matter and what each unresolved question blocks, without duplicating every child ticket. See the [shared artifact writing reference](https://github.com/learnathing/skills/blob/main/docs/productivity/lain-writing-for-agents.md).
+- The map shows what decisions matter and what each unresolved question blocks, without duplicating every child ticket.
 
 ## Where it fits
 
