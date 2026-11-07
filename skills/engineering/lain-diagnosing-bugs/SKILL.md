@@ -65,7 +65,7 @@ Phase 1 is done when the loop is **tight** and **red-capable**: you can name **o
 - [ ] **Fast**: seconds, not minutes.
 - [ ] **Agent-runnable**: you can run it unattended; a human in the loop only via `scripts/hitl-loop.template.sh`.
 
-This criterion establishes an executable reproduction, not permission to reason. When it cannot be met, use the evidence-limited path above and report which parts of the diagnosis or fix remain unverified.
+When it cannot be met, use the evidence-limited path above and report which parts of the diagnosis or fix remain unverified.
 
 ## Phase 2: Reproduce + minimise
 

@@ -25,7 +25,7 @@ Classify each supported candidate before proposing a change:
 - Information or navigation gap: point to an existing authoritative source, or propose the smallest missing observation. New external access needs explicit authorization and least privilege.
 - Tool or context cost: show the observed wasted calls or repeated reading and the specific change that would avoid them. Do not infer savings from instruction length alone.
 
-Keep standards discoverable to implementers when needed to avoid rework. Do not assume a reviewer can assess a diff without reading its source, callers, constraints and evidence. Preserve independent review and complete coverage; lighter steering is not permission to weaken either.
+Keep standards discoverable to implementers when needed to avoid rework. Do not assume a reviewer can assess a diff without reading its source, callers, constraints and evidence. Preserve independent review and complete coverage.
 
 ## Report, then stop
 

@@ -11,7 +11,7 @@ Design **deep modules**: a lot of behaviour behind a small interface, placed at 
 
 These are scoped analysis concepts, not a replacement dictionary for the project. Use established terms such as component, service, API and boundary when they accurately name the thing being discussed. Explain a distinction only when it affects the design; do not rename public APIs, product concepts or code symbols merely to match this glossary.
 
-This is a reference within the caller's authorized task, not authority to start a new redesign or interview. Compare alternative interfaces only when a real unresolved design choice warrants it, not to manufacture work for an already settled change.
+Compare alternative interfaces only when a real unresolved design choice warrants it, not to manufacture work for an already settled change.
 
 **Module**: anything with an interface and an implementation. Deliberately scale-agnostic: a function, class, package, or tier-spanning slice. A named service or component may be the module under discussion; retain that name.
 

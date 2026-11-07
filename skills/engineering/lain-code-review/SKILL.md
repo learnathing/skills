@@ -35,7 +35,7 @@ Find the originating spec in this order:
 3. Issue references in commit messages, fetched through `docs/agents/issue-tracker.md`
 4. If no spec exists, skip the Spec axis and say so. Ask only when the user explicitly requested Spec compliance and the missing source prevents that review. A supplied or identified source that cannot be read is a coverage gap, not evidence that no spec exists
 
-Find repository standards such as `AGENTS.md`, `CLAUDE.md`, `CODING_STANDARDS.md`, and `CONTRIBUTING.md`. Find the relevant `CONTEXT.md`, ADRs, and the agreed seams. Read the Design rubric in [review-rubrics.md](review-rubrics.md). When the change affects shared technical constraints, also read their accepted source revisions, relevant design and experiment evidence, and any configured engineering policy. Load only the affected subset. A design note is not authority to invent requirements, and a structural validator pass is not architecture or benchmark evidence.
+Find repository standards such as `AGENTS.md`, `CLAUDE.md`, `CODING_STANDARDS.md`, and `CONTRIBUTING.md`. Find the relevant `CONTEXT.md`, ADRs, and the agreed seams. Read the Design rubric in [review-rubrics.md](review-rubrics.md). When the change affects shared technical constraints, also read their accepted source revisions, relevant design and experiment evidence, and any configured engineering policy. Load only the affected subset. A structural validator pass is not architecture or benchmark evidence.
 
 ## 3. Run one independent review
 
