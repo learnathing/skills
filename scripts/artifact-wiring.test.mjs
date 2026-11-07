@@ -30,9 +30,10 @@ test("artifact mode runs only on explicit request and keeps its reference", () =
 for (const [bucket, name] of producers) {
   test(`${name}: no automatic artifact-mode load`, () => {
     const dir = path.join(root, "skills", bucket, name);
-    for (const file of fs.readdirSync(dir).filter((f) => f.endsWith(".md"))) {
-      const text = read(`skills/${bucket}/${name}/${file}`);
-      assert.doesNotMatch(text, /artifact[ -]mode/i, `${name}/${file}`);
+    const files = fs.readdirSync(dir, { recursive: true }).filter((f) => /\.(md|ya?ml)$/.test(f));
+    for (const file of files) {
+      const text = fs.readFileSync(path.join(dir, file), "utf8");
+      assert.doesNotMatch(text, /artifact[ -]mode|HUMAN-ARTIFACTS|LIVING-ARTIFACTS|VISUALS\.md/i, `${name}/${file}`);
       assert.ok(!text.includes("\u2014"), `${name}/${file}`);
     }
     assert.ok(!read(`docs/${bucket}/${name}.md`).includes("shared artifact writing reference"));

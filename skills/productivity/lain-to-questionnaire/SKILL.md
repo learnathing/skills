@@ -4,7 +4,7 @@ description: Turn a decision you can't fully answer into a questionnaire for som
 disable-model-invocation: true
 ---
 
-Use the recipient's language and knowledge, not internal terminology, and make each question answerable on its own with its context and an answer space.
+Use the recipient's language and knowledge, not internal terminology, and make each question answerable on its own with its context and an answer space. Separate supplied facts from proposals, and do not word a question so it leads the recipient into approving an assumed answer.
 
 Turn something the user can't answer alone into a **questionnaire**: a Markdown document they hand to one person to fill in async, or fill out together over a meeting. The recipient holds knowledge the user lacks; the questionnaire pulls it out of them.
 
@@ -35,7 +35,7 @@ One paragraph orienting a recipient who wasn't in the user's head. Enough to ans
 
 ## How to answer
 
-Deadline and rough effort, only when the user supplied them; otherwise leave this line out rather than inventing one. Partial answers and "I don't know" are useful: flag anything you're unsure of rather than skipping it.
+Deadline and rough effort, only when the user supplied them; otherwise omit this sentence alone rather than inventing values. Partial answers and "I don't know" are useful: flag anything you're unsure of rather than skipping it.
 
 ## <Theme heading>
 
