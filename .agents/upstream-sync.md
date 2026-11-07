@@ -22,8 +22,9 @@ This records content decisions, not a claim that all upstream commits were merge
 | 2 | `implement-spec` task graph and integration branch | Planned: adapt to shared implementation and review gates |
 | 3 | `GLOSSARY.md` and map naming | Planned: compatibility before optional migration |
 | 3 | Local linking scope | Planned: explicit selection and non-destructive conflict handling |
-| Retain | Upstream removal of `resolving-merge-conflicts` | Not adopted; retain the fork's ownership and stop/abort safeguards |
+| Retain | Upstream removal of `resolving-merge-conflicts` | Not adopted; retain the fork's ownership and stop/abort safeguards. Made user-invoked after session logs showed no real use, so it costs no context until typed |
 | Retain | Question separators, `85f83d3` | Already ported in `e2e3be7`, then adapted to user-controlled rounds |
+| Local | Unused `misc/` skills and in-progress writing and experiment skills | Moved to `deprecated/`, which is not linked; usage evidence came from Codex and Claude Code session logs |
 | Defer | Experimental `chief-of-staff` | Not installed or promoted |
 | Ignore | Bulk prose rewrites and upstream version metadata | No wholesale import; update only documents affected by adopted behavior |
 

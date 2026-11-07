@@ -6,7 +6,7 @@ It refuses to treat a conflict as a text problem. Before touching a hunk it trac
 
 ## When to reach for it
 
-Type `/lain-resolving-merge-conflicts`, or the [agent](https://www.aihero.dev/ai-coding-dictionary/agent) reaches for it automatically when a task fits.
+You invoke this by typing `/lain-resolving-merge-conflicts`; the [agent](https://www.aihero.dev/ai-coding-dictionary/agent) won't reach for it on its own, so it costs no context until you need it.
 
 Reach for it when git has already stopped on conflicts it could not resolve itself. It is scoped to the conflict in front of you, not to anything either side of it:
 
