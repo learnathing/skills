@@ -16,6 +16,8 @@ Before editing, record the current `HEAD` as the fixed point, `git status --shor
 
 ## 2. Rehydrate the contract
 
+When the user passes a ticket reference, fetch it from the configured issue tracker and state its title before editing. If the reference is ambiguous, ask.
+
 Read the full source: an issue or spec with its comments and parent, or the current conversation's decision handoff for a same-session route. Also read relevant sibling issue titles, the domain glossary, relevant ADRs, repository instructions, and the nearest existing implementation at the intended seam. If the source has no stable IDs, assign local IDs and preserve each definition in the contract.
 
 Read only the relevant accepted technical decisions, their revisions, evidence and optional `docs/agents/engineering.md`. Reuse a still-applicable assessment or call the Skill tool with "lain-technical-design" in assessment-only mode. A direct implement request does not bypass technical readiness. When existing design suffices, continue without a new interview, design document, spec or ticket. When a gap exists, resolve a bounded design within the task's authority or stop the affected scope for a source/authority decision; do not silently improvise a shared contract.

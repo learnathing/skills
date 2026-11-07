@@ -72,13 +72,13 @@ Each ticket contains the question it resolves, sized to one bounded session with
 The precise decision or investigation to resolve.
 ```
 
-Labels remain `wayfinder:research`, `wayfinder:prototype`, `wayfinder:grilling`, or `wayfinder:task`. A session claims a ticket by assigning it to its driving developer before work. An open, unassigned ticket is unclaimed. The **frontier** contains open, unblocked, unclaimed tickets. Prefer the tracker's native blocking relationship; only use the documented body convention when native dependencies are unavailable.
+Labels remain `wayfinder:research`, `wayfinder:prototype`, `wayfinder:grilling`, or `wayfinder:task`. A session claims a ticket by assigning it to its driving developer before work. An open, unassigned ticket is unclaimed. The **frontier** contains open, unblocked, unclaimed tickets. Prefer the tracker's native blocking relationship; only use the documented body convention when native dependencies are unavailable. `wayfinder:` labels are the only labels a map and its decision tickets carry; never add a triage label such as `ready-for-agent`, because they are decisions, not implementation work. Triage labels belong only on the implementation tickets that `/lain-to-tickets` later creates for a ready scope.
 
 Record resolution as a comment and link created assets instead of pasting all their detail. Decision dependencies are not a replacement for runtime architecture or data contracts.
 
 ## Ticket types
 
-- **Research** (AFK): establish facts from primary sources outside the working directory. Use a subagent that calls the Skill tool with "lain-research" when supported. Disclose unavailable background/subagent execution instead of claiming it ran.
+- **Research** (AFK): establish facts from primary sources outside the working directory. Use a subagent with a fresh context window that calls the Skill tool with "lain-research" when supported. Disclose unavailable background/subagent execution instead of claiming it ran.
 - **Prototype**: call the Skill tool with "lain-prototype". UI and logic reactions are HITL, and the human selects the result. A technical experiment can be AFK only when the evaluation rule, data permissions, resource envelope and decision authority are already settled. Its closure records actual evidence and its limitations, not a fabricated benchmark.
 - **Grilling** (HITL): call the Skill tool twice, for "lain-grilling" and "lain-domain-modeling". The human speaks for their own decisions; never simulate their answers.
 - **Task** (HITL or AFK): bounded prerequisite work that unblocks a decision, such as obtaining access or preparing an authorized sample. It earns its place by enabling a decision, not by delivering production behavior. Record actual work and resulting facts, without secrets.
@@ -98,15 +98,15 @@ Resolve no more than one ticket per session, except parallel research where supp
 1. **Name the destination.** Call the Skill tool twice, for "lain-grilling" and "lain-domain-modeling", to establish the result and boundary.
 2. **Map the frontier.** Explore breadth-first rather than exhaustively designing one branch. Identify shared technical prerequisites and independent capabilities. If the path is already clear and fits a session, recommend the normal flow instead of creating a map.
 3. **Create the map.** Record the destination, Notes, empty decision index, current fog and deliberate exclusions.
-4. **Create precise decision tickets.** Create their identities first, then wire real dependency edges in a second pass. Do not prematurely split uncertain future deliverables into implementation tasks.
-5. **Run authorized research.** Where supported, dispatch bounded research subagents and retain their evidence on authorized research branches with source pointers. Report unavailable execution honestly.
+4. **Create precise decision tickets.** Create their identities first, then wire real dependency edges in a second pass. Write cross-references in that pass too, with real identifiers: a placeholder `#<n>` auto-links to an unrelated issue. Do not prematurely split uncertain future deliverables into implementation tasks.
+5. **Run authorized research.** Where supported, dispatch bounded research subagents, each with a fresh context window, and retain their evidence on authorized research branches with source pointers. Push a research branch but open no pull request: it is never merged. Report unavailable execution honestly.
 6. Stop after charting; do not hand-resolve unrelated tickets or start production implementation.
 
 ### Work through the map
 
 1. Load the map, then the selected ticket. If the user did not name one, select an unblocked, unclaimed frontier ticket.
 2. Claim it before work, respecting other sessions.
-3. Resolve the question with relevant sources. Call only model-invoked skills named in Notes. A user-invoked step is a recommendation for the human, not an implicit tool call.
+3. Resolve the ticket as the type its `wayfinder:<type>` label names (see Ticket types); read the label, because the body does not state the type. Resolve the question with relevant sources. Call only model-invoked skills named in Notes. A user-invoked step is a recommendation for the human, not an implicit tool call.
 4. Record the evidence-backed resolution comment, close the ticket, and append a source pointer to Decisions so far. Preserve unresolved authority or evidence as a blocker instead of forcing closure.
 5. Graduate newly precise questions, update real dependencies, and preserve the history of superseded decisions. Recheck only scopes affected by a changed decision, after checking ownership.
 6. Hand off any independently ready capability with its accepted prerequisites and evidence. The production flow happens outside the planning map unless an explicit human authorization says otherwise.

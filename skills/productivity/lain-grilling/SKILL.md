@@ -7,7 +7,7 @@ Reach a shared understanding of the requested scope. Use a **design tree** to tr
 
 ## Investigate and recommend first
 
-Finding facts is your job, never the user's. Read relevant code, documents and available primary sources before asking. Delegate independent exploration when useful; investigate directly when delegation is unavailable or unhelpful. Missing tools do not turn a guess into a fact. Name a consequential evidence gap and the work it blocks, while continuing independent authorized work.
+Finding facts is your job, never the user's. Read relevant code, documents and available primary sources before asking. Delegate independent exploration to a sub-agent with a fresh context window when useful; investigate directly when delegation is unavailable or unhelpful. Missing tools do not turn a guess into a fact. Name a consequential evidence gap and the work it blocks, while continuing independent authorized work.
 
 Use the intent, constraints, settled decisions and authority already supplied. Recommend a coherent approach rather than sending the user a menu of unfamiliar technical choices. Make routine, reversible choices within that authority and verify them at an appropriate seam. A caller-visible choice does not automatically require a question when existing intent or delegation already settles it. Preserve binding requirements; do not disguise a changed limit, error behavior or permission as an implementation detail.
 
@@ -15,7 +15,7 @@ Use the intent, constraints, settled decisions and authority already supplied. R
 
 The human-question **frontier** contains material unresolved choices whose prerequisites are settled and which available evidence, existing intent and applicable delegation cannot resolve. Unknown technical details stay with agent investigation or design. Ask for unavailable local knowledge only after checking accessible sources; ask for new authority before acting beyond it.
 
-Work in **rounds** when questions remain. Group independent questions into an answerable round, with a number, your recommendation and its consequence for the user. Keep dependent questions for later. Explain a choice in terms of observable outcomes, cost or reversibility, not a prerequisite lesson in implementation terminology. Use the reader's language and established project terms. A default format:
+Work in **rounds** when questions remain. Group independent questions into an answerable round, with a number, your recommendation and its consequence for the user. Keep dependent questions for later. Explain a choice in terms of observable outcomes, cost or reversibility, not a prerequisite lesson in implementation terminology. Use the reader's language and established project terms. Word each question so a plain "yes" accepts your recommendation; silence or an unrelated reply accepts nothing. A default format:
 
 ```
 Q1: <Outcome or trade-off that still needs your decision>

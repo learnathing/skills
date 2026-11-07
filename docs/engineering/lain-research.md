@@ -22,7 +22,7 @@ The line between `lain-research` and `lain-grill-with-docs` is the **shelf life 
 
 ## Delegated legwork
 
-The defining move is that the reading runs as a **background agent**. You keep working; it goes off, follows each claim to its primary source, writes one Markdown file, and reports back. Research is legwork you delegate, not thinking you outsource: you get a document to grill, plan, or design against, and you still make the call.
+The defining move is that the reading runs as a **background agent**, started with a fresh context window rather than a fork of your conversation. You keep working; it goes off, follows each claim to its primary source, writes one Markdown file, and reports back. Research is legwork you delegate, not thinking you outsource: you get a document to grill, plan, or design against, and you still make the call.
 
 The delegation is unguarded, and the background agent can spawn a further background agent of its own. This is the skill's best-documented rough edge.
 

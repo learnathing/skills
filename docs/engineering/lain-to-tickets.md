@@ -55,6 +55,7 @@ Not for multi-ticket delivery. Integrate and check as slices land, then run fina
 
 - Tickets remain complete, observable vertical slices.
 - Each source scenario has one owner and dependencies are acyclic.
+- Tickets split from an existing issue are attached to it as sub-issues where the tracker supports them.
 - Draft validation still runs on the exact approved artifacts.
 - A developer can distinguish implementation from remaining review or integration work.
 - Source revisions, limitations and superseded decisions stay traceable.
