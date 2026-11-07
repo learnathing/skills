@@ -35,7 +35,7 @@ One paragraph orienting a recipient who wasn't in the user's head. Enough to ans
 
 ## How to answer
 
-Deadline and rough effort. Partial answers and "I don't know" are useful: flag anything you're unsure of rather than skipping it.
+Deadline and rough effort, only when the user supplied them; otherwise leave this line out rather than inventing one. Partial answers and "I don't know" are useful: flag anything you're unsure of rather than skipping it.
 
 ## <Theme heading>
 
